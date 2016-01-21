@@ -1,7 +1,7 @@
 {
   "name": "snyk-resolve-deps",
   "version": "1.0.0",
-  "description": "",
+  "description": "Resolves a node package tree with combined support for both npm@2 and npm@3.",
   "main": "lib/index.js",
   "directories": {
     "test": "test"
@@ -22,9 +22,11 @@
   },
   "dependencies": {
     "@remy/npm-tree": "^1.0.1",
+    "ansicolors": "^0.3.2",
     "debug": "^2.2.0",
     "es6-promise": "^3.0.2",
     "lodash": "^4.0.0",
+    "lru-cache": "^4.0.0",
     "semver": "^5.1.0",
     "snyk": "*",
     "then-fs": "^2.0.0"

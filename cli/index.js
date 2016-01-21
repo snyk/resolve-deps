@@ -15,8 +15,9 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return walkDepTree(src).then(function (res) {
-      console.log(walkDepTree.logicalTree(res));
+    return walkDepTree(src, { dev: true }).then(function (res) {
+      console.log(tree(walkDepTree.logicalTree(res)));
+      // console.log(tree(res));
     });
   }
 
@@ -25,5 +26,5 @@ Promise.resolve().then(function () {
 
 function exit(error) {
   console.log(error.stack);
-  process.exit(1);
+  // process.exit(1);
 }
