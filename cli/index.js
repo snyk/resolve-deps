@@ -16,7 +16,6 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    console.log('searching deps (incl dev? %s)', args.dev);
     return walkDepTree(src, { dev: args.dev })
       .then(walkDepTree.logicalTree)
       .then(function (res) {

@@ -12,10 +12,12 @@ test('walk (with all fixtures)', function (t) {
     var plucked = null;
     var name = 'semver';
 
+    var expect = process.env['npm_config_user_agent'].indexOf('npm/3') === -1 ? 2 : 1;
+
     plucked = pluck(res, name, '*');
-    t.equal(plucked.length, 2, 'found two instances of ' + name);
+    t.equal(plucked.length, expect, 'found two instances of ' + name);
     plucked = pluck(res, name, '*');
-    t.equal(plucked.length, 2, 'found two instances of ' + name);
+    t.equal(plucked.length, expect, 'found two instances of ' + name);
 
   }).catch(t.fail).then(t.end);
 

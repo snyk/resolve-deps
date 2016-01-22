@@ -10,6 +10,7 @@
   },
   "scripts": {
     "lint": "jscs cli/*.js lib/*.js -v",
+    "env": "node -e 'console.log(process.env, process.versions)'",
     "cover": "tap test/*.test.js --cov --coverage-report=lcov",
     "test": "npm run lint && tap test/*.test.js --cov --timeout=60 && snyk test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -19,7 +20,7 @@
   "devDependencies": {
     "jscs": "^2.8.0",
     "semantic-release": "^4.3.5",
-    "snyk-resolve-deps-fixtures": "^1.0.8",
+    "snyk-resolve-deps-fixtures": "^1.0.9",
     "tap": "^5.1.1",
     "tap-only": "0.0.5",
     "tape": "^4.4.0"
