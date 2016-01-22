@@ -14,7 +14,7 @@
     "test": "npm run lint && tap test/*.test.js --cov --timeout=60 && snyk test > /dev/null"
   },
   "author": "Remy Sharp",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "jscs": "^2.8.0",
     "tap": "^5.1.1",
