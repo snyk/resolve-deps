@@ -1,10 +1,10 @@
-var test = require('tap').test;
+var test = require('tap-only');
 var deps = require('../lib/deps');
 var path = require('path');
 var npm2fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
 var npm3fixture = path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/node_modules');
+    'node_modules/snyk-resolve-deps-fixtures/');
 
 test('deps - not a node project', function (t) {
   deps(__dirname, { dev: false }).then(function (res) {
@@ -22,6 +22,12 @@ test('deps - no options works', function (t) {
   }).catch(t.fail).then(t.end);
 });
 
+test('deps - npm@3', function (t) {
+  deps(npm3fixture).then(function (res) {
+    t.ok(!!res, 'package loaded');
+  }).catch(t.fail).then(t.end);
+});
+
 test('deps - dev:false (with uglify-package)', function (t) {
   deps(npm2fixture, { dev: false }).then(function (res) {
     t.equal(res.name, 'uglify-package', 'package name matches');
@@ -36,10 +42,25 @@ test('deps - dev:false (with uglify-package)', function (t) {
 
 });
 
-test('deps - dev:true (with uglify-package)', function (t) {
-  deps(npm2fixture, { dev: true }).then(function (res) {
-    var ugdeep = res.dependencies['ug-deep'];
-    t.deepEqual(Object.keys(ugdeep.dependencies), ['undefsafe'], 'found dev dep');
+test('deps - dev:true (searching for devDeps)', function (t) {
+  deps(npm3fixture, { dev: true }).then(function (res) {
+    var name = 'debug';
+    t.notEqual(Object.keys(res.dependencies).indexOf(name), -1, 'found dev dep');
   }).catch(t.fail).then(t.end);
+});
 
+test('deps - dev:false (searching for devDeps)', function (t) {
+  deps(npm3fixture, { dev: false }).then(function (res) {
+    var name = 'debug';
+    t.equal(Object.keys(res.dependencies).indexOf(name), -1, 'dev dep missing');
+  }).catch(t.fail).then(t.end);
+});
+
+test('deps - throws without path', function (t) {
+  deps().then(function () {
+    t.fail('without a path deps should not succeed');
+  }).catch(function (e) {
+    t.type(e, 'Error', 'error received');
+    t.equal(e.message, 'module path must be a string', 'error is correct');
+  }).then(t.end);
 });

@@ -18,10 +18,11 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "jscs": "^2.8.0",
-    "snyk-resolve-deps-fixtures": "^1.0.4",
+    "semantic-release": "^4.3.5",
+    "snyk-resolve-deps-fixtures": "^1.0.8",
     "tap": "^5.1.1",
-    "tape": "^4.4.0",
-    "semantic-release": "^4.3.5"
+    "tap-only": "0.0.5",
+    "tape": "^4.4.0"
   },
   "dependencies": {
     "@remy/npm-tree": "^1.0.1",

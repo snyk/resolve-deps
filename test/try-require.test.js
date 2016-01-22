@@ -11,7 +11,7 @@ test('try failure require', function (t) {
 
 test('try successful require', function (t) {
   var filename = path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/uglify-package/package.json');
+    'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/package.json');
   tryRequire(filename).then(function (pkg) {
     t.ok(pkg, 'package loaded');
     t.ok(pkg.snyk, 'detected policy file');
