@@ -1,0 +1,56 @@
+{
+  "name": "snyk-resolve-deps-fixtures",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "depType": "extraneous",
+  "hasDevDependencies": true,
+  "full": "snyk-resolve-deps-fixtures@1.0.0",
+  "dependencies": {
+    "@remy/vuln-test": {
+      "name": "@remy/vuln-test",
+      "version": "1.0.1",
+      "full": "@remy/vuln-test@1.0.1",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "ISC",
+      "dep": "^1.0.1",
+      "dependencies": {
+        "semver": {
+          "name": "semver",
+          "version": "2.3.2",
+          "full": "semver@2.3.2",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD",
+          "dep": "^2.3.2",
+          "dependencies": false
+        }
+      }
+    },
+    "semver-rs-demo": {
+      "name": "semver-rs-demo",
+      "version": "1.0.0",
+      "full": "semver-rs-demo@1.0.0",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "ISC",
+      "dep": "^1.0.0",
+      "dependencies": {
+        "semver": {
+          "name": "semver",
+          "version": "2.3.2",
+          "full": "semver@2.3.2",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD",
+          "dep": "^2.3.2",
+          "dependencies": false
+        }
+      }
+    }
+  }
+}
