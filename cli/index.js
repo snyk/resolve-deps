@@ -5,7 +5,8 @@ var tree = require('@remy/npm-tree');
 var fs = require('then-fs');
 
 var usage = 'Usage: snyk-resolve <package-dir>';
-var src = process.argv[2];
+var args = require('./args')(process.argv);
+var src = args._.shift();
 
 Promise.resolve().then(function () {
   if (!src) {
@@ -15,10 +16,16 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return walkDepTree(src, { dev: true }).then(function (res) {
-      console.log(tree(walkDepTree.logicalTree(res)));
-      // console.log(tree(res));
-    });
+    console.log('searching deps (incl dev? %s)', args.dev);
+    return walkDepTree(src, { dev: args.dev })
+      .then(walkDepTree.logicalTree)
+      .then(function (res) {
+        if (args.json) {
+          return console.log(JSON.stringify(res, '', 2));
+        }
+
+        console.log(tree(res));
+      });
   }
 
   throw new Error('Can\'t load ' + src);
