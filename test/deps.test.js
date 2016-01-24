@@ -49,13 +49,6 @@ test('deps - dev:true (searching for devDeps)', function (t) {
   }).catch(t.fail).then(t.end);
 });
 
-test('deps - dev:false (searching for devDeps)', function (t) {
-  deps(npm3fixture, { dev: false }).then(function (res) {
-    var name = 'debug';
-    t.equal(Object.keys(res.dependencies).indexOf(name), -1, 'dev dep missing');
-  }).catch(t.fail).then(t.end);
-});
-
 test('deps - throws without path', function (t) {
   deps().then(function () {
     t.fail('without a path deps should not succeed');

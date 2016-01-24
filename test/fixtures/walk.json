@@ -1,0 +1,522 @@
+{
+  "name": "snyk-resolve-deps-fixtures",
+  "version": "1.0.9",
+  "license": "UNLICENSED",
+  "depType": "extraneous",
+  "hasDevDependencies": true,
+  "full": "snyk-resolve-deps-fixtures@1.0.9",
+  "dependencies": {
+    "@remy/vuln-test": {
+      "name": "@remy/vuln-test",
+      "version": "1.0.1",
+      "license": "ISC",
+      "depType": "prod",
+      "hasDevDependencies": true,
+      "full": "@remy/vuln-test@1.0.1",
+      "dependencies": {
+        "semver": {
+          "name": "semver",
+          "version": "2.3.2",
+          "full": "semver@2.3.2",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD",
+          "dep": "^2.3.2",
+          "dependencies": {}
+        }
+      },
+      "dep": "^1.0.1"
+    },
+    "debug": {
+      "name": "debug",
+      "version": "2.2.0",
+      "full": "debug@2.2.0",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "MIT",
+      "dep": "^2.2.0",
+      "dependencies": {
+        "ms": {
+          "name": "ms",
+          "version": "0.7.1",
+          "full": "ms@0.7.1",
+          "valid": false,
+          "depType": "extraneous",
+          "snyk": false,
+          "license": "none",
+          "dep": null,
+          "dependencies": {}
+        }
+      }
+    },
+    "semver-rs-demo": {
+      "name": "semver-rs-demo",
+      "version": "1.0.0",
+      "full": "semver-rs-demo@1.0.0",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "ISC",
+      "dep": "^1.0.0",
+      "dependencies": {
+        "semver": {
+          "name": "semver",
+          "version": "2.3.2",
+          "full": "semver@2.3.2",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD",
+          "dep": "^2.3.2",
+          "dependencies": false
+        }
+      }
+    },
+    "uglify-package": {
+      "name": "uglify-package",
+      "version": "1.0.0",
+      "full": "uglify-package@1.0.0",
+      "valid": true,
+      "depType": "prod",
+      "snyk": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package",
+      "license": "ISC",
+      "dep": "*",
+      "dependencies": {
+        "ug-deep": {
+          "name": "ug-deep",
+          "version": "1.0.0",
+          "full": "ug-deep@1.0.0",
+          "valid": true,
+          "depType": "prod",
+          "snyk": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/ug-deep",
+          "license": "ISC",
+          "dep": "^1.0.0",
+          "dependencies": {
+            "uglify-js": {
+              "name": "uglify-js",
+              "version": "2.4.24",
+              "full": "uglify-js@2.4.24",
+              "valid": false,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD",
+              "dep": null,
+              "dependencies": {
+                "async": {
+                  "name": "async",
+                  "version": "0.2.10",
+                  "full": "async@0.2.10",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "~0.2.6",
+                  "dependencies": false
+                },
+                "source-map": {
+                  "name": "source-map",
+                  "version": "0.1.34",
+                  "full": "source-map@0.1.34",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD",
+                  "dep": "0.1.34",
+                  "dependencies": {
+                    "amdefine": {
+                      "name": "amdefine",
+                      "version": "1.0.0",
+                      "full": "amdefine@1.0.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "BSD-3-Clause AND MIT",
+                      "dep": ">=0.0.4",
+                      "dependencies": false
+                    }
+                  }
+                },
+                "uglify-to-browserify": {
+                  "name": "uglify-to-browserify",
+                  "version": "1.0.2",
+                  "full": "uglify-to-browserify@1.0.2",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "~1.0.0",
+                  "dependencies": {}
+                },
+                "yargs": {
+                  "name": "yargs",
+                  "version": "3.5.4",
+                  "full": "yargs@3.5.4",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT/X11",
+                  "dep": "~3.5.4",
+                  "dependencies": {
+                    "camelcase": {
+                      "name": "camelcase",
+                      "version": "1.2.1",
+                      "full": "camelcase@1.2.1",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "^1.0.2",
+                      "dependencies": false
+                    },
+                    "decamelize": {
+                      "name": "decamelize",
+                      "version": "1.1.2",
+                      "full": "decamelize@1.1.2",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "^1.0.0",
+                      "dependencies": {
+                        "escape-string-regexp": {
+                          "name": "escape-string-regexp",
+                          "version": "1.0.4",
+                          "full": "escape-string-regexp@1.0.4",
+                          "valid": true,
+                          "depType": "prod",
+                          "snyk": false,
+                          "license": "MIT",
+                          "dep": "^1.0.4",
+                          "dependencies": false
+                        }
+                      }
+                    },
+                    "window-size": {
+                      "name": "window-size",
+                      "version": "0.1.0",
+                      "full": "window-size@0.1.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "0.1.0",
+                      "dependencies": false
+                    },
+                    "wordwrap": {
+                      "name": "wordwrap",
+                      "version": "0.0.2",
+                      "full": "wordwrap@0.0.2",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT/X11",
+                      "dep": "0.0.2",
+                      "dependencies": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ug-deep-alt": {
+          "name": "ug-deep-alt",
+          "version": "1.0.0",
+          "full": "ug-deep-alt@1.0.0",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "ISC",
+          "dep": "^1.0.0",
+          "dependencies": {
+            "uglify-js": {
+              "name": "uglify-js",
+              "version": "2.4.24",
+              "full": "uglify-js@2.4.24",
+              "valid": false,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD",
+              "dep": null,
+              "dependencies": {
+                "async": {
+                  "name": "async",
+                  "version": "0.2.10",
+                  "full": "async@0.2.10",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "~0.2.6",
+                  "__from": [
+                    "snyk-resolve-deps-fixtures",
+                    "uglify-package",
+                    "uglify-js",
+                    "async"
+                  ],
+                  "__devDependencies": {
+                    "nodeunit": ">0.0.0",
+                    "uglify-js": "1.2.x",
+                    "nodelint": ">0.0.0"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/async/package.json",
+                  "dependencies": false,
+                  "__used": true
+                },
+                "source-map": {
+                  "name": "source-map",
+                  "version": "0.1.34",
+                  "full": "source-map@0.1.34",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD",
+                  "dep": "0.1.34",
+                  "__from": [
+                    "snyk-resolve-deps-fixtures",
+                    "uglify-package",
+                    "uglify-js",
+                    "source-map"
+                  ],
+                  "__devDependencies": {
+                    "dryice": ">=0.4.8"
+                  },
+                  "__dependencies": {
+                    "amdefine": ">=0.0.4"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/source-map/package.json",
+                  "dependencies": {
+                    "amdefine": {
+                      "name": "amdefine",
+                      "version": "1.0.0",
+                      "full": "amdefine@1.0.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "BSD-3-Clause AND MIT",
+                      "dep": ">=0.0.4",
+                      "__from": [
+                        "snyk-resolve-deps-fixtures",
+                        "uglify-package",
+                        "uglify-js",
+                        "source-map",
+                        "amdefine"
+                      ],
+                      "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/package.json",
+                      "dependencies": false,
+                      "__used": true
+                    }
+                  },
+                  "__used": true
+                },
+                "uglify-to-browserify": {
+                  "name": "uglify-to-browserify",
+                  "version": "1.0.2",
+                  "full": "uglify-to-browserify@1.0.2",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "~1.0.0",
+                  "__from": [
+                    "snyk-resolve-deps-fixtures",
+                    "uglify-package",
+                    "uglify-js",
+                    "uglify-to-browserify"
+                  ],
+                  "__devDependencies": {
+                    "uglify-js": "~2.4.0",
+                    "source-map": "~0.1.27"
+                  },
+                  "__dependencies": {},
+                  "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/uglify-to-browserify/package.json",
+                  "dependencies": false,
+                  "__used": true
+                },
+                "yargs": {
+                  "name": "yargs",
+                  "version": "3.5.4",
+                  "full": "yargs@3.5.4",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT/X11",
+                  "dep": "~3.5.4",
+                  "__from": [
+                    "snyk-resolve-deps-fixtures",
+                    "uglify-package",
+                    "uglify-js",
+                    "yargs"
+                  ],
+                  "__devDependencies": {
+                    "blanket": "^1.1.6",
+                    "chai": "^1.10.0",
+                    "coveralls": "^2.11.2",
+                    "hashish": "0.0.4",
+                    "mocha": "2.1.0",
+                    "mocha-lcov-reporter": "0.0.1",
+                    "mocoverage": "^1.0.0"
+                  },
+                  "__dependencies": {
+                    "camelcase": "^1.0.2",
+                    "decamelize": "^1.0.0",
+                    "window-size": "0.1.0",
+                    "wordwrap": "0.0.2"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/package.json",
+                  "dependencies": {
+                    "camelcase": {
+                      "name": "camelcase",
+                      "version": "1.2.1",
+                      "full": "camelcase@1.2.1",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "^1.0.2",
+                      "__from": [
+                        "snyk-resolve-deps-fixtures",
+                        "uglify-package",
+                        "uglify-js",
+                        "yargs",
+                        "camelcase"
+                      ],
+                      "__devDependencies": {
+                        "ava": "0.0.4"
+                      },
+                      "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/node_modules/camelcase/package.json",
+                      "dependencies": false,
+                      "__used": true
+                    },
+                    "decamelize": {
+                      "name": "decamelize",
+                      "version": "1.1.2",
+                      "full": "decamelize@1.1.2",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "^1.0.0",
+                      "__from": [
+                        "snyk-resolve-deps-fixtures",
+                        "uglify-package",
+                        "uglify-js",
+                        "yargs",
+                        "decamelize"
+                      ],
+                      "__devDependencies": {
+                        "ava": "*",
+                        "xo": "*"
+                      },
+                      "__dependencies": {
+                        "escape-string-regexp": "^1.0.4"
+                      },
+                      "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/node_modules/decamelize/package.json",
+                      "dependencies": {
+                        "escape-string-regexp": {
+                          "name": "escape-string-regexp",
+                          "version": "1.0.4",
+                          "full": "escape-string-regexp@1.0.4",
+                          "valid": true,
+                          "depType": "prod",
+                          "snyk": false,
+                          "license": "MIT",
+                          "dep": "^1.0.4",
+                          "__from": [
+                            "snyk-resolve-deps-fixtures",
+                            "uglify-package",
+                            "uglify-js",
+                            "yargs",
+                            "decamelize",
+                            "escape-string-regexp"
+                          ],
+                          "__devDependencies": {
+                            "ava": "*",
+                            "xo": "*"
+                          },
+                          "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/node_modules/decamelize/node_modules/escape-string-regexp/package.json",
+                          "dependencies": false,
+                          "__used": true
+                        }
+                      },
+                      "__used": true
+                    },
+                    "window-size": {
+                      "name": "window-size",
+                      "version": "0.1.0",
+                      "full": "window-size@0.1.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT",
+                      "dep": "0.1.0",
+                      "__from": [
+                        "snyk-resolve-deps-fixtures",
+                        "uglify-package",
+                        "uglify-js",
+                        "yargs",
+                        "window-size"
+                      ],
+                      "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/node_modules/window-size/package.json",
+                      "dependencies": false,
+                      "__used": true
+                    },
+                    "wordwrap": {
+                      "name": "wordwrap",
+                      "version": "0.0.2",
+                      "full": "wordwrap@0.0.2",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "MIT/X11",
+                      "dep": "0.0.2",
+                      "__from": [
+                        "snyk-resolve-deps-fixtures",
+                        "uglify-package",
+                        "uglify-js",
+                        "yargs",
+                        "wordwrap"
+                      ],
+                      "__devDependencies": {
+                        "expresso": "=0.7.x"
+                      },
+                      "__dependencies": {},
+                      "__filename": "/Users/remy/Sites/snyk-resolve-deps/node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package/node_modules/uglify-js/node_modules/yargs/node_modules/wordwrap/package.json",
+                      "dependencies": false,
+                      "__used": true
+                    }
+                  },
+                  "__used": true
+                }
+              }
+            },
+            "ug-no-deps": {
+              "name": "ug-no-deps",
+              "version": "1.0.0",
+              "full": "ug-no-deps@1.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "none",
+              "dep": "*",
+              "dependencies": {}
+            }
+          }
+        }
+      }
+    },
+    "undefsafe": {
+      "name": "undefsafe",
+      "version": "0.0.3",
+      "full": "undefsafe@0.0.3",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "MIT / http://rem.mit-license.org",
+      "dep": "0.0.3",
+      "dependencies": {}
+    }
+  }
+}

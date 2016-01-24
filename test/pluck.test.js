@@ -25,7 +25,7 @@ test('pluck (with all fixtures)', function (t) {
     var plucked = null;
     var name = 'semver';
 
-    var expect = npmVersion === 2 ? 2 : 1;
+    var expect = 2; //npmVersion === 2 ? 2 : 1;
 
     plucked = pluck(res, name, '*');
     t.equal(plucked.length, expect, 'found two instances of ' + name);

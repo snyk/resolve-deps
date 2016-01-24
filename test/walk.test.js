@@ -15,3 +15,25 @@ test('walk', function (t) {
     }
   });
 });
+
+test('walk (search for semver)', function (t) {
+  var fixture = require('./fixtures/walk.json');
+  var names = [];
+
+  walk(fixture, function (dep) {
+    names.push(dep.name);
+  });
+
+  // console.log(names);
+
+  t.equal(count(names, 'semver'), 2, 'expect semver twice');
+  t.equal(count(names, 'uglify-js'), 2, 'expect uglify-js twice');
+
+  t.end();
+});
+
+function count(array, name) {
+  return array.filter(function (f) {
+    return f === name;
+  }).length;
+}
