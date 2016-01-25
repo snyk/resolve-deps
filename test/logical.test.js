@@ -1,4 +1,4 @@
-var test = require('tap').test;
+var test = require('tap-only');
 var deps = require('../lib/deps');
 var logical = require('../lib/logical');
 var path = require('path');
