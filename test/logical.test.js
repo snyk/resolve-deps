@@ -3,8 +3,10 @@ var deps = require('../lib/deps');
 var logical = require('../lib/logical');
 var path = require('path');
 var walk = require('../lib/walk');
+var tree = require('@remy/npm-tree');
 var npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
+var rootfixtures = path.resolve(__dirname, '..');
 
 test('logical (dev:false)', function (t) {
   deps(npm3fixture).then(logical).then(function () {
@@ -32,7 +34,7 @@ test('logical (deep test, expecting 1 extraneous)', function (t) {
 
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
-  deps(npm3fixture).then(logical).then(function (res) {
+  deps(rootfixtures).then(logical).then(function (res) {
     // console.log(tree(res));
     var count = 0;
     walk(res.dependencies, function (dep) {
@@ -40,7 +42,11 @@ test('logical (deep test, expecting 1 extraneous)', function (t) {
         count++;
       }
     });
-    t.equal(count, 1, 'found ' + count + ' extraneous packages');
+
+    // debug, ms and undefsafe should be extraneous from inside the fixtures
+    // package. undefsafe + debug are manually installed, but ms comes in via
+    // debug, and because it's unknown to us, it's also extraneous.
+    t.equal(count, 3, 'found ' + count + ' extraneous packages');
   }).catch(t.fail);
 });
 
