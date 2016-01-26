@@ -31,7 +31,9 @@ test('deps - with uglify-package', function (t) {
 
     t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
     t.deepEqual(Object.keys(ugdeep.dependencies), [], 'zero deps on ug-deep');
-  }).catch(t.fail).then(t.end);
+  }).catch(function (e) {
+    t.fail(e.stack);
+  }).then(t.end);
 
 });
 
