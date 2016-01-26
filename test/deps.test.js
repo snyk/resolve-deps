@@ -28,9 +28,7 @@ test('deps - with uglify-package', function (t) {
     t.equal(Object.keys(res.dependencies).length, 3, 'has 3 file dependencies');
 
     var ugdeep = res.dependencies['ug-deep'];
-
     t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
-    t.deepEqual(Object.keys(ugdeep.dependencies), [], 'zero deps on ug-deep');
   }).catch(function (e) {
     t.fail(e.stack);
   }).then(t.end);

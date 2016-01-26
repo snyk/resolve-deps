@@ -4,6 +4,8 @@ var logical = require('../lib/logical');
 var path = require('path');
 var walk = require('../lib/walk');
 var tree = require('@remy/npm-tree');
+var uglifyfixture = path.resolve(__dirname, '..',
+    'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
 var npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
 var rootfixtures = path.resolve(__dirname, '..');
@@ -27,6 +29,20 @@ test('logical (deep test, find scoped)', function (t) {
       }
     });
   }).catch(t.fail);
+});
+
+test('deps - with uglify-package', function (t) {
+  deps(uglifyfixture).then(logical).then(function (res) {
+    t.equal(res.name, 'uglify-package', 'package name matches');
+    t.type(res.dependencies, 'object', 'has dependencies');
+    t.equal(Object.keys(res.dependencies).length, 2, 'has right dependencies');
+
+    var ugdeep = res.dependencies['ug-deep'];
+    t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
+  }).catch(function (e) {
+    t.fail(e.stack);
+  }).then(t.end);
+
 });
 
 test('logical (deep test, expecting 1 extraneous)', function (t) {
