@@ -1,6 +1,5 @@
 var test = require('tap-only');
-var deps = require('../lib/deps');
-var logical = require('../lib/logical');
+var resolveTree = require('../lib');
 var path = require('path');
 var walk = require('../lib/walk');
 var tree = require('@remy/npm-tree');
@@ -9,19 +8,33 @@ var uglifyfixture = path.resolve(__dirname, '..',
 var npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
 var rootfixtures = path.resolve(__dirname, '..');
+var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-mising-deps');
 
-test('logical (dev:false)', function (t) {
-  deps(npm3fixture).then(logical).then(function () {
+test('logical', function (t) {
+  resolveTree(npm3fixture).then(function () {
     t.pass('worked');
   }).catch(t.fail).then(t.end);
 });
+
+test('logical (flags missing module)', function (t) {
+  resolveTree(missingfixtures).then(function (res) {
+    var problem = res.problems.some(function (issue) {
+      return issue.indexOf('missing') === 0;
+    });
+    t.ok(problem, 'The missing package was flagged');
+  }).catch(function (e) {
+    console.log(e.stack);
+    e.fail(e);
+  }).then(t.end);
+});
+
 
 test('logical (deep test, find scoped)', function (t) {
   t.plan(1);
 
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
-  deps(npm3fixture).then(logical).then(function (res) {
+  resolveTree(npm3fixture).then(function (res) {
     // console.log(tree(res));
     walk(res.dependencies, function (dep) {
       if (dep.name === '@remy/vuln-test') {
@@ -32,7 +45,7 @@ test('logical (deep test, find scoped)', function (t) {
 });
 
 test('deps - with uglify-package', function (t) {
-  deps(uglifyfixture).then(logical).then(function (res) {
+  resolveTree(uglifyfixture).then(function (res) {
     t.equal(res.name, 'uglify-package', 'package name matches');
     t.type(res.dependencies, 'object', 'has dependencies');
     t.equal(Object.keys(res.dependencies).length, 2, 'has right dependencies');
@@ -46,12 +59,9 @@ test('deps - with uglify-package', function (t) {
 });
 
 test('logical (deep test, expecting 1 extraneous)', function (t) {
-  t.plan(1);
-
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
-  deps(rootfixtures).then(logical).then(function (res) {
-    // console.log(tree(res));
+  resolveTree(rootfixtures).then(function (res) {
     var count = 0;
     walk(res.dependencies, function (dep) {
       if (dep.extraneous) {
@@ -63,11 +73,11 @@ test('logical (deep test, expecting 1 extraneous)', function (t) {
     // package. undefsafe + debug are manually installed, but ms comes in via
     // debug, and because it's unknown to us, it's also extraneous.
     t.equal(count, 3, 'found ' + count + ' extraneous packages');
-  }).catch(t.fail);
+  }).catch(t.fail).then(t.end);
 });
 
 test('logical (find semver multiple times)', function (t) {
-  deps(npm3fixture).then(logical).then(function (res) {
+  resolveTree(npm3fixture).then(function (res) {
     var names = [];
     walk(res.dependencies, function (dep) {
       names.push(dep.name);

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var walkDepTree = require('../lib/');
+var resolveTree = require('../lib/');
 var tree = require('@remy/npm-tree');
 var fs = require('then-fs');
 
@@ -21,9 +21,7 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return walkDepTree(src, { dev: args.dev })
-      // .then(echo)
-      .then(walkDepTree.logicalTree)
+    return resolveTree(src)
       .then(function (res) {
         if (args.json) {
           return echo(res);
