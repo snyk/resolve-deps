@@ -6,11 +6,12 @@ cache:
 notifications:
   email: true
 node_js:
-  - '5'
+  # - '5'
   - '4'
-  - '0.12'
-  - '0.10'
+  # - '0.12'
+  # - '0.10'
 before_install: |
+  echo ${TRAVIS_NODE_VERSION}
   case ${TRAVIS_NODE_VERSION} in
     5)
       echo "Keeping npm@3...hopefully"
