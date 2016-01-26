@@ -1,8 +1,6 @@
 var test = require('tap-only');
 var lib = require('../lib');
-var tree = require('@remy/npm-tree');
 
-Error.prototype.toString = function() { return this.stack; };
 test('end to end (no deps)', function (t) {
   lib(__dirname + '/fixtures/pkg-undef-deps')
   .then(lib.logicalTree)
