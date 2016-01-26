@@ -20,7 +20,7 @@
   "devDependencies": {
     "jscs": "^2.8.0",
     "semantic-release": "^4.3.5",
-    "snyk-resolve-deps-fixtures": "1.0.11",
+    "snyk-resolve-deps-fixtures": "^1.1.0",
     "tap": "^5.1.1",
     "tap-only": "0.0.5",
     "tape": "^4.4.0"
