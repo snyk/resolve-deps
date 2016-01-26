@@ -21,8 +21,6 @@ before_install: |
       ;;
   esac
   echo ${TRAVIS_NODE_VERSION}
-before_script:
-  - npm prune
 after_success:
   # custom travis_after_all script under @remy's private gist
   - 'curl -Lo travis_after_all.py https://git.io/vzaBe'
