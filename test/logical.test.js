@@ -9,7 +9,7 @@ var uglifyfixture = path.resolve(__dirname, '..',
 var npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
 var rootfixtures = path.resolve(__dirname, '..');
-var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-mising-deps');
+var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-missing-deps');
 
 test('logical', function (t) {
   resolveTree(npm3fixture).then(function () {
