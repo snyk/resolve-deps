@@ -22,7 +22,7 @@ test('end to end (no deps but has node_modules)', function (t) {
   .then(t.end);
 });
 
-test('end to end (this package)', function (t) {
+test.only('end to end (this package)', function (t) {
   lib(__dirname + '/../', { dev: true })
   .then(function (res) {
     var fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
@@ -30,6 +30,10 @@ test('end to end (this package)', function (t) {
     t.equal(fixtures.dependencies['@remy/npm-tree'].name, '@remy/npm-tree', 'has npm-tree');
     t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
     t.equal(res.dependencies['snyk-resolve-deps-fixtures'].dependencies.undefsafe.extraneous, true, 'is extraneous');
+
+    var plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', '@remy/npm-tree'], '@remy/npm-tree', '*');
+    t.equal(plucked.name, '@remy/npm-tree');
+    t.ok(plucked.__filename, 'got __filename');
   })
   .catch(t.threw)
   .then(t.end);
