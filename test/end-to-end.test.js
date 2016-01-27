@@ -12,7 +12,7 @@ test('end to end (no deps)', function (t) {
 });
 
 test('end to end (no deps but has node_modules)', function (t) {
-  lib(__dirname + '/fixtures/pkg-undef-deps-with-modules')
+  lib(__dirname + '/fixtures/pkg-undef-deps-with-modules', { dev: true })
   .then(lib.logicalTree)
   .then(function (res) {
     t.equal(res.dependencies.debug.extraneous, undefined, 'debug is valid');

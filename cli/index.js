@@ -21,15 +21,15 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return resolveTree(src)
+    return resolveTree(src, args)
       .then(function (res) {
         if (args.json) {
           return echo(res);
         }
 
         console.log(tree(res));
-        if (res.problems) {
-          // console.log(res.problems.join('\n'));
+        if (res.problems && res.problems.length) {
+          console.log(res.problems.join('\n'));
         }
       });
   }
