@@ -22,7 +22,7 @@ test('end to end (no deps but has node_modules)', function (t) {
   .then(t.end);
 });
 
-test.only('end to end (this package)', function (t) {
+test('end to end (this package)', function (t) {
   lib(__dirname + '/../', { dev: true })
   .then(function (res) {
     var fixtures = res.dependencies['snyk-resolve-deps-fixtures'];

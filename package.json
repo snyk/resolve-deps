@@ -34,6 +34,7 @@
     "lru-cache": "^4.0.0",
     "semver": "^5.1.0",
     "snyk": "*",
+    "snyk-module": "^1.0.2",
     "snyk-resolve": "^1.0.0",
     "then-fs": "^2.0.0"
   },

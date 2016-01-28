@@ -14,7 +14,7 @@ var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-missing-deps');
 test('logical', function (t) {
   resolveTree(npm3fixture).then(function () {
     t.pass('worked');
-  }).catch(t.fail).then(t.end);
+  }).catch(t.threw).then(t.end);
 });
 
 test('logical (flags missing module)', function (t) {
