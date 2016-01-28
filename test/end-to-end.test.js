@@ -22,10 +22,15 @@ test('end to end (no deps but has node_modules)', function (t) {
   .then(t.end);
 });
 
-test('end to end (this package)', function (t) {
+test('end to end (this package with dev)', function (t) {
   lib(__dirname + '/../', { dev: true })
   .then(function (res) {
     var fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
+    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul', 'handlebars', 'uglify-js', 'source-map'];
+    var plucked = res.pluck(from, 'source-map', '~0.5.1');
+
+    t.notOk(res.dependencies.tap.dependencies.nyc.dependencies.istanbul.dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous, 'source-map is not extraneous');
+
     t.ok(fixtures, 'has the fixtures dep');
     t.equal(fixtures.dependencies['@remy/npm-tree'].name, '@remy/npm-tree', 'has npm-tree');
     t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
@@ -34,6 +39,19 @@ test('end to end (this package)', function (t) {
     var plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', '@remy/npm-tree'], '@remy/npm-tree', '*');
     t.equal(plucked.name, '@remy/npm-tree');
     t.ok(plucked.__filename, 'got __filename');
+  })
+  .catch(t.threw)
+  .then(t.end);
+});
+
+test('end to end (this package __without__ dev)', function (t) {
+  lib(__dirname + '/../')
+  .then(function (res) {
+    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul', 'handlebars', 'uglify-js', 'source-map'];
+    var plucked = res.pluck(from, 'source-map', '~0.5.1');
+    t.ok(plucked.name, 'source-map');
+    // t.notOk(res.dependencies.tap.dependencies.nyc.dependencies.istanbul.dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous, 'source-map is not extraneous');
+
   })
   .catch(t.threw)
   .then(t.end);
