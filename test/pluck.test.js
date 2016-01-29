@@ -83,6 +83,13 @@ function pluckTests(t, res) {
     t.equal(plucked.name, 'semver', 'found on a straight path');
   }
 
+  if (res.npm === 2) {
+    from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul', 'handlebars', 'uglify-js', 'source-map'];
+    plucked = pluck(res, from, 'source-map', '~0.5.1');
+    t.equal(plucked.name, 'source-map', 'found on a straight path');
+    t.notOk(plucked.extraneous, 'not extraneous');
+  }
+
   from = [
     'snyk-resolve-deps',
     'snyk-resolve-deps-fixtures',
