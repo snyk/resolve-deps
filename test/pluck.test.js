@@ -43,6 +43,9 @@ function pluckTests(t, res) {
   plucked = pluck(res, ['snyk-resolve-deps'], name, '*');
   t.equal(plucked.name, name, 'found lodash in direct dep');
 
+  plucked = pluck(res, ['snyk-resolve-deps'], name, 'latest');
+  t.equal(plucked.name, name, 'found lodash in direct dep');
+
   var from = [
     'snyk-resolve-deps@1.1.0',
     'tap@5.2.0',
