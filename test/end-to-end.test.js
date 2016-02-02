@@ -11,6 +11,15 @@ test('end to end (no deps)', function (t) {
   .then(t.end);
 });
 
+test('end to end (no name on root pkg)', function (t) {
+  lib(__dirname + '/fixtures/pkg-missing-name')
+  .then(function (res) {
+    t.ok(!!res, 'we have a result for package without deps');
+  })
+  .catch(t.threw)
+  .then(t.end);
+});
+
 test('end to end (no deps but has node_modules)', function (t) {
   lib(__dirname + '/fixtures/pkg-undef-deps-with-modules', { dev: true })
   .then(function (res) {
