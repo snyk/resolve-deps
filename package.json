@@ -25,8 +25,10 @@
     "tap-only": "0.0.5",
     "tape": "^4.4.0"
   },
+  "optionalDependencies": {
+    "@remy/npm-tree": "^1.0.2"
+  },
   "dependencies": {
-    "@remy/npm-tree": "^1.0.2",
     "ansicolors": "^0.3.2",
     "debug": "^2.2.0",
     "es6-promise": "^3.0.2",
