@@ -19,7 +19,7 @@ test('logical', function (t) {
 
 test('logical (flags missing module)', function (t) {
   resolveTree(missingfixtures).then(function (res) {
-    var problem = res.problems.some(function (issue) {
+    var problem = (res.problems || []).some(function (issue) {
       return issue.indexOf('missing') === 0;
     });
     t.ok(problem, 'The missing package was flagged');
