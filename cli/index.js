@@ -48,7 +48,7 @@ Promise.resolve().then(function () {
           });
           console.log('%s %s@%s', count.length, match.name, match.version);
           count.forEach(function (dep) {
-            console.log(' - %s - %s', dep.full, dep.from.join(' > '));
+            console.log(' - %s - %s', dep.full, (dep.from || []).join(' > '));
           });
           return;
         }

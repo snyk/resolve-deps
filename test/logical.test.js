@@ -1,5 +1,6 @@
 var test = require('tap-only');
 var resolveTree = require('../lib');
+var logicalTree = require('../lib/logical');
 var path = require('path');
 var walk = require('../lib/walk');
 var depTypes = require('../lib/consts');
@@ -10,6 +11,8 @@ var npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
 var rootfixtures = path.resolve(__dirname, '..');
 var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-missing-deps');
+var hawkpkg = require(path.resolve(__dirname, '..',
+    'node_modules/snyk-resolve-deps-fixtures/snyk-vuln-tree.json'));
 
 test('logical', function (t) {
   resolveTree(npm3fixture).then(function () {
@@ -23,10 +26,7 @@ test('logical (flags missing module)', function (t) {
       return issue.indexOf('missing') === 0;
     });
     t.ok(problem, 'The missing package was flagged');
-  }).catch(function (e) {
-    console.log(e.stack);
-    e.fail(e);
-  }).then(t.end);
+  }).catch(t.threw).then(t.end);
 });
 
 test('logical (find devDeps)', function (t) {
@@ -45,7 +45,7 @@ test('logical (find devDeps)', function (t) {
     }
 
     t.equal(names.length, expect, 'found the right number of devDeps');
-  }).catch(t.fail).then(t.end);
+  }).catch(t.threw).then(t.end);
 });
 
 test('logical (deep test, find scoped)', function (t) {
@@ -60,7 +60,7 @@ test('logical (deep test, find scoped)', function (t) {
         t.pass('found scopped dependency');
       }
     });
-  }).catch(t.fail);
+  }).catch(t.threw);
 });
 
 test('deps - with uglify-package', function (t) {
@@ -71,9 +71,7 @@ test('deps - with uglify-package', function (t) {
 
     var ugdeep = res.dependencies['ug-deep'];
     t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
-  }).catch(function (e) {
-    t.fail(e.stack);
-  }).then(t.end);
+  }).catch(t.threw).then(t.end);
 
 });
 
@@ -95,7 +93,7 @@ test('logical (deep test, expecting extraneous)', function (t) {
     // package. undefsafe + debug are manually installed, but ms comes in via
     // debug, and because it's unknown to us, it's also extraneous.
     t.ok(count === 3 || count === 5, 'found ' + count + ' extraneous packages');
-  }).catch(t.fail).then(t.end);
+  }).catch(t.threw).then(t.end);
 });
 
 test('logical (find semver multiple times)', function (t) {
@@ -108,5 +106,22 @@ test('logical (find semver multiple times)', function (t) {
       return f === 'semver';
     }).length;
     t.equal(count, 2, 'expecting 2 semvers');
-  }).catch(t.fail).then(t.end);
+  }).catch(t.threw).then(t.end);
+});
+
+test('logical (deep copies)', function (t) {
+  var res = logicalTree(hawkpkg);
+  var deps = [];
+  var paths = {};
+  walk(res, function (dep) {
+    if (dep.name === 'hawk') {
+      deps.push(dep);
+      paths[dep.from] = 1;
+    }
+  });
+
+  t.equal(deps.length, 5, 'found 5 instance');
+  t.equal(Object.keys(paths).length, 5, 'in 5 different paths');
+
+  t.end();
 });
