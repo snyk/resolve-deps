@@ -43,7 +43,7 @@ test('end to end (this package with dev)', function (t) {
     t.ok(fixtures, 'has the fixtures dep');
     t.equal(fixtures.dependencies['@remy/npm-tree'].name, '@remy/npm-tree', 'has npm-tree');
     t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
-    t.equal(res.dependencies['snyk-resolve-deps-fixtures'].dependencies.undefsafe.extraneous, true, 'is extraneous');
+    t.equal(fixtures.dependencies.undefsafe.extraneous, true, 'is extraneous');
 
     var plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', '@remy/npm-tree'], '@remy/npm-tree', '*');
     t.equal(plucked.name, '@remy/npm-tree');

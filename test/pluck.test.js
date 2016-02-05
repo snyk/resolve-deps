@@ -37,7 +37,7 @@ function pluckTests(t, res) {
   plucked = pluck(res, ['snyk-resolve-deps','snyk','inquirer', 'lodash'], name, '*');
   t.equal(plucked.name, name, 'found in deduped path');
 
-  plucked = pluck(res, ['__noop__','inquirer'], name, '*');
+  plucked = pluck(res, ['this-module-does-not-exist','inquirer'], name, '*');
   t.equal(plucked, false, 'should not find a package with invalid path');
 
   plucked = pluck(res, ['snyk-resolve-deps'], name, '*');
