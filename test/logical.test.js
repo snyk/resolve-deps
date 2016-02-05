@@ -3,7 +3,7 @@ var resolveTree = require('../lib');
 var logicalTree = require('../lib/logical');
 var path = require('path');
 var walk = require('../lib/walk');
-var depTypes = require('../lib/consts');
+var depTypes = require('../lib/dep-types');
 var tree = require('@remy/npm-tree');
 var uglifyfixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
@@ -30,21 +30,19 @@ test('logical (flags missing module)', function (t) {
 });
 
 test('logical (find devDeps)', function (t) {
-  var expect = Object.keys(require('../package.json').devDependencies).length;
+  var devDeps = Object.keys(require('../package.json').devDependencies);
+  var expect = devDeps.length;
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
     var names = [];
+    // console.log(res.dependencies['snyk-resolve-deps-fixtures'].dependencies['@remy/npm-tree']);
     walk(res, function (dep) {
       if (dep.depType === depTypes.DEV) {
         names.push(dep.name);
       }
     });
 
-    // I don't know right now, but this is a thing...FIXME
-    if (names.length === 8) {
-      expect = 8;
-    }
 
-    t.equal(names.length, expect, 'found the right number of devDeps');
+    t.deepEqual(names, devDeps, 'found the right number of devDeps');
   }).catch(t.threw).then(t.end);
 });
 
