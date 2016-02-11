@@ -1,6 +1,7 @@
 module.exports = filter;
 
 var prune = require('../lib/prune');
+var walk = require('../lib/walk');
 var colour = require('ansicolors');
 var semver = require('semver');
 var toObject = require('snyk-module');
@@ -24,27 +25,37 @@ function filter(options, tree) {
   prune(tree, function (dep) {
     var bundled = !options.bundled;
     var extraneous = !options.extraneous;
-    var name = !match;
 
     if (options.bundled && dep.bundled) {
       bundled = Object.keys(dep.dependencies || {}).length === 0;
     }
 
     if (options.extraneous && dep.extraneous) {
-      extraneous = true;
+      extraneous = Object.keys(dep.dependencies || {}).length === 0;
     }
 
-    if (match && dep.name === match.name) {
+    if (!match) {
+      return !(bundled && extraneous);
+    }
+
+    if (dep.name === match.name) {
       if (semver.satisfies(dep.version, match.version)) {
         // if we're not colouring, then we'll highlight match
         if (!options.count) {
           dep.full = colour.bgGreen(colour.black(dep.full));
         }
-        name = true;
+
+        // false if it has all the requirements
+        return !(
+          (bundled || options.bundled && dep.bundled) &&
+          (extraneous || options.extraneous && dep.extraneous) &&
+          true);
       }
+
+      return true; // prune
     }
 
-    return !(bundled && extraneous && name);
+    return true;
   });
 }
 
