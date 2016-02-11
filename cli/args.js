@@ -1,35 +1,20 @@
 module.exports = args;
 
-var alias = { d: 'dev', c: 'count' };
-var strings = ['count'];
-var taken = [];
+var minimist = require('minimist');
+var abbrev = require('abbrev');
 
-function args(processargv) {
-  return processargv.slice(2).reduce(function reduce(acc, arg, i, all) {
-    if (taken.indexOf(i) !== -1) {
-      return acc;
-    }
+function args(argv, strings, booleans) {
+  var alias = abbrev(strings.concat(booleans));
+  alias.e = 'extraneous';
 
-    if (arg.indexOf('-') === 0) {
-      arg = arg.slice(1);
+  strings.forEach(function (t) {
+    delete alias[t];
+  });
 
-      if (alias[arg] !== undefined) {
-        arg = '-' + alias[arg];
-      }
-
-      if (arg.indexOf('-') === 0) {
-        arg = arg.slice(1);
-        acc[arg] = true;
-
-        if (strings.indexOf(arg) !== -1) {
-          acc[arg] = all[i + 1];
-          taken.push(i + 1);
-        }
-      }
-    } else {
-      acc._.push(arg);
-    }
-
-    return acc;
-  }, { _: [] });
+  return minimist(argv, {
+    boolean: booleans,
+    string: strings,
+    alias: alias,
+  });
 }
+
