@@ -1,21 +1,19 @@
 #!/usr/bin/env node
 
-var resolveTree = require('../lib/');
-var tree = require('@remy/npm-tree');
 var fs = require('then-fs');
-var toObject = require('snyk-module');
-var walk = require('../lib/walk');
-var semver = require('semver');
+var resolveTree = require('../lib/');
+var filter = require('./filter');
+var print = require('./print');
+var count = require('./count');
 
-var usage = 'Usage: snyk-resolve <package-dir>';
-var args = require('./args')(process.argv);
-var src = args._.shift() || process.cwd();
+var args = require('./args')(
+  process.argv,
+  ['filter', 'count'],
+  ['help', 'json', 'errors', 'dev', 'production', 'optional']
+  .concat(filter.flags)
+);
 
-if (args.h || args.help) {
-  console.log(usage);
-  process.exit(0);
-}
-
+var src = args._[2] || process.cwd();
 
 var echo = function (res) {
   console.log(JSON.stringify(res, '', 2));
@@ -23,8 +21,10 @@ var echo = function (res) {
 };
 
 Promise.resolve().then(function () {
-  if (!src) {
-    throw new Error(usage);
+  if (!src || args.help) {
+    return fs.readFile(__dirname + '/../usage.txt', 'utf8')
+             .then(console.log)
+             .then(process.exit);
   }
 
   return fs.stat(src);
@@ -36,28 +36,16 @@ Promise.resolve().then(function () {
           return echo(res);
         }
 
+        filter(args, res);
+
         if (args.count) {
-          var match = toObject(args.count);
-          var count = [];
-          walk(res, function (dep) {
-            if (dep.name === match.name) {
-              if (semver.satisfies(dep.version, match.version)) {
-                count.push(dep);
-              }
-            }
-          });
-          console.log('%s %s@%s', count.length, match.name, match.version);
-          count.forEach(function (dep) {
-            console.log(' - %s (%s) - %s', dep.full, dep.depType,
-              (dep.from || []).join(' > '));
-          });
-          return;
+          if (typeof args.count === 'boolean' && args.filter) {
+            args.count = args.filter;
+          }
+          return count(args, res);
         }
 
-        console.log(tree(res));
-        if (res.problems && res.problems.length) {
-          console.log(res.problems.join('\n'));
-        }
+        print(args, res);
       });
   }
 
@@ -66,5 +54,5 @@ Promise.resolve().then(function () {
 
 function exit(error) {
   console.log(error.stack);
-  // process.exit(1);
+  process.exit(1);
 }
