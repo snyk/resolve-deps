@@ -1,6 +1,6 @@
 module.exports = print;
 
-var tree = require('@remy/npm-tree');
+var tree = require('snyk-tree');
 var colour = require('ansicolors');
 var path = require('path');
 var ext = colour.bgBlack(colour.green('extraneous'));

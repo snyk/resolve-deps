@@ -1,6 +1,6 @@
 var test = require('tap-only');
 var lib = require('../lib');
-var tree = require('@remy/npm-tree');
+var tree = require('snyk-tree');
 
 test('end to end (no deps)', function (t) {
   lib(__dirname + '/fixtures/pkg-undef-deps')
@@ -45,8 +45,8 @@ test('end to end (this package with dev)', function (t) {
     t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
     t.equal(fixtures.dependencies.undefsafe.extraneous, true, 'is extraneous');
 
-    var plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', '@remy/npm-tree'], '@remy/npm-tree', '*');
-    t.equal(plucked.name, '@remy/npm-tree');
+    plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
+    t.equal(plucked.name, 'snyk-tree');
     t.ok(plucked.__filename, 'got __filename');
   })
   .catch(t.threw)

@@ -4,7 +4,7 @@ var logicalTree = require('../lib/logical');
 var path = require('path');
 var walk = require('../lib/walk');
 var depTypes = require('../lib/dep-types');
-var tree = require('@remy/npm-tree');
+var tree = require('snyk-tree');
 var uglifyfixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
 var npm3fixture = path.resolve(__dirname, '..',
@@ -34,7 +34,7 @@ test('logical (find devDeps)', function (t) {
   var expect = devDeps.length;
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
     var names = [];
-    // console.log(res.dependencies['snyk-resolve-deps-fixtures'].dependencies['@remy/npm-tree']);
+    // console.log(res.dependencies['snyk-resolve-deps-fixtures'].dependencies['snyk-tree']);
     walk(res, function (dep) {
       if (dep.depType === depTypes.DEV) {
         names.push(dep.name);
@@ -84,7 +84,7 @@ test('logical (deep test, expecting extraneous)', function (t) {
       }
     });
 
-    // FIXME the original count was 3, but because @remy/npm-tree has been
+    // FIXME the original count was 3, but because snyk-tree has been
     // moved to optionalDeps, it's not being counted - that should be fixed.
 
     // debug, ms and undefsafe should be extraneous from inside the fixtures

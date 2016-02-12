@@ -1,7 +1,6 @@
 var test = require('tap-only');
 var prune = require('../lib/prune');
 var walk = require('../lib/walk');
-var tree = require('@remy/npm-tree');
 
 test('prune (search for hawk)', function (t) {
   var fixture = require('./fixtures/prune.json');

@@ -71,7 +71,7 @@ function pluckTests(t, res) {
   if (res.npm === 3) {
     from = [
       'snyk-resolve-deps-fixtures',
-      '@remy/npm-tree'
+      'snyk-tree'
     ];
 
     plucked = pluck(res.dependencies['snyk-resolve-deps-fixtures'], from, 'ansicolors', '^0.3.2');
