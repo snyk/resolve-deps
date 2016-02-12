@@ -30,19 +30,15 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return resolveTree.physicalTree(src, args)
+    return resolveTree.physicalTree(src)
       .then(function (res) {
         if (args.disk) {
           return res;
         }
 
-        return resolveTree.logicalTree(res);
+        return resolveTree.logicalTree(res, args);
       })
       .then(function (res) {
-        if (args.json) {
-          return echo(res);
-        }
-
         filter(args, res);
 
         if (args.count) {
@@ -50,6 +46,10 @@ Promise.resolve().then(function () {
             args.count = args.filter;
           }
           return count(args, res);
+        }
+
+        if (args.json) {
+          return echo(res);
         }
 
         print(args, res);

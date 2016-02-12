@@ -24,6 +24,7 @@ test('end to end (sub-pluck finds correctly)', function (t) {
 
   t.notEqual(plucked, false, 'managed to pluck');
   t.equal(plucked.name, 'hawk', 'found hawk');
+  t.deepEqual(plucked.bundled, from.slice(0, 4), 'bundled path is correct');
   t.end();
 });
 

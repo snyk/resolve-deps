@@ -2,26 +2,11 @@
   "name": "foo",
   "version": "1.0.0",
   "license": "ISC",
-  "depType": {
-    "_": [
-      "/Users/remy/.nvm/versions/node/v4.2.4/bin/node",
-      "/Users/remy/.nvm/versions/node/v4.2.4/bin/snyk-resolve"
-    ],
-    "help": false,
-    "disk": true,
-    "json": true,
-    "errors": false,
-    "dev": false,
-    "production": false,
-    "optional": false,
-    "bundled": false,
-    "extraneous": false,
-    "e": false
-  },
+  "depType": "extraneous",
   "hasDevDependencies": true,
   "full": "foo@1.0.0",
   "__from": [
-    "foo"
+    "foo@1.0.0"
   ],
   "__devDependencies": {},
   "__dependencies": {
@@ -38,10 +23,9 @@
       "snyk": false,
       "license": "MIT",
       "dep": "^1.4.1",
-      "bundled": false,
       "__from": [
-        "foo",
-        "chokidar"
+        "foo@1.0.0",
+        "chokidar@1.4.1"
       ],
       "__devDependencies": {
         "chai": "^3.2.0",
@@ -77,11 +61,10 @@
           "snyk": false,
           "license": "ISC",
           "dep": "^1.3.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "anymatch"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "anymatch@1.3.0"
           ],
           "__devDependencies": {
             "coveralls": "^2.11.2",
@@ -103,12 +86,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^1.0.0",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "anymatch",
-                "arrify"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "anymatch@1.3.0",
+                "arrify@1.0.1"
               ],
               "__devDependencies": {
                 "ava": "*",
@@ -127,12 +109,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^2.1.5",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "anymatch",
-                "micromatch"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "anymatch@1.3.0",
+                "micromatch@2.3.7"
               ],
               "__devDependencies": {
                 "benchmarked": "^0.1.4",
@@ -174,13 +155,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^2.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "arr-diff"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "arr-diff@2.0.0"
                   ],
                   "__devDependencies": {
                     "array-differ": "^1.0.0",
@@ -204,14 +184,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.0.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "arr-diff",
-                        "arr-flatten"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "arr-diff@2.0.0",
+                        "arr-flatten@1.0.1"
                       ],
                       "__devDependencies": {
                         "array-flatten": "^1.0.2",
@@ -236,13 +215,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^0.2.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "array-unique"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "array-unique@0.2.1"
                   ],
                   "__devDependencies": {
                     "array-uniq": "^1.0.2",
@@ -263,13 +241,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^1.8.2",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "braces"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "braces@1.8.3"
                   ],
                   "__devDependencies": {
                     "benchmarked": "^0.1.3",
@@ -296,14 +273,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.8.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "braces",
-                        "expand-range"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "braces@1.8.3",
+                        "expand-range@1.8.1"
                       ],
                       "__devDependencies": {
                         "benchmarked": "^0.1.1",
@@ -327,15 +303,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "^2.1.0",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "anymatch",
-                            "micromatch",
-                            "braces",
-                            "expand-range",
-                            "fill-range"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "anymatch@1.3.0",
+                            "micromatch@2.3.7",
+                            "braces@1.8.3",
+                            "expand-range@1.8.1",
+                            "fill-range@2.2.3"
                           ],
                           "__devDependencies": {
                             "benchmarked": "^0.1.3",
@@ -360,16 +335,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^2.1.0",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "anymatch",
-                                "micromatch",
-                                "braces",
-                                "expand-range",
-                                "fill-range",
-                                "is-number"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "anymatch@1.3.0",
+                                "micromatch@2.3.7",
+                                "braces@1.8.3",
+                                "expand-range@1.8.1",
+                                "fill-range@2.2.3",
+                                "is-number@2.1.0"
                               ],
                               "__devDependencies": {
                                 "benchmarked": "^0.1.3",
@@ -391,16 +365,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^2.0.0",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "anymatch",
-                                "micromatch",
-                                "braces",
-                                "expand-range",
-                                "fill-range",
-                                "isobject"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "anymatch@1.3.0",
+                                "micromatch@2.3.7",
+                                "braces@1.8.3",
+                                "expand-range@1.8.1",
+                                "fill-range@2.2.3",
+                                "isobject@2.0.0"
                               ],
                               "__devDependencies": {
                                 "mocha": "*"
@@ -419,17 +392,16 @@
                                   "snyk": false,
                                   "license": "MIT",
                                   "dep": "0.0.1",
-                                  "bundled": false,
                                   "__from": [
-                                    "foo",
-                                    "chokidar",
-                                    "anymatch",
-                                    "micromatch",
-                                    "braces",
-                                    "expand-range",
-                                    "fill-range",
-                                    "isobject",
-                                    "isarray"
+                                    "foo@1.0.0",
+                                    "chokidar@1.4.1",
+                                    "anymatch@1.3.0",
+                                    "micromatch@2.3.7",
+                                    "braces@1.8.3",
+                                    "expand-range@1.8.1",
+                                    "fill-range@2.2.3",
+                                    "isobject@2.0.0",
+                                    "isarray@0.0.1"
                                   ],
                                   "__devDependencies": {
                                     "tap": "*"
@@ -449,16 +421,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^1.1.3",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "anymatch",
-                                "micromatch",
-                                "braces",
-                                "expand-range",
-                                "fill-range",
-                                "randomatic"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "anymatch@1.3.0",
+                                "micromatch@2.3.7",
+                                "braces@1.8.3",
+                                "expand-range@1.8.1",
+                                "fill-range@2.2.3",
+                                "randomatic@1.1.5"
                               ],
                               "__devDependencies": {
                                 "ansi-bold": "^0.1.1",
@@ -483,16 +454,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^1.5.2",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "anymatch",
-                                "micromatch",
-                                "braces",
-                                "expand-range",
-                                "fill-range",
-                                "repeat-string"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "anymatch@1.3.0",
+                                "micromatch@2.3.7",
+                                "braces@1.8.3",
+                                "expand-range@1.8.1",
+                                "fill-range@2.2.3",
+                                "repeat-string@1.5.2"
                               ],
                               "__devDependencies": {
                                 "benchmarked": "^0.1.3",
@@ -519,14 +489,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.2.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "braces",
-                        "preserve"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "braces@1.8.3",
+                        "preserve@0.2.0"
                       ],
                       "__devDependencies": {
                         "benchmarked": "^0.1.3",
@@ -548,14 +517,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.1.2",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "braces",
-                        "repeat-element"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "braces@1.8.3",
+                        "repeat-element@1.1.2"
                       ],
                       "__devDependencies": {
                         "benchmarked": "^0.1.4",
@@ -579,13 +547,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^0.1.4",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "expand-brackets"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "expand-brackets@0.1.4"
                   ],
                   "__devDependencies": {
                     "mocha": "^2.2.5",
@@ -604,13 +571,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^0.3.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "extglob"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "extglob@0.3.2"
                   ],
                   "__devDependencies": {
                     "ansi-green": "^0.1.1",
@@ -636,13 +602,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^2.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "filename-regex"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "filename-regex@2.0.0"
                   ],
                   "__devDependencies": {},
                   "__dependencies": {},
@@ -658,13 +623,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^1.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "is-extglob"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "is-extglob@1.0.0"
                   ],
                   "__devDependencies": {
                     "mocha": "*",
@@ -683,13 +647,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^3.0.2",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "kind-of"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "kind-of@3.0.2"
                   ],
                   "__devDependencies": {
                     "ansi-bold": "^0.1.1",
@@ -715,14 +678,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.0.2",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "kind-of",
-                        "is-buffer"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "kind-of@3.0.2",
+                        "is-buffer@1.1.2"
                       ],
                       "__devDependencies": {
                         "standard": "^5.4.1",
@@ -744,13 +706,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^2.0.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "normalize-path"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "normalize-path@2.0.1"
                   ],
                   "__devDependencies": {
                     "benchmarked": "^0.1.1",
@@ -770,13 +731,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^2.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "object.omit"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "object.omit@2.0.0"
                   ],
                   "__devDependencies": {
                     "mocha": "*",
@@ -797,14 +757,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.1.3",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "object.omit",
-                        "for-own"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "object.omit@2.0.0",
+                        "for-own@0.1.3"
                       ],
                       "__devDependencies": {
                         "mocha": "*",
@@ -824,15 +783,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "^0.1.4",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "anymatch",
-                            "micromatch",
-                            "object.omit",
-                            "for-own",
-                            "for-in"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "anymatch@1.3.0",
+                            "micromatch@2.3.7",
+                            "object.omit@2.0.0",
+                            "for-own@0.1.3",
+                            "for-in@0.1.4"
                           ],
                           "__devDependencies": {
                             "mocha": "*",
@@ -853,14 +811,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.1.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "object.omit",
-                        "is-extendable"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "object.omit@2.0.0",
+                        "is-extendable@0.1.1"
                       ],
                       "__devDependencies": {
                         "mocha": "*"
@@ -880,13 +837,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^3.0.4",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "parse-glob"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "parse-glob@3.0.4"
                   ],
                   "__devDependencies": {
                     "browserify": "^9.0.3",
@@ -910,14 +866,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.3.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "parse-glob",
-                        "glob-base"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "parse-glob@3.0.4",
+                        "glob-base@0.3.0"
                       ],
                       "__devDependencies": {
                         "mocha": "*",
@@ -939,14 +894,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.0.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "parse-glob",
-                        "is-dotfile"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "parse-glob@3.0.4",
+                        "is-dotfile@1.0.2"
                       ],
                       "__devDependencies": {
                         "benchmarked": "^0.1.3",
@@ -968,13 +922,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^0.4.2",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "anymatch",
-                    "micromatch",
-                    "regex-cache"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "anymatch@1.3.0",
+                    "micromatch@2.3.7",
+                    "regex-cache@0.4.2"
                   ],
                   "__devDependencies": {
                     "benchmarked": "^0.1.4",
@@ -998,14 +951,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.1.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "regex-cache",
-                        "is-equal-shallow"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "regex-cache@0.4.2",
+                        "is-equal-shallow@0.1.3"
                       ],
                       "__devDependencies": {
                         "mocha": "*",
@@ -1026,14 +978,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^2.0.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "anymatch",
-                        "micromatch",
-                        "regex-cache",
-                        "is-primitive"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "anymatch@1.3.0",
+                        "micromatch@2.3.7",
+                        "regex-cache@0.4.2",
+                        "is-primitive@2.0.0"
                       ],
                       "__devDependencies": {
                         "mocha": "*",
@@ -1058,11 +1009,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^0.1.6",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "async-each"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "async-each@0.1.6"
           ],
           "__devDependencies": {},
           "__dependencies": {},
@@ -1078,11 +1028,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^1.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "fsevents"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "fsevents@1.0.7"
           ],
           "__devDependencies": {
             "tap": "~0.4.8"
@@ -1105,12 +1054,11 @@
               "snyk": false,
               "license": "none",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "ansi"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "ansi@0.3.0"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -1127,12 +1075,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "ansi-regex"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "ansi-regex@2.0.0"
               ],
               "__devDependencies": {
                 "mocha": "*"
@@ -1151,12 +1098,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "ansi-styles"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "ansi-styles@2.1.0"
               ],
               "__devDependencies": {
                 "mocha": "*"
@@ -1175,12 +1121,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "are-we-there-yet"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "are-we-there-yet@1.0.5"
               ],
               "__devDependencies": {
                 "tap": "^0.4.13"
@@ -1202,12 +1147,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "asn1"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "asn1@0.2.3"
               ],
               "__devDependencies": {
                 "tap": "0.4.8"
@@ -1226,12 +1170,11 @@
               "snyk": false,
               "license": "none",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "assert-plus"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "assert-plus@0.1.5"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -1248,12 +1191,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "async"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "async@1.5.1"
               ],
               "__devDependencies": {
                 "benchmark": "github:bestiejs/benchmark.js",
@@ -1294,12 +1236,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "aws-sign2"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "aws-sign2@0.6.0"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -1316,12 +1257,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "bl"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "bl@1.0.0"
               ],
               "__devDependencies": {
                 "brtapsauce": "~0.3.0",
@@ -1345,12 +1285,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "block-stream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "block-stream@0.0.8"
               ],
               "__devDependencies": {
                 "tap": "0.x"
@@ -1371,12 +1310,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "boom"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "boom@2.10.1"
               ],
               "__devDependencies": {
                 "code": "1.x.x",
@@ -1398,12 +1336,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "caseless"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "caseless@0.11.0"
               ],
               "__devDependencies": {
                 "tape": "^2.10.2"
@@ -1422,12 +1359,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "chalk"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "chalk@1.1.1"
               ],
               "__devDependencies": {
                 "coveralls": "^2.11.2",
@@ -1459,12 +1395,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "combined-stream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "combined-stream@1.0.5"
               ],
               "__devDependencies": {
                 "far": "~0.0.7"
@@ -1485,12 +1420,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "commander"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "commander@2.9.0"
               ],
               "__devDependencies": {
                 "should": ">= 0.0.1",
@@ -1512,12 +1446,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "core-util-is"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "core-util-is@1.0.2"
               ],
               "__devDependencies": {
                 "tap": "^2.3.0"
@@ -1536,12 +1469,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "cryptiles"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "cryptiles@2.0.5"
               ],
               "__devDependencies": {
                 "code": "1.x.x",
@@ -1563,12 +1495,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "dashdash"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "dashdash@1.11.0"
               ],
               "__devDependencies": {
                 "nodeunit": "0.9.x"
@@ -1589,12 +1520,11 @@
               "snyk": false,
               "license": "none",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "debug"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "debug@0.7.4"
               ],
               "__devDependencies": {
                 "mocha": "*"
@@ -1613,12 +1543,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "deep-extend"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "deep-extend@0.4.0"
               ],
               "__devDependencies": {
                 "mocha": "^2.2.1",
@@ -1638,12 +1567,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "delayed-stream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "delayed-stream@1.0.0"
               ],
               "__devDependencies": {
                 "fake": "0.2.0",
@@ -1663,12 +1591,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "delegates"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "delegates@0.1.0"
               ],
               "__devDependencies": {
                 "mocha": "*",
@@ -1688,12 +1615,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "ecc-jsbn"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "ecc-jsbn@0.1.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -1712,12 +1638,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "escape-string-regexp"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "escape-string-regexp@1.0.4"
               ],
               "__devDependencies": {
                 "ava": "*",
@@ -1737,12 +1662,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "extend"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "extend@3.0.0"
               ],
               "__devDependencies": {
                 "covert": "^1.1.0",
@@ -1764,12 +1688,11 @@
               "snyk": false,
               "license": "none",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "extsprintf"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "extsprintf@1.0.2"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -1786,12 +1709,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "forever-agent"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "forever-agent@0.6.1"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -1808,12 +1730,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "form-data"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "form-data@1.0.0-rc3"
               ],
               "__devDependencies": {
                 "fake": "^0.2.2",
@@ -1840,12 +1761,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "fstream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "fstream@1.0.8"
               ],
               "__devDependencies": {
                 "standard": "^4.0.0",
@@ -1870,12 +1790,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "fstream-ignore"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "fstream-ignore@1.0.3"
               ],
               "__devDependencies": {
                 "mkdirp": "",
@@ -1899,13 +1818,12 @@
                   "snyk": false,
                   "license": "ISC",
                   "dep": "^3.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "fstream-ignore",
-                    "minimatch"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "fstream-ignore@1.0.3",
+                    "minimatch@3.0.0"
                   ],
                   "__devDependencies": {
                     "standard": "^3.7.2",
@@ -1926,14 +1844,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.0.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "fstream-ignore",
-                        "minimatch",
-                        "brace-expansion"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "fstream-ignore@1.0.3",
+                        "minimatch@3.0.0",
+                        "brace-expansion@1.1.2"
                       ],
                       "__devDependencies": {
                         "tape": "4.2.2"
@@ -1954,15 +1871,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "^0.3.0",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "fstream-ignore",
-                            "minimatch",
-                            "brace-expansion",
-                            "balanced-match"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "fstream-ignore@1.0.3",
+                            "minimatch@3.0.0",
+                            "brace-expansion@1.1.2",
+                            "balanced-match@0.3.0"
                           ],
                           "__devDependencies": {
                             "tape": "~4.2.2"
@@ -1981,15 +1897,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "0.0.1",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "fstream-ignore",
-                            "minimatch",
-                            "brace-expansion",
-                            "concat-map"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "fstream-ignore@1.0.3",
+                            "minimatch@3.0.0",
+                            "brace-expansion@1.1.2",
+                            "concat-map@0.0.1"
                           ],
                           "__devDependencies": {
                             "tape": "~2.4.0"
@@ -2014,12 +1929,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "gauge"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "gauge@1.2.2"
               ],
               "__devDependencies": {
                 "tap": "^0.4.13"
@@ -2044,12 +1958,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "generate-function"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "generate-function@2.0.0"
               ],
               "__devDependencies": {
                 "tape": "^2.13.4"
@@ -2068,12 +1981,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "generate-object-property"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "generate-object-property@1.2.0"
               ],
               "__devDependencies": {
                 "tape": "^2.13.0"
@@ -2094,12 +2006,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "graceful-fs"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "graceful-fs@4.1.2"
               ],
               "__devDependencies": {
                 "mkdirp": "^0.5.0",
@@ -2120,12 +2031,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "graceful-readlink"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "graceful-readlink@1.0.1"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -2142,12 +2052,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "har-validator"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "har-validator@2.0.3"
               ],
               "__devDependencies": {
                 "codeclimate-test-reporter": "0.1.1",
@@ -2178,12 +2087,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "has-ansi"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "has-ansi@2.0.0"
               ],
               "__devDependencies": {
                 "ava": "0.0.4"
@@ -2204,12 +2112,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "has-unicode"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "has-unicode@1.0.1"
               ],
               "__devDependencies": {
                 "require-inject": "^1.1.1",
@@ -2229,12 +2136,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "hawk"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "hawk@3.1.2"
               ],
               "__devDependencies": {
                 "code": "1.x.x",
@@ -2259,12 +2165,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "hoek"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "hoek@2.16.3"
               ],
               "__devDependencies": {
                 "code": "1.x.x",
@@ -2284,12 +2189,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "http-signature"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "http-signature@1.1.0"
               ],
               "__devDependencies": {
                 "node-uuid": "^1.4.1",
@@ -2313,12 +2217,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "inherits"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "inherits@2.0.1"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -2335,12 +2238,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "ini"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "ini@1.3.4"
               ],
               "__devDependencies": {
                 "tap": "^1.2.0"
@@ -2359,12 +2261,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "is-my-json-valid"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "is-my-json-valid@2.12.3"
               ],
               "__devDependencies": {
                 "tape": "^2.13.4"
@@ -2388,12 +2289,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "is-property"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "is-property@1.0.2"
               ],
               "__devDependencies": {
                 "tape": "~1.0.4"
@@ -2412,12 +2312,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "is-typedarray"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "is-typedarray@1.0.0"
               ],
               "__devDependencies": {
                 "tape": "^2.13.1"
@@ -2436,12 +2335,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "isarray"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "isarray@0.0.1"
               ],
               "__devDependencies": {
                 "tap": "*"
@@ -2460,12 +2358,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "isstream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "isstream@0.1.2"
               ],
               "__devDependencies": {
                 "core-util-is": "~1.0.0",
@@ -2488,12 +2385,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "jodid25519"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "jodid25519@1.0.2"
               ],
               "__devDependencies": {
                 "almond": "~0.3.1",
@@ -2522,12 +2418,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "jsbn"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "jsbn@0.1.0"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -2544,12 +2439,11 @@
               "snyk": false,
               "license": "AFLv2.1/BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "json-schema"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "json-schema@0.2.2"
               ],
               "__devDependencies": {
                 "vows": "*"
@@ -2568,12 +2462,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "json-stringify-safe"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "json-stringify-safe@5.0.1"
               ],
               "__devDependencies": {
                 "mocha": ">= 2.1.0 < 3",
@@ -2594,12 +2487,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "jsonpointer"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "jsonpointer@2.0.0"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -2616,12 +2508,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "jsprim"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "jsprim@1.2.2"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2642,12 +2533,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash._basetostring"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash._basetostring@3.0.1"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -2664,12 +2554,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash._createpadding"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash._createpadding@3.6.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2688,12 +2577,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash.pad"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash.pad@3.1.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2713,12 +2601,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash.padleft"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash.padleft@3.1.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2738,12 +2625,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash.padright"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash.padright@3.1.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2763,12 +2649,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "lodash.repeat"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "lodash.repeat@3.0.1"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -2787,12 +2672,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "mime-db"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "mime-db@1.21.0"
               ],
               "__devDependencies": {
                 "bluebird": "3.1.1",
@@ -2819,12 +2703,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "mime-types"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "mime-types@2.1.9"
               ],
               "__devDependencies": {
                 "istanbul": "0.4.1",
@@ -2846,12 +2729,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "minimist"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "minimist@0.0.8"
               ],
               "__devDependencies": {
                 "tap": "~0.4.0",
@@ -2871,12 +2753,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "mkdirp"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "mkdirp@0.5.1"
               ],
               "__devDependencies": {
                 "mock-fs": "2 >=2.7.0",
@@ -2898,12 +2779,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^2.1.0",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "nan"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "nan@2.2.0"
               ],
               "__devDependencies": {
                 "bindings": "~1.2.1",
@@ -2926,12 +2806,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "^0.6.19",
-              "bundled": true,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "node-pre-gyp"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "node-pre-gyp@0.6.19"
               ],
               "__devDependencies": {
                 "aws-sdk": "*",
@@ -2963,6 +2842,12 @@
                 "tar-pack"
               ],
               "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/chokidar/node_modules/fsevents/node_modules/node-pre-gyp/package.json",
+              "bundled": [
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "node-pre-gyp@0.6.19"
+              ],
               "dependencies": {
                 "nopt": {
                   "name": "nopt",
@@ -2973,13 +2858,12 @@
                   "snyk": false,
                   "license": "ISC",
                   "dep": "~3.0.1",
-                  "bundled": true,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "node-pre-gyp",
-                    "nopt"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "node-pre-gyp@0.6.19",
+                    "nopt@3.0.6"
                   ],
                   "__devDependencies": {
                     "tap": "^1.2.0"
@@ -2988,6 +2872,13 @@
                     "abbrev": "1"
                   },
                   "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/chokidar/node_modules/fsevents/node_modules/node-pre-gyp/node_modules/nopt/package.json",
+                  "bundled": [
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "node-pre-gyp@0.6.19",
+                    "nopt@3.0.6"
+                  ],
                   "dependencies": {
                     "abbrev": {
                       "name": "abbrev",
@@ -2998,14 +2889,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "node-pre-gyp",
-                        "nopt",
-                        "abbrev"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "node-pre-gyp@0.6.19",
+                        "nopt@3.0.6",
+                        "abbrev@1.0.7"
                       ],
                       "__devDependencies": {
                         "tap": "^1.2.0"
@@ -3027,12 +2917,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "node-uuid"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "node-uuid@1.4.7"
               ],
               "__devDependencies": {
                 "nyc": "^2.2.0"
@@ -3051,12 +2940,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "npmlog"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "npmlog@2.0.0"
               ],
               "__devDependencies": {
                 "tap": "~2.2.0"
@@ -3079,12 +2967,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "oauth-sign"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "oauth-sign@0.8.0"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -3101,12 +2988,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "once"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "once@1.1.1"
               ],
               "__devDependencies": {
                 "tap": "~0.3.0"
@@ -3125,12 +3011,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "pinkie"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "pinkie@2.0.1"
               ],
               "__devDependencies": {
                 "core-assert": "^0.1.1",
@@ -3154,12 +3039,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "pinkie-promise"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "pinkie-promise@2.0.0"
               ],
               "__devDependencies": {
                 "mocha": "*"
@@ -3180,12 +3064,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "process-nextick-args"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "process-nextick-args@1.0.6"
               ],
               "__devDependencies": {
                 "tap": "~0.2.6"
@@ -3204,12 +3087,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "qs"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "qs@5.2.0"
               ],
               "__devDependencies": {
                 "browserify": "^10.2.1",
@@ -3230,12 +3112,11 @@
               "snyk": false,
               "license": "(BSD-2-Clause OR MIT OR Apache-2.0)",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "rc"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "rc@1.1.6"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -3256,13 +3137,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^1.2.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "rc",
-                    "minimist"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "rc@1.1.6",
+                    "minimist@1.2.0"
                   ],
                   "__devDependencies": {
                     "covert": "^1.0.0",
@@ -3285,12 +3165,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "readable-stream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "readable-stream@2.0.5"
               ],
               "__devDependencies": {
                 "tap": "~0.2.6",
@@ -3318,12 +3197,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "request"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "request@2.67.0"
               ],
               "__devDependencies": {
                 "bluebird": "^3.0.2",
@@ -3381,12 +3259,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "rimraf"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "rimraf@2.5.0"
               ],
               "__devDependencies": {
                 "mkdirp": "^0.5.1",
@@ -3407,13 +3284,12 @@
                   "snyk": false,
                   "license": "ISC",
                   "dep": "^6.0.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "rimraf",
-                    "glob"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "rimraf@2.5.0",
+                    "glob@6.0.3"
                   ],
                   "__devDependencies": {
                     "mkdirp": "0",
@@ -3440,14 +3316,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "^1.0.4",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "rimraf",
-                        "glob",
-                        "inflight"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "rimraf@2.5.0",
+                        "glob@6.0.3",
+                        "inflight@1.0.4"
                       ],
                       "__devDependencies": {
                         "tap": "^0.4.10"
@@ -3468,15 +3343,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "1",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "rimraf",
-                            "glob",
-                            "inflight",
-                            "wrappy"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "rimraf@2.5.0",
+                            "glob@6.0.3",
+                            "inflight@1.0.4",
+                            "wrappy@1.0.1"
                           ],
                           "__devDependencies": {
                             "tap": "^0.4.12"
@@ -3497,14 +3371,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "2",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "rimraf",
-                        "glob",
-                        "inherits"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "rimraf@2.5.0",
+                        "glob@6.0.3",
+                        "inherits@2.0.1"
                       ],
                       "__devDependencies": {},
                       "__dependencies": {},
@@ -3521,14 +3394,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "2 || 3",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "rimraf",
-                        "glob",
-                        "minimatch"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "rimraf@2.5.0",
+                        "glob@6.0.3",
+                        "minimatch@3.0.0"
                       ],
                       "__devDependencies": {
                         "standard": "^3.7.2",
@@ -3549,15 +3421,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "^1.0.0",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "rimraf",
-                            "glob",
-                            "minimatch",
-                            "brace-expansion"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "rimraf@2.5.0",
+                            "glob@6.0.3",
+                            "minimatch@3.0.0",
+                            "brace-expansion@1.1.2"
                           ],
                           "__devDependencies": {
                             "tape": "4.2.2"
@@ -3578,16 +3449,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^0.3.0",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "fsevents",
-                                "rimraf",
-                                "glob",
-                                "minimatch",
-                                "brace-expansion",
-                                "balanced-match"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "fsevents@1.0.7",
+                                "rimraf@2.5.0",
+                                "glob@6.0.3",
+                                "minimatch@3.0.0",
+                                "brace-expansion@1.1.2",
+                                "balanced-match@0.3.0"
                               ],
                               "__devDependencies": {
                                 "tape": "~4.2.2"
@@ -3606,16 +3476,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "0.0.1",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "fsevents",
-                                "rimraf",
-                                "glob",
-                                "minimatch",
-                                "brace-expansion",
-                                "concat-map"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "fsevents@1.0.7",
+                                "rimraf@2.5.0",
+                                "glob@6.0.3",
+                                "minimatch@3.0.0",
+                                "brace-expansion@1.1.2",
+                                "concat-map@0.0.1"
                               ],
                               "__devDependencies": {
                                 "tape": "~2.4.0"
@@ -3638,14 +3507,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "^1.3.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "rimraf",
-                        "glob",
-                        "once"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "rimraf@2.5.0",
+                        "glob@6.0.3",
+                        "once@1.3.3"
                       ],
                       "__devDependencies": {
                         "tap": "^1.2.0"
@@ -3665,15 +3533,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "1",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "rimraf",
-                            "glob",
-                            "once",
-                            "wrappy"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "rimraf@2.5.0",
+                            "glob@6.0.3",
+                            "once@1.3.3",
+                            "wrappy@1.0.1"
                           ],
                           "__devDependencies": {
                             "tap": "^0.4.12"
@@ -3694,14 +3561,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^1.0.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "rimraf",
-                        "glob",
-                        "path-is-absolute"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "rimraf@2.5.0",
+                        "glob@6.0.3",
+                        "path-is-absolute@1.0.0"
                       ],
                       "__devDependencies": {},
                       "__dependencies": {},
@@ -3722,12 +3588,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "semver"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "semver@5.1.0"
               ],
               "__devDependencies": {
                 "tap": "^2.0.0"
@@ -3746,12 +3611,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "sntp"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "sntp@1.0.9"
               ],
               "__devDependencies": {
                 "lab": "4.x.x"
@@ -3772,12 +3636,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "sshpk"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "sshpk@1.7.2"
               ],
               "__devDependencies": {
                 "benchmark": ">=1.0.0 <2.0.0",
@@ -3811,13 +3674,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": ">=0.2.0 <0.3.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "sshpk",
-                    "assert-plus"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "sshpk@1.7.2",
+                    "assert-plus@0.2.0"
                   ],
                   "__devDependencies": {
                     "faucet": "0.0.1",
@@ -3839,12 +3701,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "string_decoder"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "string_decoder@0.10.31"
               ],
               "__devDependencies": {
                 "tap": "~0.4.8"
@@ -3863,12 +3724,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "stringstream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "stringstream@0.0.5"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -3885,12 +3745,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "strip-ansi"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "strip-ansi@3.0.0"
               ],
               "__devDependencies": {
                 "ava": "0.0.4"
@@ -3911,12 +3770,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "strip-json-comments"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "strip-json-comments@1.0.4"
               ],
               "__devDependencies": {
                 "mocha": "*"
@@ -3935,12 +3793,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "supports-color"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "supports-color@2.0.0"
               ],
               "__devDependencies": {
                 "mocha": "*",
@@ -3960,12 +3817,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "tar"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "tar@2.2.1"
               ],
               "__devDependencies": {
                 "graceful-fs": "^4.1.2",
@@ -3991,12 +3847,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "tar-pack"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "tar-pack@3.1.2"
               ],
               "__devDependencies": {
                 "mkdirp": "*",
@@ -4025,13 +3880,12 @@
                   "snyk": false,
                   "license": "ISC",
                   "dep": "~2.4.4",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "fsevents",
-                    "tar-pack",
-                    "rimraf"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "fsevents@1.0.7",
+                    "tar-pack@3.1.2",
+                    "rimraf@2.4.5"
                   ],
                   "__devDependencies": {
                     "mkdirp": "^0.5.1",
@@ -4052,14 +3906,13 @@
                       "snyk": false,
                       "license": "ISC",
                       "dep": "^6.0.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "fsevents",
-                        "tar-pack",
-                        "rimraf",
-                        "glob"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "fsevents@1.0.7",
+                        "tar-pack@3.1.2",
+                        "rimraf@2.4.5",
+                        "glob@6.0.3"
                       ],
                       "__devDependencies": {
                         "mkdirp": "0",
@@ -4086,15 +3939,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "^1.0.4",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "tar-pack",
-                            "rimraf",
-                            "glob",
-                            "inflight"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "tar-pack@3.1.2",
+                            "rimraf@2.4.5",
+                            "glob@6.0.3",
+                            "inflight@1.0.4"
                           ],
                           "__devDependencies": {
                             "tap": "^0.4.10"
@@ -4115,16 +3967,15 @@
                               "snyk": false,
                               "license": "ISC",
                               "dep": "1",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "fsevents",
-                                "tar-pack",
-                                "rimraf",
-                                "glob",
-                                "inflight",
-                                "wrappy"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "fsevents@1.0.7",
+                                "tar-pack@3.1.2",
+                                "rimraf@2.4.5",
+                                "glob@6.0.3",
+                                "inflight@1.0.4",
+                                "wrappy@1.0.1"
                               ],
                               "__devDependencies": {
                                 "tap": "^0.4.12"
@@ -4145,15 +3996,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "2",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "tar-pack",
-                            "rimraf",
-                            "glob",
-                            "inherits"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "tar-pack@3.1.2",
+                            "rimraf@2.4.5",
+                            "glob@6.0.3",
+                            "inherits@2.0.1"
                           ],
                           "__devDependencies": {},
                           "__dependencies": {},
@@ -4170,15 +4020,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "2 || 3",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "tar-pack",
-                            "rimraf",
-                            "glob",
-                            "minimatch"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "tar-pack@3.1.2",
+                            "rimraf@2.4.5",
+                            "glob@6.0.3",
+                            "minimatch@3.0.0"
                           ],
                           "__devDependencies": {
                             "standard": "^3.7.2",
@@ -4199,16 +4048,15 @@
                               "snyk": false,
                               "license": "MIT",
                               "dep": "^1.0.0",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "fsevents",
-                                "tar-pack",
-                                "rimraf",
-                                "glob",
-                                "minimatch",
-                                "brace-expansion"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "fsevents@1.0.7",
+                                "tar-pack@3.1.2",
+                                "rimraf@2.4.5",
+                                "glob@6.0.3",
+                                "minimatch@3.0.0",
+                                "brace-expansion@1.1.2"
                               ],
                               "__devDependencies": {
                                 "tape": "4.2.2"
@@ -4229,17 +4077,16 @@
                                   "snyk": false,
                                   "license": "MIT",
                                   "dep": "^0.3.0",
-                                  "bundled": false,
                                   "__from": [
-                                    "foo",
-                                    "chokidar",
-                                    "fsevents",
-                                    "tar-pack",
-                                    "rimraf",
-                                    "glob",
-                                    "minimatch",
-                                    "brace-expansion",
-                                    "balanced-match"
+                                    "foo@1.0.0",
+                                    "chokidar@1.4.1",
+                                    "fsevents@1.0.7",
+                                    "tar-pack@3.1.2",
+                                    "rimraf@2.4.5",
+                                    "glob@6.0.3",
+                                    "minimatch@3.0.0",
+                                    "brace-expansion@1.1.2",
+                                    "balanced-match@0.3.0"
                                   ],
                                   "__devDependencies": {
                                     "tape": "~4.2.2"
@@ -4258,17 +4105,16 @@
                                   "snyk": false,
                                   "license": "MIT",
                                   "dep": "0.0.1",
-                                  "bundled": false,
                                   "__from": [
-                                    "foo",
-                                    "chokidar",
-                                    "fsevents",
-                                    "tar-pack",
-                                    "rimraf",
-                                    "glob",
-                                    "minimatch",
-                                    "brace-expansion",
-                                    "concat-map"
+                                    "foo@1.0.0",
+                                    "chokidar@1.4.1",
+                                    "fsevents@1.0.7",
+                                    "tar-pack@3.1.2",
+                                    "rimraf@2.4.5",
+                                    "glob@6.0.3",
+                                    "minimatch@3.0.0",
+                                    "brace-expansion@1.1.2",
+                                    "concat-map@0.0.1"
                                   ],
                                   "__devDependencies": {
                                     "tape": "~2.4.0"
@@ -4291,15 +4137,14 @@
                           "snyk": false,
                           "license": "ISC",
                           "dep": "^1.3.0",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "tar-pack",
-                            "rimraf",
-                            "glob",
-                            "once"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "tar-pack@3.1.2",
+                            "rimraf@2.4.5",
+                            "glob@6.0.3",
+                            "once@1.3.3"
                           ],
                           "__devDependencies": {
                             "tap": "^1.2.0"
@@ -4319,16 +4164,15 @@
                               "snyk": false,
                               "license": "ISC",
                               "dep": "1",
-                              "bundled": false,
                               "__from": [
-                                "foo",
-                                "chokidar",
-                                "fsevents",
-                                "tar-pack",
-                                "rimraf",
-                                "glob",
-                                "once",
-                                "wrappy"
+                                "foo@1.0.0",
+                                "chokidar@1.4.1",
+                                "fsevents@1.0.7",
+                                "tar-pack@3.1.2",
+                                "rimraf@2.4.5",
+                                "glob@6.0.3",
+                                "once@1.3.3",
+                                "wrappy@1.0.1"
                               ],
                               "__devDependencies": {
                                 "tap": "^0.4.12"
@@ -4349,15 +4193,14 @@
                           "snyk": false,
                           "license": "MIT",
                           "dep": "^1.0.0",
-                          "bundled": false,
                           "__from": [
-                            "foo",
-                            "chokidar",
-                            "fsevents",
-                            "tar-pack",
-                            "rimraf",
-                            "glob",
-                            "path-is-absolute"
+                            "foo@1.0.0",
+                            "chokidar@1.4.1",
+                            "fsevents@1.0.7",
+                            "tar-pack@3.1.2",
+                            "rimraf@2.4.5",
+                            "glob@6.0.3",
+                            "path-is-absolute@1.0.0"
                           ],
                           "__devDependencies": {},
                           "__dependencies": {},
@@ -4380,12 +4223,11 @@
               "snyk": false,
               "license": "BSD-3-Clause",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "tough-cookie"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "tough-cookie@2.2.1"
               ],
               "__devDependencies": {
                 "async": "^1.4.2",
@@ -4405,12 +4247,11 @@
               "snyk": false,
               "license": "Apache-2.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "tunnel-agent"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "tunnel-agent@0.4.2"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -4427,12 +4268,11 @@
               "snyk": false,
               "license": "CC0-1.0",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "tweetnacl"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "tweetnacl@0.13.2"
               ],
               "__devDependencies": {
                 "browserify": "^10.1.3",
@@ -4457,12 +4297,11 @@
               "snyk": false,
               "license": "BSD",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "uid-number"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "uid-number@0.0.3"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -4479,12 +4318,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "util-deprecate"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "util-deprecate@1.0.2"
               ],
               "__devDependencies": {},
               "__dependencies": {},
@@ -4501,12 +4339,11 @@
               "snyk": false,
               "license": "none",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "verror"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "verror@1.3.6"
               ],
               "__devDependencies": {},
               "__dependencies": {
@@ -4525,12 +4362,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "unknown",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "fsevents",
-                "xtend"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "fsevents@1.0.7",
+                "xtend@4.0.1"
               ],
               "__devDependencies": {
                 "tape": "~1.1.0"
@@ -4551,11 +4387,10 @@
           "snyk": false,
           "license": "ISC",
           "dep": "^2.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "glob-parent"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "glob-parent@2.0.0"
           ],
           "__devDependencies": {
             "coveralls": "^2.11.2",
@@ -4577,11 +4412,10 @@
           "snyk": false,
           "license": "ISC",
           "dep": "^2.0.1",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "inherits"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "inherits@2.0.1"
           ],
           "__devDependencies": {},
           "__dependencies": {},
@@ -4597,11 +4431,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^1.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "is-binary-path"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "is-binary-path@1.0.1"
           ],
           "__devDependencies": {
             "ava": "0.0.4"
@@ -4620,12 +4453,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^1.0.0",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "is-binary-path",
-                "binary-extensions"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "is-binary-path@1.0.1",
+                "binary-extensions@1.4.0"
               ],
               "__devDependencies": {
                 "ava": "0.0.4"
@@ -4645,11 +4477,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^2.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "is-glob"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "is-glob@2.0.1"
           ],
           "__devDependencies": {
             "mocha": "*"
@@ -4668,12 +4499,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^1.0.0",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "is-glob",
-                "is-extglob"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "is-glob@2.0.1",
+                "is-extglob@1.0.0"
               ],
               "__devDependencies": {
                 "mocha": "*",
@@ -4694,11 +4524,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^1.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "path-is-absolute"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "path-is-absolute@1.0.0"
           ],
           "__devDependencies": {},
           "__dependencies": {},
@@ -4714,11 +4543,10 @@
           "snyk": false,
           "license": "MIT",
           "dep": "^2.0.0",
-          "bundled": false,
           "__from": [
-            "foo",
-            "chokidar",
-            "readdirp"
+            "foo@1.0.0",
+            "chokidar@1.4.1",
+            "readdirp@2.0.0"
           ],
           "__devDependencies": {
             "nave": "^0.5.1",
@@ -4741,12 +4569,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "^4.1.2",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "readdirp",
-                "graceful-fs"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "readdirp@2.0.0",
+                "graceful-fs@4.1.3"
               ],
               "__devDependencies": {
                 "mkdirp": "^0.5.0",
@@ -4766,12 +4593,11 @@
               "snyk": false,
               "license": "ISC",
               "dep": "^2.0.10",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "readdirp",
-                "minimatch"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "readdirp@2.0.0",
+                "minimatch@2.0.10"
               ],
               "__devDependencies": {
                 "browserify": "^9.0.3",
@@ -4792,13 +4618,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "^1.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "minimatch",
-                    "brace-expansion"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "minimatch@2.0.10",
+                    "brace-expansion@1.1.3"
                   ],
                   "__devDependencies": {
                     "tape": "4.4.0"
@@ -4818,14 +4643,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "^0.3.0",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "readdirp",
-                        "minimatch",
-                        "brace-expansion",
-                        "balanced-match"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "readdirp@2.0.0",
+                        "minimatch@2.0.10",
+                        "brace-expansion@1.1.3",
+                        "balanced-match@0.3.0"
                       ],
                       "__devDependencies": {
                         "tape": "~4.2.2"
@@ -4843,14 +4667,13 @@
                       "snyk": false,
                       "license": "MIT",
                       "dep": "0.0.1",
-                      "bundled": false,
                       "__from": [
-                        "foo",
-                        "chokidar",
-                        "readdirp",
-                        "minimatch",
-                        "brace-expansion",
-                        "concat-map"
+                        "foo@1.0.0",
+                        "chokidar@1.4.1",
+                        "readdirp@2.0.0",
+                        "minimatch@2.0.10",
+                        "brace-expansion@1.1.3",
+                        "concat-map@0.0.1"
                       ],
                       "__devDependencies": {
                         "tape": "~2.4.0"
@@ -4872,12 +4695,11 @@
               "snyk": false,
               "license": "MIT",
               "dep": "^2.0.2",
-              "bundled": false,
               "__from": [
-                "foo",
-                "chokidar",
-                "readdirp",
-                "readable-stream"
+                "foo@1.0.0",
+                "chokidar@1.4.1",
+                "readdirp@2.0.0",
+                "readable-stream@2.0.5"
               ],
               "__devDependencies": {
                 "tap": "~0.2.6",
@@ -4903,13 +4725,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "~1.0.0",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "readable-stream",
-                    "core-util-is"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "readable-stream@2.0.5",
+                    "core-util-is@1.0.2"
                   ],
                   "__devDependencies": {
                     "tap": "^2.3.0"
@@ -4927,13 +4748,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "0.0.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "readable-stream",
-                    "isarray"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "readable-stream@2.0.5",
+                    "isarray@0.0.1"
                   ],
                   "__devDependencies": {
                     "tap": "*"
@@ -4951,13 +4771,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "~1.0.6",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "readable-stream",
-                    "process-nextick-args"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "readable-stream@2.0.5",
+                    "process-nextick-args@1.0.6"
                   ],
                   "__devDependencies": {
                     "tap": "~0.2.6"
@@ -4975,13 +4794,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "~0.10.x",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "readable-stream",
-                    "string_decoder"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "readable-stream@2.0.5",
+                    "string_decoder@0.10.31"
                   ],
                   "__devDependencies": {
                     "tap": "~0.4.8"
@@ -4999,13 +4817,12 @@
                   "snyk": false,
                   "license": "MIT",
                   "dep": "~1.0.1",
-                  "bundled": false,
                   "__from": [
-                    "foo",
-                    "chokidar",
-                    "readdirp",
-                    "readable-stream",
-                    "util-deprecate"
+                    "foo@1.0.0",
+                    "chokidar@1.4.1",
+                    "readdirp@2.0.0",
+                    "readable-stream@2.0.5",
+                    "util-deprecate@1.0.2"
                   ],
                   "__devDependencies": {},
                   "__dependencies": {},
