@@ -11,6 +11,23 @@ test('end to end (no deps)', function (t) {
   .then(t.end);
 });
 
+test('end to end (sub-pluck finds correctly)', function (t) {
+  var res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
+  var from = [ 'foo@1.0.0',
+    'chokidar@1.4.1',
+    'fsevents@1.0.7',
+    'node-pre-gyp@0.6.19',
+    'request@2.67.0',
+    'hawk@3.1.2' ];
+
+  var plucked = res.pluck(from, 'hawk', '3.1.2');
+
+  t.notEqual(plucked, false, 'managed to pluck');
+  t.equal(plucked.name, 'hawk', 'found hawk');
+  t.end();
+});
+
+
 test('end to end (no name on root pkg)', function (t) {
   lib(__dirname + '/fixtures/pkg-missing-name')
   .then(function (res) {
