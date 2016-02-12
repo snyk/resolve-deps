@@ -9,7 +9,7 @@ var count = require('./count');
 var args = require('./args')(
   process.argv,
   ['filter', 'count'],
-  ['help', 'json', 'errors', 'dev', 'production', 'optional']
+  ['help', 'disk', 'json', 'errors', 'dev', 'production', 'optional']
   .concat(filter.flags)
 );
 
@@ -30,7 +30,14 @@ Promise.resolve().then(function () {
   return fs.stat(src);
 }).then(function (found) {
   if (found) {
-    return resolveTree(src, args)
+    return resolveTree.physicalTree(src, args)
+      .then(function (res) {
+        if (args.disk) {
+          return res;
+        }
+
+        return resolveTree.logicalTree(res);
+      })
       .then(function (res) {
         if (args.json) {
           return echo(res);
