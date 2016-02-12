@@ -8,6 +8,7 @@
 
   Flags:
 
+    --disk ............. show physical tree (not logical tree)
     -d, --dev .......... include devDependencies
     -j, --json ......... output raw json
     -e, --extraneous ... only show extraneous packages
