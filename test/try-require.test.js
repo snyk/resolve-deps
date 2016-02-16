@@ -33,5 +33,6 @@ test('try successful require', function (t) {
   tryRequire(filename).then(function (pkg) {
     t.ok(pkg, 'package loaded');
     t.ok(pkg.snyk, 'detected policy file');
+    t.notEqual(pkg.shrinkwrap, true, 'this package is not shrinkwrap');
   }).catch(t.fail).then(t.end);
 });
