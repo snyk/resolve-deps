@@ -13,9 +13,9 @@ test('try failure require', function (t) {
 test('try npm-shrinkwrap detect', function (t) {
   var location = 'node_modules/@remy/snyk-shrink-test';
 
-  try {
-    fs.stat(location);
-  } catch (e) {
+  var exists = fs.existsSync(location);
+
+  if (!exists) {
     location = 'node_modules/snyk-resolve-deps-fixtures/node_modules/@remy/snyk-shrink-test';
   }
 
