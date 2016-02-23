@@ -5,7 +5,7 @@ var proxyquire = require('proxyquire');
 var sinon = require('sinon');
 var spy = sinon.spy();
 
-test.only('cache cleared on re-run', function (t) {
+test('cache cleared on re-run', function (t) {
   spy = sinon.stub();
   spy.returns(JSON.stringify({
     name: 'foo'
@@ -16,7 +16,6 @@ test.only('cache cleared on re-run', function (t) {
       'snyk-try-require': proxyquire('snyk-try-require', {
         'then-fs': {
           readFile: function (filename) {
-            console.log('>>>');
             return Promise.resolve(spy(filename));
           }
         },
