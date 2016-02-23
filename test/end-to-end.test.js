@@ -1,6 +1,42 @@
 var test = require('tap-only');
 var lib = require('../lib');
-var tree = require('snyk-tree');
+var Promise = require('es6-promise').Promise; // jshint ignore:line
+var proxyquire = require('proxyquire');
+var sinon = require('sinon');
+var spy = sinon.spy();
+
+test.only('cache cleared on re-run', function (t) {
+  spy = sinon.stub();
+  spy.returns(JSON.stringify({
+    name: 'foo'
+  }));
+
+  var lib = proxyquire('../lib', {
+    './deps': proxyquire('../lib/deps', {
+      'snyk-try-require': proxyquire('snyk-try-require', {
+        'then-fs': {
+          readFile: function (filename) {
+            console.log('>>>');
+            return Promise.resolve(spy(filename));
+          }
+        },
+      })
+    })
+  });
+
+  var dirname = 'doesnt-exist';
+
+  return lib(dirname).then(function () {
+    t.pass('first run complete');
+  }).then(function () {
+    spy.returns(JSON.stringify({
+      name: 'bar'
+    }));
+    return lib(dirname).then(function (res) {
+      t.equal(res.name, 'bar', 'cache cleared');
+    });
+  });
+});
 
 test('end to end (no deps)', function (t) {
   lib(__dirname + '/fixtures/pkg-undef-deps')
