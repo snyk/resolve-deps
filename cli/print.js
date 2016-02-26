@@ -20,7 +20,8 @@ function print(args, res) {
     }
 
     if (leaf.shrinkwrap) {
-      label += ' ' + colour.bgBlack(colour.yellow('shrinkwrap via ' + leaf.shrinkwrap));
+      label += ' ' + colour.bgBlack(colour.yellow('shrinkwrap via ' +
+        leaf.shrinkwrap));
     }
 
     return label;
