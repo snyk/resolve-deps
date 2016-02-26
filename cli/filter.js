@@ -1,7 +1,6 @@
 module.exports = filter;
 
 var prune = require('../lib/prune');
-var walk = require('../lib/walk');
 var colour = require('ansicolors');
 var semver = require('semver');
 var toObject = require('snyk-module');
@@ -25,6 +24,7 @@ function filter(options, tree) {
   prune(tree, function (dep) {
     var bundled = !options.bundled;
     var extraneous = !options.extraneous;
+    var shrinkwrap = !options.shrinkwrap;
 
     if (options.bundled && dep.bundled) {
       bundled = Object.keys(dep.dependencies || {}).length === 0;
@@ -34,8 +34,12 @@ function filter(options, tree) {
       extraneous = Object.keys(dep.dependencies || {}).length === 0;
     }
 
+    if (options.shrinkwrap && dep.shrinkwrap) {
+      shrinkwrap = Object.keys(dep.dependencies || {}).length === 0;
+    }
+
     if (!match) {
-      return !(bundled && extraneous);
+      return !(bundled && extraneous && shrinkwrap);
     }
 
     if (dep.name === match.name) {
@@ -49,6 +53,7 @@ function filter(options, tree) {
         return !(
           (bundled || options.bundled && dep.bundled) &&
           (extraneous || options.extraneous && dep.extraneous) &&
+          (shrinkwrap || options.shrinkwrap && dep.shrinkwrap) &&
           true);
       }
 
@@ -59,4 +64,4 @@ function filter(options, tree) {
   });
 }
 
-filter.flags = ['bundled', 'extraneous'];
+filter.flags = ['bundled', 'extraneous', 'shrinkwrap'];

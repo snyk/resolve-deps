@@ -13,7 +13,9 @@
     -j, --json ......... output raw json
     -e, --extraneous ... only show extraneous packages
     -b, --bundled ...... only show bundled packages
+    -s, --shrinkwrap.... only show shrinkwrapped packages
     --errors ........... include errors (missing and extraneous)
+    -v, --version ...... current version
     -h, --help ......... this help
 
   Options:
