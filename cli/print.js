@@ -19,6 +19,10 @@ function print(args, res) {
       label += ' ' + bundled;
     }
 
+    if (leaf.shrinkwrap) {
+      label += ' ' + colour.bgBlack(colour.yellow('shrinkwrap via ' + leaf.shrinkwrap));
+    }
+
     return label;
   }));
 

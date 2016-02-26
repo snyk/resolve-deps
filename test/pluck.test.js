@@ -109,3 +109,14 @@ function pluckTests(t, res) {
 
   t.end();
 }
+
+test('shrinkwrap compatible', function (t) {
+  var fixture = require('./fixtures/hapi-npm-shrinkwrap.json');
+
+  var from = ['hapi', 'joi', 'moment'];
+
+  var plucked = pluck(fixture, from, 'moment', '2.11.0');
+
+  t.equal(plucked.version, '2.11.0', 'was able to pluck from shrinkwrap');
+  t.end();
+});
