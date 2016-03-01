@@ -1,5 +1,5 @@
 {
   "name": "pkg-missing-deps",
   "version": "1.0.0",
-  "dependencies": { "____doesnotexist": "1.0.0" }
+  "dependencies": { "doesnotexist": "1.0.0" }
 }

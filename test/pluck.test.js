@@ -5,7 +5,7 @@ var npm2fixtures = require(path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/snyk-resolve-deps-npm2.json'));
 var npm3fixtures = require(path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/snyk-resolve-deps-npm3.json'));
-
+var logicalTree = require('../lib/logical');
 
 test('pluck (with npm@2 modules)', function (t) {
   var res = npm2fixtures;
@@ -24,7 +24,7 @@ test('pluck (try github as version)', function (t) {
   var plucked = null;
   var name = 'memcached';
 
-  plucked = pluck(res, ['jsbin', 'memcached'], name, 'git://github.com/3rd-Eden/node-memcached#10733b0e487793dde1d3a4f9201b1ec41c0be0c6');
+  plucked = pluck(res, ['jsbin', 'memcached'], name, '2.0.0');
   t.equal(plucked.name, 'memcached', 'memcached found with git version');
   t.end();
 });
@@ -58,7 +58,7 @@ function pluckTests(t, res) {
 
   from = [
     'snyk-resolve-deps@1.1.2',
-    'snyk-resolve-deps-fixtures@1.1.2',
+    'snyk-resolve-deps-fixtures@1.1.1',
     '@remy/vuln-test@1.0.1',
     'semver@2.3.2'
   ];
@@ -71,7 +71,7 @@ function pluckTests(t, res) {
   if (res.npm === 3) {
     from = [
       'snyk-resolve-deps-fixtures',
-      'snyk-tree'
+      '@remy/npm-tree'
     ];
 
     plucked = pluck(res.dependencies['snyk-resolve-deps-fixtures'], from, 'ansicolors', '^0.3.2');
@@ -110,13 +110,49 @@ function pluckTests(t, res) {
   t.end();
 }
 
+test('forward pluck', function (t) {
+  var from = [
+    'foo@0',
+    'glue@3.2.0',
+    'hapi@13.0.0',
+    'statehood@4.0.0',
+    'joi@7.1.0',
+    'moment@2.11.0'
+  ];
+
+  var plucked = pluck(require(__dirname + '/fixtures/not-found.json'), from, 'moment', '2.11.0');
+  t.ok(plucked);
+  t.end();
+});
+
 test('shrinkwrap compatible', function (t) {
-  var fixture = require('./fixtures/hapi-npm-shrinkwrap.json');
+  var fixture = require('./fixtures/glue-npm-shrinkwrap.json');
 
-  var from = ['hapi', 'joi', 'moment'];
+  var from = [
+    'foo@1.0.0',
+    'glue@3.2.0',
+    'hapi@13.0.0',
+    'heavy@4.0.0',
+    'joi@7.1.0',
+    'moment@2.11.0'
+  ];
 
-  var plucked = pluck(fixture, from, 'moment', '2.11.0');
-
+  var plucked;
+  plucked = pluck(fixture, from, 'moment', '2.11.0');
   t.equal(plucked.version, '2.11.0', 'was able to pluck from shrinkwrap');
+
+  t.end();
+});
+
+test('shrinkwrap compatible (finds all vuln shrinkwrap)', function (t) {
+  var vulns = require(__dirname + '/fixtures/glue-npm-shrinkwrap-vulns.json').vulnerabilities;
+  var fixture = require(__dirname + '/fixtures/glue-npm-shrinkwrap.json');
+
+  vulns.forEach(function (vuln) {
+    var plucked = pluck(fixture, vuln.from, 'moment', '2.11.0');
+
+    t.equal(plucked.version, '2.11.0', vuln.id + ': was able to pluck from shrinkwrap');
+    t.equal(plucked.shrinkwrap, 'hapi@13.0.0', vuln.id + ': shrinkwrap detected');
+  });
   t.end();
 });

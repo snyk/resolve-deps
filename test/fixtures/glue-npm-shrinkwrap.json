@@ -1,0 +1,1023 @@
+{
+  "name": "foo",
+  "version": "1.0.0",
+  "license": "ISC",
+  "depType": "extraneous",
+  "hasDevDependencies": true,
+  "full": "foo@1.0.0",
+  "__from": [
+    "foo@1.0.0"
+  ],
+  "__devDependencies": {},
+  "__dependencies": {
+    "glue": "^3.2.0",
+    "snyk": "^1.11.1"
+  },
+  "__filename": "/Users/remy/Sites/snyk-tests/foo/package.json",
+  "dependencies": {
+    "glue": {
+      "name": "glue",
+      "version": "3.2.0",
+      "full": "glue@3.2.0",
+      "valid": true,
+      "depType": "prod",
+      "snyk": false,
+      "license": "BSD-3-Clause",
+      "dep": "^3.2.0",
+      "__from": [
+        "foo@1.0.0",
+        "glue@3.2.0"
+      ],
+      "__devDependencies": {
+        "catbox-memory": "2.x.x",
+        "code": "2.x.x",
+        "lab": "8.x.x"
+      },
+      "__dependencies": {
+        "hapi": "11.x.x || 12.x.x || 13.x.x",
+        "hoek": "3.x.x",
+        "items": "2.x.x",
+        "joi": "7.x.x"
+      },
+      "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/package.json",
+      "dependencies": {
+        "hapi": {
+          "name": "hapi",
+          "version": "13.0.0",
+          "full": "hapi@13.0.0",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD-3-Clause",
+          "dep": "11.x.x || 12.x.x || 13.x.x",
+          "__from": [
+            "foo@1.0.0",
+            "glue@3.2.0",
+            "hapi@13.0.0"
+          ],
+          "__devDependencies": {
+            "code": "2.x.x",
+            "handlebars": "4.x.x",
+            "inert": "3.x.x",
+            "lab": "8.x.x",
+            "vision": "2.x.x",
+            "wreck": "7.x.x"
+          },
+          "__dependencies": {
+            "accept": "2.x.x",
+            "ammo": "2.x.x",
+            "boom": "3.x.x",
+            "call": "3.x.x",
+            "catbox": "7.x.x",
+            "catbox-memory": "2.x.x",
+            "cryptiles": "3.x.x",
+            "heavy": "4.x.x",
+            "hoek": "3.x.x",
+            "iron": "4.x.x",
+            "items": "2.x.x",
+            "joi": "7.x.x",
+            "kilt": "2.x.x",
+            "mimos": "3.x.x",
+            "peekaboo": "2.x.x",
+            "shot": "3.x.x",
+            "statehood": "4.x.x",
+            "subtext": "4.x.x",
+            "topo": "2.x.x"
+          },
+          "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/package.json",
+          "dependencies": {
+            "accept": {
+              "name": "accept",
+              "version": "2.1.0",
+              "full": "accept@2.1.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "accept@2.1.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "8.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/accept/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "ammo": {
+              "name": "ammo",
+              "version": "2.0.0",
+              "full": "ammo@2.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "ammo@2.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x",
+                "wreck": "7.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/ammo/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "boom": {
+              "name": "boom",
+              "version": "3.1.1",
+              "full": "boom@3.1.1",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "3.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "boom@3.1.1"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x",
+                "markdown-toc": "0.11.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/boom/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "call": {
+              "name": "call",
+              "version": "3.0.0",
+              "full": "call@3.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "3.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "call@3.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x",
+                "boom": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/call/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "catbox": {
+              "name": "catbox",
+              "version": "7.1.0",
+              "full": "catbox@7.1.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "7.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "catbox@7.1.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "8.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "hoek": "3.x.x",
+                "joi": "7.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/catbox/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "catbox-memory": {
+              "name": "catbox-memory",
+              "version": "2.0.1",
+              "full": "catbox-memory@2.0.1",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "catbox-memory@2.0.1"
+              ],
+              "__devDependencies": {
+                "catbox": "7.x.x",
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/catbox-memory/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "cryptiles": {
+              "name": "cryptiles",
+              "version": "3.0.0",
+              "full": "cryptiles@3.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "3.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "cryptiles@3.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/cryptiles/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "heavy": {
+              "name": "heavy",
+              "version": "4.0.0",
+              "full": "heavy@4.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "4.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "heavy@4.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "hoek": "3.x.x",
+                "joi": "7.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/heavy/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "iron": {
+              "name": "iron",
+              "version": "4.0.0",
+              "full": "iron@4.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "4.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "iron@4.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "8.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x",
+                "boom": "3.x.x",
+                "cryptiles": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/iron/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "joi": {
+              "name": "joi",
+              "version": "7.1.0",
+              "full": "joi@7.1.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "7.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "joi@7.1.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "8.x.x",
+                "markdown-toc": "0.12.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x",
+                "topo": "2.x.x",
+                "isemail": "2.x.x",
+                "moment": "2.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/joi/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {
+                "isemail": {
+                  "name": "isemail",
+                  "version": "2.1.0",
+                  "full": "isemail@2.1.0",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD-3-Clause",
+                  "dep": "2.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "joi@7.1.0",
+                    "isemail@2.1.0"
+                  ],
+                  "__devDependencies": {
+                    "code": "2.x.x",
+                    "lab": "7.x.x"
+                  },
+                  "__dependencies": {},
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/joi/node_modules/isemail/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {}
+                },
+                "moment": {
+                  "name": "moment",
+                  "version": "2.11.0",
+                  "full": "moment@2.11.0",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "2.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "joi@7.1.0",
+                    "moment@2.11.0"
+                  ],
+                  "__devDependencies": {
+                    "uglify-js": "latest",
+                    "es6-promise": "latest",
+                    "grunt": "latest",
+                    "benchmark": "latest",
+                    "esperanto": "latest",
+                    "grunt-contrib-clean": "latest",
+                    "grunt-contrib-concat": "latest",
+                    "grunt-contrib-copy": "latest",
+                    "grunt-contrib-jshint": "latest",
+                    "grunt-contrib-uglify": "latest",
+                    "grunt-contrib-watch": "latest",
+                    "grunt-env": "latest",
+                    "grunt-jscs": "latest",
+                    "grunt-karma": "latest",
+                    "grunt-nuget": "latest",
+                    "grunt-benchmark": "latest",
+                    "grunt-string-replace": "latest",
+                    "grunt-exec": "latest",
+                    "load-grunt-tasks": "latest",
+                    "karma": "latest",
+                    "karma-chrome-launcher": "latest",
+                    "karma-firefox-launcher": "latest",
+                    "karma-qunit": "latest",
+                    "karma-sauce-launcher": "latest",
+                    "qunit": "^0.7.5",
+                    "qunit-cli": "^0.1.4",
+                    "spacejam": "latest",
+                    "coveralls": "^2.11.2",
+                    "nyc": "^2.1.4"
+                  },
+                  "__dependencies": {},
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/joi/node_modules/moment/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {}
+                }
+              }
+            },
+            "kilt": {
+              "name": "kilt",
+              "version": "2.0.0",
+              "full": "kilt@2.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "kilt@2.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/kilt/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "mimos": {
+              "name": "mimos",
+              "version": "3.0.0",
+              "full": "mimos@3.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "3.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "mimos@3.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x",
+                "mime-db": "1.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/mimos/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {
+                "mime-db": {
+                  "name": "mime-db",
+                  "version": "1.20.0",
+                  "full": "mime-db@1.20.0",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "MIT",
+                  "dep": "1.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "mimos@3.0.0",
+                    "mime-db@1.20.0"
+                  ],
+                  "__devDependencies": {
+                    "bluebird": "2.10.0",
+                    "co": "4.6.0",
+                    "cogent": "1.0.1",
+                    "csv-parse": "1.0.0",
+                    "gnode": "0.1.1",
+                    "istanbul": "0.4.0",
+                    "mocha": "1.21.5",
+                    "raw-body": "2.1.4",
+                    "stream-to-array": "2.2.0"
+                  },
+                  "__dependencies": {},
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/mimos/node_modules/mime-db/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {}
+                }
+              }
+            },
+            "peekaboo": {
+              "name": "peekaboo",
+              "version": "2.0.0",
+              "full": "peekaboo@2.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "peekaboo@2.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {},
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/peekaboo/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "shot": {
+              "name": "shot",
+              "version": "3.0.0",
+              "full": "shot@3.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "3.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "shot@3.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/shot/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "statehood": {
+              "name": "statehood",
+              "version": "4.0.0",
+              "full": "statehood@4.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "4.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "statehood@4.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "8.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "cryptiles": "3.x.x",
+                "hoek": "3.x.x",
+                "iron": "4.x.x",
+                "items": "2.x.x",
+                "joi": "7.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/statehood/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            },
+            "subtext": {
+              "name": "subtext",
+              "version": "4.0.0",
+              "full": "subtext@4.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "4.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "subtext@4.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "form-data": "0.1.x",
+                "lab": "8.x.x"
+              },
+              "__dependencies": {
+                "boom": "3.x.x",
+                "content": "3.x.x",
+                "hoek": "3.x.x",
+                "pez": "2.x.x",
+                "wreck": "7.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {
+                "content": {
+                  "name": "content",
+                  "version": "3.0.0",
+                  "full": "content@3.0.0",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD-3-Clause",
+                  "dep": "3.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "subtext@4.0.0",
+                    "content@3.0.0"
+                  ],
+                  "__devDependencies": {
+                    "code": "2.x.x",
+                    "lab": "7.x.x"
+                  },
+                  "__dependencies": {
+                    "boom": "3.x.x"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/content/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {}
+                },
+                "pez": {
+                  "name": "pez",
+                  "version": "2.0.1",
+                  "full": "pez@2.0.1",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD-3-Clause",
+                  "dep": "2.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "subtext@4.0.0",
+                    "pez@2.0.1"
+                  ],
+                  "__devDependencies": {
+                    "code": "2.x.x",
+                    "form-data": "0.2.x",
+                    "lab": "7.x.x",
+                    "shot": "2.x.x",
+                    "wreck": "7.x.x"
+                  },
+                  "__dependencies": {
+                    "b64": "3.x.x",
+                    "boom": "3.x.x",
+                    "content": "3.x.x",
+                    "hoek": "3.x.x",
+                    "nigel": "2.x.x"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/pez/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {
+                    "b64": {
+                      "name": "b64",
+                      "version": "3.0.0",
+                      "full": "b64@3.0.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "BSD-3-Clause",
+                      "dep": "3.x.x",
+                      "__from": [
+                        "foo@1.0.0",
+                        "glue@3.2.0",
+                        "hapi@13.0.0",
+                        "subtext@4.0.0",
+                        "pez@2.0.1",
+                        "b64@3.0.0"
+                      ],
+                      "__devDependencies": {
+                        "code": "2.x.x",
+                        "lab": "7.x.x",
+                        "wreck": "7.x.x"
+                      },
+                      "__dependencies": {
+                        "hoek": "3.x.x"
+                      },
+                      "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/pez/node_modules/b64/package.json",
+                      "shrinkwrap": "hapi@13.0.0",
+                      "dependencies": {}
+                    },
+                    "nigel": {
+                      "name": "nigel",
+                      "version": "2.0.0",
+                      "full": "nigel@2.0.0",
+                      "valid": true,
+                      "depType": "prod",
+                      "snyk": false,
+                      "license": "BSD-3-Clause",
+                      "dep": "2.x.x",
+                      "__from": [
+                        "foo@1.0.0",
+                        "glue@3.2.0",
+                        "hapi@13.0.0",
+                        "subtext@4.0.0",
+                        "pez@2.0.1",
+                        "nigel@2.0.0"
+                      ],
+                      "__devDependencies": {
+                        "code": "2.x.x",
+                        "lab": "7.x.x"
+                      },
+                      "__dependencies": {
+                        "hoek": "3.x.x",
+                        "vise": "2.x.x"
+                      },
+                      "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/pez/node_modules/nigel/package.json",
+                      "shrinkwrap": "hapi@13.0.0",
+                      "dependencies": {
+                        "vise": {
+                          "name": "vise",
+                          "version": "2.0.0",
+                          "full": "vise@2.0.0",
+                          "valid": true,
+                          "depType": "prod",
+                          "snyk": false,
+                          "license": "BSD-3-Clause",
+                          "dep": "2.x.x",
+                          "__from": [
+                            "foo@1.0.0",
+                            "glue@3.2.0",
+                            "hapi@13.0.0",
+                            "subtext@4.0.0",
+                            "pez@2.0.1",
+                            "nigel@2.0.0",
+                            "vise@2.0.0"
+                          ],
+                          "__devDependencies": {
+                            "code": "2.x.x",
+                            "lab": "7.x.x"
+                          },
+                          "__dependencies": {
+                            "hoek": "3.x.x"
+                          },
+                          "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/pez/node_modules/nigel/node_modules/vise/package.json",
+                          "shrinkwrap": "hapi@13.0.0",
+                          "dependencies": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "wreck": {
+                  "name": "wreck",
+                  "version": "7.0.0",
+                  "full": "wreck@7.0.0",
+                  "valid": true,
+                  "depType": "prod",
+                  "snyk": false,
+                  "license": "BSD-3-Clause",
+                  "dep": "7.x.x",
+                  "__from": [
+                    "foo@1.0.0",
+                    "glue@3.2.0",
+                    "hapi@13.0.0",
+                    "subtext@4.0.0",
+                    "wreck@7.0.0"
+                  ],
+                  "__devDependencies": {
+                    "code": "2.x.x",
+                    "lab": "7.x.x"
+                  },
+                  "__dependencies": {
+                    "boom": "3.x.x",
+                    "hoek": "3.x.x"
+                  },
+                  "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/subtext/node_modules/wreck/package.json",
+                  "shrinkwrap": "hapi@13.0.0",
+                  "dependencies": {}
+                }
+              }
+            },
+            "topo": {
+              "name": "topo",
+              "version": "2.0.0",
+              "full": "topo@2.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "hapi@13.0.0",
+                "topo@2.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hapi/node_modules/topo/package.json",
+              "shrinkwrap": "hapi@13.0.0",
+              "dependencies": {}
+            }
+          }
+        },
+        "hoek": {
+          "name": "hoek",
+          "version": "3.0.4",
+          "full": "hoek@3.0.4",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD-3-Clause",
+          "dep": "3.x.x",
+          "__from": [
+            "foo@1.0.0",
+            "glue@3.2.0",
+            "hoek@3.0.4"
+          ],
+          "__devDependencies": {
+            "code": "2.x.x",
+            "lab": "7.x.x"
+          },
+          "__dependencies": {},
+          "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/hoek/package.json",
+          "dependencies": {}
+        },
+        "items": {
+          "name": "items",
+          "version": "2.0.0",
+          "full": "items@2.0.0",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD-3-Clause",
+          "dep": "2.x.x",
+          "__from": [
+            "foo@1.0.0",
+            "glue@3.2.0",
+            "items@2.0.0"
+          ],
+          "__devDependencies": {
+            "code": "2.x.x",
+            "lab": "7.x.x"
+          },
+          "__dependencies": {},
+          "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/items/package.json",
+          "dependencies": {}
+        },
+        "joi": {
+          "name": "joi",
+          "version": "7.3.0",
+          "full": "joi@7.3.0",
+          "valid": true,
+          "depType": "prod",
+          "snyk": false,
+          "license": "BSD-3-Clause",
+          "dep": "7.x.x",
+          "__from": [
+            "foo@1.0.0",
+            "glue@3.2.0",
+            "joi@7.3.0"
+          ],
+          "__devDependencies": {
+            "code": "2.x.x",
+            "lab": "8.x.x",
+            "markdown-toc": "0.12.x"
+          },
+          "__dependencies": {
+            "hoek": "3.x.x",
+            "topo": "2.x.x",
+            "isemail": "2.x.x",
+            "moment": "2.x.x"
+          },
+          "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/joi/package.json",
+          "dependencies": {
+            "isemail": {
+              "name": "isemail",
+              "version": "2.1.0",
+              "full": "isemail@2.1.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "joi@7.3.0",
+                "isemail@2.1.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {},
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/joi/node_modules/isemail/package.json",
+              "dependencies": {}
+            },
+            "moment": {
+              "name": "moment",
+              "version": "2.11.2",
+              "full": "moment@2.11.2",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "MIT",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "joi@7.3.0",
+                "moment@2.11.2"
+              ],
+              "__devDependencies": {
+                "uglify-js": "latest",
+                "es6-promise": "latest",
+                "grunt": "latest",
+                "grunt-cli": "latest",
+                "benchmark": "latest",
+                "esperanto": "latest",
+                "grunt-contrib-clean": "latest",
+                "grunt-contrib-concat": "latest",
+                "grunt-contrib-copy": "latest",
+                "grunt-contrib-jshint": "latest",
+                "grunt-contrib-uglify": "latest",
+                "grunt-contrib-watch": "latest",
+                "grunt-env": "latest",
+                "grunt-jscs": "latest",
+                "grunt-karma": "latest",
+                "grunt-nuget": "latest",
+                "grunt-benchmark": "latest",
+                "grunt-string-replace": "latest",
+                "grunt-exec": "latest",
+                "load-grunt-tasks": "latest",
+                "karma": "latest",
+                "karma-chrome-launcher": "latest",
+                "karma-firefox-launcher": "latest",
+                "karma-qunit": "latest",
+                "karma-sauce-launcher": "latest",
+                "qunit": "^0.7.5",
+                "qunit-cli": "^0.1.4",
+                "spacejam": "latest",
+                "coveralls": "^2.11.2",
+                "nyc": "^2.1.4"
+              },
+              "__dependencies": {},
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/joi/node_modules/moment/package.json",
+              "dependencies": {}
+            },
+            "topo": {
+              "name": "topo",
+              "version": "2.0.0",
+              "full": "topo@2.0.0",
+              "valid": true,
+              "depType": "prod",
+              "snyk": false,
+              "license": "BSD-3-Clause",
+              "dep": "2.x.x",
+              "__from": [
+                "foo@1.0.0",
+                "glue@3.2.0",
+                "joi@7.3.0",
+                "topo@2.0.0"
+              ],
+              "__devDependencies": {
+                "code": "2.x.x",
+                "lab": "7.x.x"
+              },
+              "__dependencies": {
+                "hoek": "3.x.x"
+              },
+              "__filename": "/Users/remy/Sites/snyk-tests/foo/node_modules/glue/node_modules/joi/node_modules/topo/package.json",
+              "dependencies": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

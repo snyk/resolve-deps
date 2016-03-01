@@ -38,7 +38,7 @@
     "lru-cache": "^4.0.0",
     "minimist": "^1.2.0",
     "semver": "^5.1.0",
-    "snyk-module": "^1.0.2",
+    "snyk-module": "^1.5.0",
     "snyk-resolve": "^1.0.0",
     "snyk-tree": "^1.0.0",
     "snyk-try-require": "^1.1.1",
