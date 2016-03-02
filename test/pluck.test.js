@@ -1,10 +1,12 @@
 var test = require('tap-only');
 var pluck = require('../lib/pluck');
 var path = require('path');
-var npm2fixtures = require(path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/snyk-resolve-deps-npm2.json'));
-var npm3fixtures = require(path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/snyk-resolve-deps-npm3.json'));
+var remoteFixtures = path.resolve(__dirname, '..',
+    'node_modules/snyk-resolve-deps-fixtures/');
+console.log(remoteFixtures);
+var npm2fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm2.json');
+var npm3fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm3.json');
+var pm2fixtures = require(remoteFixtures + '/pm2-disk.json');
 var logicalTree = require('../lib/logical');
 
 test('pluck (with npm@2 modules)', function (t) {
@@ -154,5 +156,15 @@ test('shrinkwrap compatible (finds all vuln shrinkwrap)', function (t) {
     t.equal(plucked.version, '2.11.0', vuln.id + ': was able to pluck from shrinkwrap');
     t.equal(plucked.shrinkwrap, 'hapi@13.0.0', vuln.id + ': shrinkwrap detected');
   });
+  t.end();
+});
+
+test('handles unsupported git urls', function (t) {
+  var from = [ 'pm2-demo@1.0.0', 'pm2@1.0.1' ];
+
+  var plucked;
+  plucked = pluck(pm2fixtures, from, 'ikt', 'git+http://ikt.pm2.io/ikt.git#master');
+  t.equal(plucked.name, 'ikt', 'was able to pluck from unsupported git url');
+
   t.end();
 });
