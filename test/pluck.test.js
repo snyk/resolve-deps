@@ -3,7 +3,6 @@ var pluck = require('../lib/pluck');
 var path = require('path');
 var remoteFixtures = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/');
-console.log(remoteFixtures);
 var npm2fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm2.json');
 var npm3fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm3.json');
 var pm2fixtures = require(remoteFixtures + '/pm2-disk.json');
