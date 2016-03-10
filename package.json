@@ -31,7 +31,7 @@
   "dependencies": {
     "abbrev": "^1.0.7",
     "ansicolors": "^0.3.2",
-    "clite": "^0.1.2",
+    "clite": "^0.1.5",
     "debug": "^2.2.0",
     "es6-promise": "^3.0.2",
     "lodash": "^4.0.0",
