@@ -27,10 +27,10 @@ module.exports = function (args) {
           }
 
           if (args.json) {
-            return console.log(JSON.stringify(res, '', 2));
+            return JSON.stringify(res, '', 2);
           }
 
-          print(args, res);
+          return print(args, res);
         });
     }
 

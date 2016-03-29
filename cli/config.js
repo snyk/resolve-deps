@@ -1,5 +1,4 @@
 module.exports = {
-  return: true,
   commands: {
     _: 'cli/resolve',
   },
