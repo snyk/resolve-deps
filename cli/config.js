@@ -4,7 +4,14 @@ module.exports = {
   },
   options: ['filter', 'count'],
   alias: { d: 'dev', g: 'filter' },
-  booleans: ['disk', 'json', 'errors', 'dev', 'production', 'optional']
-    .concat(require('./filter').flags),
+  booleans: [
+    'disk',
+    'json',
+    'errors',
+    'dev',
+    'production',
+    'unique',
+    'optional',
+  ].concat(require('./filter').flags),
   help: 'usage.txt',
 };

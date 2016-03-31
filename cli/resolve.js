@@ -19,6 +19,10 @@ module.exports = function (args) {
         .then(function (res) {
           filter(args, res);
 
+          if (args.unique) {
+            res = resolveTree.unique(res);
+          }
+
           if (args.count) {
             if (typeof args.count === 'boolean' && args.filter) {
               args.count = args.filter;

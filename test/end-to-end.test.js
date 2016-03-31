@@ -112,8 +112,16 @@ test('end to end (this package __without__ dev)', function (t) {
     var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul', 'handlebars', 'uglify-js', 'source-map'];
     var plucked = res.pluck(from, 'source-map', '~0.5.1');
     t.ok(plucked.name, 'source-map');
-    // t.notOk(res.dependencies.tap.dependencies.nyc.dependencies.istanbul.dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous, 'source-map is not extraneous');
 
+    var unique = res.unique();
+    var counter = {};
+    lib.walk(unique, function (dep) {
+      if (counter[dep.full]) {
+        counter[dep.full]++;
+        t.fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+      }
+      counter[dep.full] = 1;
+    });
   })
   .catch(t.threw)
   .then(t.end);
