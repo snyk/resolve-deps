@@ -9,6 +9,7 @@
     "snyk-resolve": "./cli/index.js"
   },
   "scripts": {
+    "build": "mkdir -p dist; lodash -p -o ./dist/lodash-min.js include=flatten,extend",
     "lint": "jscs cli/*.js lib/*.js -v",
     "check-tests": "! grep 'test.only' test/*.test.js -n",
     "env": "node -e 'console.log(process.env, process.versions)'",
@@ -20,6 +21,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "jscs": "^2.8.0",
+    "lodash": "^4.0.0",
     "proxyquire": "^1.7.4",
     "semantic-release": "^4.3.5",
     "sinon": "^1.17.3",
@@ -34,7 +36,6 @@
     "clite": "^0.3.0",
     "debug": "^2.2.0",
     "es6-promise": "^3.0.2",
-    "lodash": "^4.0.0",
     "lru-cache": "^4.0.0",
     "minimist": "^1.2.0",
     "semver": "^5.1.0",
@@ -47,5 +48,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Snyk/resolve-deps.git"
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "dist"
+    ]
   }
 }

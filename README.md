@@ -52,6 +52,14 @@ Finally, once the virtual tree is constructed, a pass is made to check for unuse
 
 *Note: code found in `lib/logical.js`*
 
+## Build
+If using this package from the repo directly, you'll need to first build the custom lodash by running:
+```
+npm run build
+```
+This will create a `dist` directory with the minimal lodash file.
+When using the package via npm, the build is not needed as the `dist` directory is already included in the npm package.
+
 ## Misc
 
 * [CONTRIBUTING.md](CONTRIBUTING.md)
