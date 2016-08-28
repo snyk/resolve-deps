@@ -21,6 +21,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "jscs": "^2.8.0",
+    "lodash-cli": "^4.15.0",
     "lodash": "^4.0.0",
     "proxyquire": "^1.7.4",
     "semantic-release": "^4.3.5",

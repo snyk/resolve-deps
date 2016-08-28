@@ -23,8 +23,6 @@ before_install: |
   esac
   echo ${TRAVIS_NODE_VERSION}
 script:
-  - npm install lodash
-  - find node_modules | grep lodash
   - npm run build
   - npm run test
 after_success:
