@@ -7,7 +7,7 @@ Note that the output differs from the `npm ls` output in that deduped packages a
 ## Programatical usage
 
 ```js
-var resolveDeps = require('snyn-resolve-deps');
+var resolveDeps = require('snyk-resolve-deps');
 var asTree = require('snyk-tree');
 
 resolveDeps(process.cwd(), { dev: true }).then(function (tree) {
