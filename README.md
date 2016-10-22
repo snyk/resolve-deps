@@ -9,8 +9,9 @@ Note that the output differs from the `npm ls` output in that deduped packages a
 ```js
 var resolveDeps = require('snyk-resolve-deps');
 var asTree = require('snyk-tree');
+var options = { dev: true };
 
-resolveDeps(process.cwd(), { dev: true }).then(function (tree) {
+resolveDeps(process.cwd(), options).then(function (tree) {
   console.log(asTree(tree));
 }).catch(function (error) {
   // error is usually limited to unknown directory
@@ -18,6 +19,15 @@ resolveDeps(process.cwd(), { dev: true }).then(function (tree) {
   process.exit(1);
 });
 ```
+
+### API
+
+#### resolveDeps(root, options)
+
+- root: path to project root
+- options (optional)
+  - dev: [default, `false`] report only development options
+  - extraFields: [default, `undefined`] extract extra fields from dependencies' package.json files. example: `['files']`
 
 ## CLI usage
 
