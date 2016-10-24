@@ -32,7 +32,15 @@ test('deps - with uglify-package', function (t) {
   }).catch(function (e) {
     t.fail(e.stack);
   }).then(t.end);
+});
 
+test('deps - with extraFields', function (t) {
+  deps(npm2fixture, null, { extraFields: [ 'main', 'super-bogus-field' ]}).then(function (res) {
+    t.equal(res.main, 'index.js', 'includes extraFields');
+    t.equal(res['super-bogus-field'], null, 'produces null for empty extraFields fields');
+  }).catch(function (e) {
+    t.fail(e.stack);
+  }).then(t.end);
 });
 
 test('deps - throws without path', function (t) {
