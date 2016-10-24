@@ -41,7 +41,6 @@ test('deps - with extraFields', function (t) {
   }).catch(function (e) {
     t.fail(e.stack);
   }).then(t.end);
-
 });
 
 test('deps - throws without path', function (t) {
