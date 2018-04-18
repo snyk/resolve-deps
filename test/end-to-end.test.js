@@ -1,6 +1,5 @@
 var test = require('tap-only');
 var lib = require('../lib');
-var Promise = require('es6-promise').Promise; // jshint ignore:line
 var proxyquire = require('proxyquire');
 var sinon = require('sinon');
 var spy = sinon.spy();
