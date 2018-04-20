@@ -29,17 +29,6 @@ resolveDeps(process.cwd(), options).then(function (tree) {
   - dev: [default, `false`] report only development options
   - extraFields: [default, `undefined`] extract extra fields from dependencies' package.json files. example: `['files']`
 
-## CLI usage
-
-Note that the installed module name differs from the CLI tool (no `-deps` on the end).
-
-```bash
-$ npm install -g snyk-resolve-deps
-$ snyk-resolve path-to-node-project
-```
-
-The CLI also supports the `--dev` (or `-d`) flag to include dev dependencies and an optional `--json` to show the output as JSON instead of the ascii tree.
-
 ## How it works
 
 To fully support npm@2 and npm@3 two passes of the tree are required:
