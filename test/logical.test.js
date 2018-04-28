@@ -61,7 +61,12 @@ test('logical (deep test, find scoped)', function (t) {
   }).catch(t.threw);
 });
 
-test('deps - with uglify-package', function (t) {
+// fixture uglify-package does not exist, and newer versions of npm care
+const legacyNpm = Number(
+  require('child_process').execSync('npm -v').toString().split('.', 1)[0]
+) < 5;
+
+legacyNpm && test('deps - with uglify-package', function (t) {
   resolveTree(uglifyfixture).then(function (res) {
     t.equal(res.name, 'uglify-package', 'package name matches');
     t.type(res.dependencies, 'object', 'has dependencies');
