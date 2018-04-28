@@ -21,7 +21,12 @@ test('deps - npm@3', function (t) {
   }).catch(t.fail).then(t.end);
 });
 
-test('deps - with uglify-package', function (t) {
+// fixture uglify-package does not exist, and newer versions of npm care
+const legacyNpm = Number(
+  require('child_process').execSync('npm -v').toString().split('.', 1)[0]
+) < 5;
+
+legacyNpm && test('deps - with uglify-package', function (t) {
   deps(npm2fixture).then(function (res) {
     t.equal(res.name, 'uglify-package', 'package name matches');
     t.type(res.dependencies, 'object', 'has dependencies');
@@ -34,7 +39,7 @@ test('deps - with uglify-package', function (t) {
   }).then(t.end);
 });
 
-test('deps - with extraFields', function (t) {
+legacyNpm && test('deps - with extraFields', function (t) {
   deps(npm2fixture, null, { extraFields: [ 'main', 'super-bogus-field' ]}).then(function (res) {
     t.equal(res.main, 'index.js', 'includes extraFields');
     t.equal(res['super-bogus-field'], null, 'produces null for empty extraFields fields');
