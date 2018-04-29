@@ -125,3 +125,23 @@ test('end to end (this package __without__ dev)', function (t) {
   .catch(t.threw)
   .then(t.end);
 });
+
+test('end to end (this package wihtout from arrays)', function (t) {
+  lib(__dirname + '/../', {dontIncludeFromArrays: true})
+  .then(function (res) {
+    var unique = res.unique();
+    var counter = {};
+    lib.walk(unique, function (dep) {
+      if (dep.from) {
+        t.fail('from array found on node', dep);
+      }
+      if (counter[dep.full]) {
+        counter[dep.full]++;
+        t.fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+      }
+      counter[dep.full] = 1;
+    });
+  })
+  .catch(t.threw)
+  .then(t.end);
+});
