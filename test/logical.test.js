@@ -47,7 +47,7 @@ test('logical (find devDeps)', function (t) {
 });
 
 test('logical (dont include from arrays)', function (t) {
-  resolveTree(rootfixtures, { dontIncludeFromArrays: true }).then(function (res) {
+  resolveTree(rootfixtures, { noFromArrays: true }).then(function (res) {
     var names = [];
     walk(res, function (dep) {
       if (dep.from) {

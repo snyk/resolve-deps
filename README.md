@@ -28,7 +28,7 @@ resolveDeps(process.cwd(), options).then(function (tree) {
 - options (optional)
   - dev: [default, `false`] report only development options
   - extraFields: [default, `undefined`] extract extra fields from dependencies' package.json files. example: `['files']`
-  - dontIncludeFromArrays: [default, `false`] don't include `from` arrays with list of deps from `root` on every node
+  - noFromArrays: [default, `false`] don't include `from` arrays with list of deps from `root` on every node
 
 ## How it works
 

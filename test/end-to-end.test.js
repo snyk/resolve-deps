@@ -127,8 +127,12 @@ test('end to end (this package __without__ dev)', function (t) {
 });
 
 test('end to end (this package wihtout from arrays)', function (t) {
-  lib(__dirname + '/../', {dontIncludeFromArrays: true})
+  lib(__dirname + '/../', {noFromArrays: true})
   .then(function (res) {
+    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul', 'handlebars', 'uglify-js', 'source-map'];
+    var plucked = res.pluck(from, 'source-map', '~0.5.1');
+    t.ok(plucked.name, 'source-map');
+
     var unique = res.unique();
     var counter = {};
     lib.walk(unique, function (dep) {
