@@ -46,6 +46,21 @@ test('logical (find devDeps)', function (t) {
   }).catch(t.threw).then(t.end);
 });
 
+test('logical (dont include from arrays)', function (t) {
+  resolveTree(rootfixtures, { noFromArrays: true }).then(function (res) {
+    var names = [];
+    walk(res, function (dep) {
+      if (dep.from) {
+        t.fail('from array found on node ', dep);
+      }
+      if (dep.depType === depTypes.DEV) {
+        names.push(dep.name);
+      }
+    });
+
+  }).catch(t.threw).then(t.end);
+});
+
 test('logical (deep test, find scoped)', function (t) {
   t.plan(1);
 
