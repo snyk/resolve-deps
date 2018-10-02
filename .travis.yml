@@ -1,20 +1,26 @@
+dist: trusty
 sudo: false
+notifications:
+  email: false
 language: node_js
+node_js:
+  - "8"
+  - "6"
+  - "4"
 cache:
   directories:
     - node_modules
-notifications:
-  email: true
-node_js:
-  - '8'
-  - '6'
-  - '4'
-after_success:
-  # custom travis_after_all script under @remy's private gist
-  - 'curl -Lo travis_after_all.py https://git.io/vzaBe'
-  - python travis_after_all.py
-  - 'export $(cat .to_export_back) &> /dev/null'
-  - npm run semantic-release
+install:
+  - npm install
+script:
+  - npm test
+jobs:
+  include:
+    - stage: Release
+      node_js: "8"
+      script: skip
+      after_success:
+        - npx semantic-release
 branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  only:
+    - master
