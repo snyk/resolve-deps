@@ -56,3 +56,17 @@ test('deps - throws without path', function (t) {
     t.equal(e.message, 'module path must be a string', 'error is correct');
   }).then(t.end);
 });
+
+test('deps - with relative "file" option', function (t) {
+  deps(__dirname, null, {
+    dev: true,
+    file: 'fixtures/pkg-undef-deps-with-modules/package.json',
+  })
+    .then(function (res) {
+      t.equal(res.dependencies.debug.depType, 'dev', 'debug is valid');
+      t.equal(res.dependencies.undefsafe.depType, 'extraneous',
+          'undefsafe is extraneous');
+    })
+    .catch(t.threw)
+    .then(t.end);
+});
