@@ -1,4 +1,5 @@
-module.exports = prune;
+// TODO(kyegupov): avoid default exports
+export = prune;
 
 function prune(pkg, shouldPrune) {
   var remove = shouldPrune(pkg);

@@ -1,11 +1,15 @@
-module.exports = pluck;
+// TODO(kyegupov): plain export
+export = pluck;
 
-var semver = require('semver');
-var moduleToObject = require('snyk-module');
-var debug = require('debug')('snyk:resolve:pluck');
-var parseOptions = { loose: true };
+import * as semver from 'semver';
+import * as moduleToObject from 'snyk-module';
+import * as debugModule from 'debug';
+import { PackageExpanded } from './types';
+const debug = debugModule('snyk:resolve:pluck');
 
-function pluck(root, path, name, range) {
+const parseOptions = { loose: true };
+
+function pluck(root: PackageExpanded, path: string[], name: string, range: string) {
   if (range === 'latest') {
     range = '*';
   }
@@ -36,7 +40,7 @@ function pluck(root, path, name, range) {
 
   var match = false;
   var leaf = root;
-  var realPath = [];
+  var realPath: PackageExpanded[] = [];
 
   while (from.length) {
     var pkg = moduleToObject(from[0], parseOptions);
@@ -47,17 +51,18 @@ function pluck(root, path, name, range) {
       realPath.push(leaf);
       leaf = test;
     } else {
-      leaf = realPath.pop();
-      if (!leaf) {
+      let maybeLeaf = realPath.pop();
+      if (!maybeLeaf) {
         return false;
       }
+      leaf = maybeLeaf;
     }
   }
 
   return leaf.name === name ? leaf : false;
 }
 
-function getMatch(root, name, range) {
+function getMatch(root: PackageExpanded, name, range: string): PackageExpanded | false {
   var dep = root.dependencies && root.dependencies[name];
   if (!dep) {
     return false;

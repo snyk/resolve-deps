@@ -1,16 +1,19 @@
-module.exports = logicalTree;
+// TODO(kyegupov): avoid default exports
+export = logicalTree;
 
-var pluck = require('./pluck');
-var walk = require('./walk');
-var unique = require('./unique');
-var path = require('path');
-var depTypes = require('./dep-types');
-var colour = require('ansicolors');
-var moduleToObject = require('snyk-module');
-var _ = require('./lodash');
-var format = require('util').format;
-var ext = colour.bgBlack(colour.green('extraneous'));
-var problems = [];
+import pluck = require('./pluck');
+import walk = require('./walk');
+import unique = require('./unique');
+import * as path from 'path';
+import * as depTypes from './dep-types';
+import * as colour from 'ansicolors';
+import * as moduleToObject from 'snyk-module';
+import * as _ from './lodash';
+import * as util from 'util';
+import { PackageExpanded, DepType, Options, LogicalRoot, DepExpandedDict } from './types';
+
+const format = util.format;
+const ext = colour.bgBlack(colour.green('extraneous'));
 
 /**
  * This code will build up the logical tree representation of a node package
@@ -29,17 +32,16 @@ var problems = [];
  * from the root level, so we need to handle these carefully.
  */
 
-
-function logicalTree(fileTree, options) {
+function logicalTree(fileTree: PackageExpanded, options: Options) {
   if (!options) {
     options = {};
   }
 
-  problems = [];
-  var logicalRoot = copy(fileTree, fileTree.__from, true);
-  logicalRoot.dependencies = walkDeps(fileTree, fileTree);
+  let problems: string[] = [];
+  var logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
+  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems);
 
-  var removedPaths = [];
+  var removedPaths: string[][] = [];
 
   if (!options.dev) {
     // do a shallow pass on the deps and strip out dev deps
@@ -59,7 +61,7 @@ function logicalTree(fileTree, options) {
   logicalRoot.numFileDependencies = 0;
 
   walk(fileTree.dependencies, function (dep) {
-    logicalRoot.numFileDependencies++;
+    logicalRoot.numFileDependencies!++;
     if (!dep.__used) {
       var deppath = dep.__from.slice(0, -1).toString();
       var removed = removedPaths.filter(function (path) {
@@ -78,7 +80,7 @@ function logicalTree(fileTree, options) {
       problems.push(issue);
       leaf.extraneous = true;
       leaf.depType = depTypes.EXTRANEOUS;
-      leaf.dependencies = walkDeps(fileTree, dep);
+      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
       walk(leaf.dependencies, function (dep) {
         dep.extraneous = true;
         dep.depType = depTypes.EXTRANEOUS;
@@ -88,7 +90,7 @@ function logicalTree(fileTree, options) {
   });
 
   logicalRoot.numDependencies = Object.keys(
-    unique(logicalRoot).dependencies
+    unique(logicalRoot).dependencies,
   ).length;
 
   logicalRoot.pluck = pluck.bind(null, fileTree);
@@ -116,10 +118,9 @@ function insertLeaf(tree, leaf, from) {
   entry[leaf.name] = leaf;
 }
 
-function walkDeps(root, tree, from) {
-  if (!from) {
-    from = tree.__from;
-  }
+function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: string[] | undefined,
+                  problems: string[]): DepExpandedDict {
+  let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
   var deps = _.extend({}, tree.__dependencies,
@@ -149,14 +150,14 @@ function walkDeps(root, tree, from) {
           optionalDependencies: tree.__optionalDependencies,
         });
 
-        pkg.depType = info.type;
+        pkg.depType = info.type as DepType;
         pkg.dep = info.from;
 
         if (tree.bundled) { // carry the bundled flag down from the parent
           dep.bundled = pkg.bundled = tree.bundled;
         }
 
-        pkg.dependencies = walkDeps(root, dep, pkg.from);
+        pkg.dependencies = walkDeps(root, dep, pkg.from, problems);
       }
     }
 
@@ -164,7 +165,7 @@ function walkDeps(root, tree, from) {
   }, {});
 }
 
-function copy(leaf, from) {
+function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {
   if (!from) {
     from = leaf.__from;
   }
@@ -176,7 +177,7 @@ function copy(leaf, from) {
       }
     }
     return acc;
-  }, {});
+  }, {}) as PackageExpanded;
 
   res.from = from.slice(0);
   res.__filename = leaf.__filename;
@@ -194,4 +195,3 @@ function removeFromPaths(tree) {
 
   return tree;
 }
-

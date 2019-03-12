@@ -1,8 +1,12 @@
+import { DepType, HasDependencySpecs } from "./types";
+
+// TODO(kyegupov): add a return type for this function
+
 // Dependency types.
 // We don't call out all of them, only the ones relevant to our behavior.
 // extraneous means not found in package.json files, prod means not dev ATM
-var depTypes = module.exports = function (depName, pkg) {
-  var type = null;
+function depTypes(depName: string, pkg: HasDependencySpecs) {
+  var type: string | null = null;
   var from = 'unknown';
 
   if (pkg.devDependencies && pkg.devDependencies[depName]) {
@@ -22,16 +26,19 @@ var depTypes = module.exports = function (depName, pkg) {
   }
 
   var bundled = !!(pkg.bundleDependencies &&
-    pkg.bundleDependencies.indexOf(depName) !== -1);
+    pkg.bundleDependencies[depName]);
 
   return {
-    type: type,
+    type: type as string,
     from: from,
     bundled: bundled,
   };
-};
+}
 
-module.exports.EXTRANEOUS = 'extraneous';
-module.exports.OPTIONAL = 'optional';
-module.exports.PROD = 'prod';
-module.exports.DEV = 'dev';
+depTypes.EXTRANEOUS = 'extraneous' as DepType;
+depTypes.OPTIONAL = 'optional' as DepType;
+depTypes.PROD = 'prod' as DepType;
+depTypes.DEV = 'dev' as DepType;
+
+// TODO(kyegupov): switch to plain exports
+export = depTypes;

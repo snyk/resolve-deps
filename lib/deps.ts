@@ -1,13 +1,18 @@
-module.exports = loadModules;
+// TODO(kyegupov): avoid default exports
+export = loadModules;
 
-var depTypes = require('./dep-types');
-var fs = require('then-fs');
-var _ = require('./lodash');
-var debug = require('debug')('snyk:resolve:deps');
-var path = require('path');
-var semver = require('semver');
-var resolve = require('snyk-resolve');
-var tryRequire = require('snyk-try-require');
+import * as depTypes from './dep-types';
+import * as fs from 'then-fs';
+import * as _ from './lodash';
+import * as debugModule from 'debug';
+import * as path from 'path';
+import * as semver from 'semver';
+import * as resolve from 'snyk-resolve';
+import * as tryRequire from 'snyk-try-require';
+import { AbbreviatedVersion } from 'package-json';
+import { PackageExpanded, PackageJsonEnriched } from './types';
+
+const debug = debugModule('snyk:resolve:deps');
 
 function applyExtraFields(src, dest, extraFields) {
   if (!extraFields || !extraFields.length) {
@@ -16,7 +21,7 @@ function applyExtraFields(src, dest, extraFields) {
   extraFields.forEach(function applyExtraField(field) {
     _.set(dest, field, _.get(src, field) || null);
   });
-};
+}
 
 // FIXME only supports dependancies & dev deps not opt-deps
 function loadModules(root, depType, options) {
@@ -35,10 +40,10 @@ function loadModules(root, depType, options) {
     pkgRoot,
     depType || null,
     null,
-    opt
+    opt,
   ).then(function (tree) {
     // ensure there's no missing packages our known root deps
-    var missing = [];
+    var missing: Array<Promise<PackageExpanded>> = [];
     if (tree.__dependencies) {
       Object.keys(tree.__dependencies).forEach(function (name) {
         if (!tree.dependencies[name]) {
@@ -70,8 +75,8 @@ function loadModules(root, depType, options) {
 
 }
 
-function loadModulesInternal(root, rootDepType, parent, options) {
-  options = options || {}
+function loadModulesInternal(root, rootDepType, parent, options?): Promise<PackageExpanded> {
+  options = options || {};
   if (!rootDepType) {
     rootDepType = depTypes.EXTRANEOUS;
   }
@@ -80,14 +85,14 @@ function loadModulesInternal(root, rootDepType, parent, options) {
     return Promise.reject(new Error('module path must be a string'));
   }
 
-  var modules = {};
+  var modules = {} as PackageExpanded;
   var dir = path.resolve(root, options.file || 'package.json');
   // 1. read package.json for written deps
-  var promise = tryRequire(dir).then(function (pkg) {
+  var promise = tryRequire(dir).then(function (pkg: PackageJsonEnriched) {
     // if there's a package found, collect this information too
     if (pkg) {
       var full = pkg.name + '@' + (pkg.version || '0.0.0');
-      modules = {};
+      modules = {} as PackageExpanded;
       applyExtraFields(pkg, modules, options.extraFields);
       _.assign(modules, {
         name: pkg.name,
@@ -128,7 +133,7 @@ function loadModulesInternal(root, rootDepType, parent, options) {
 
     // 2. check actual installed deps
     return fs.readdir(path.resolve(root, 'node_modules')).then(function (dirs) {
-      var res = dirs.map(function (dir) {
+      var res: AbbreviatedVersion[] = dirs.map(function (dir) {
         // completely ignore `.bin` npm helper dir
         // ~ can be a symlink to node_modules itself
         // (https://www.npmjs.com/package/link-tilde)
@@ -150,7 +155,7 @@ function loadModulesInternal(root, rootDepType, parent, options) {
 
         // otherwise try to load a package.json from this node_module dir
         dir = path.resolve(root, 'node_modules', dir, 'package.json');
-        return tryRequire(dir);
+        return tryRequire(dir) as AbbreviatedVersion;
       });
 
       return Promise.all(res).then(function (res) {
@@ -159,9 +164,10 @@ function loadModulesInternal(root, rootDepType, parent, options) {
         // if res.length === 0 we used to throw MISSING_NODE_MODULES but we're
         // not doing that now, and I think it's okay.
 
+        // TODO: convert reduces to more readable code throughout
         res.reduce(function (acc, curr) {
           var license;
-          var licenses = curr.license || curr.licenses;
+          var licenses = curr.license as any || curr.licenses as any;
 
           if (Array.isArray(licenses)) {
             license = licenses.reduce(function (acc, curr) {
@@ -172,19 +178,19 @@ function loadModulesInternal(root, rootDepType, parent, options) {
             license = (licenses || {}).type || licenses;
           }
 
-          var depInfo = depTypes(curr.name, pkg);
+          var depInfo = depTypes(curr.name!, pkg);
           var depType = depInfo.type || rootDepType;
           var depFrom = depInfo.from;
 
           var valid = false;
           if (depFrom) {
-            valid = semver.satisfies(curr.version, depFrom);
+            valid = semver.satisfies(curr.version as string, depFrom);
           }
 
           var full = curr.name + '@' + (curr.version || '0.0.0');
-          acc[curr.name] = {}
-          applyExtraFields(curr, acc[curr.name], options.extraFields);
-          _.assign(acc[curr.name], {
+          acc[curr.name!] = {} as PackageExpanded;
+          applyExtraFields(curr, acc[curr.name!], options.extraFields);
+          _.assign(acc[curr.name!], {
             name: curr.name,
             version: curr.version || null,
             full: full,
@@ -202,11 +208,11 @@ function loadModulesInternal(root, rootDepType, parent, options) {
           });
 
           if (depInfo.bundled) {
-            acc[curr.name].bundled = acc[curr.name].__from.slice(0);
+            acc[curr.name!].bundled = acc[curr.name!].__from.slice(0);
           }
 
           if (pkg.shrinkwrap) {
-            acc[curr.name].shrinkwrap = pkg.shrinkwrap;
+            acc[curr.name!].shrinkwrap = pkg.shrinkwrap;
           }
 
           return acc;
