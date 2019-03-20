@@ -1,0 +1,8 @@
+{
+  "name": "pkg-renamed-dep",
+  "version": "1.0.0",
+  "dependencies": {
+    "githubrenamed": "stevemao/left-pad",
+    "npmrenamed": "npm:ms"
+  }
+}

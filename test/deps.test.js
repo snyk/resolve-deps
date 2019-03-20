@@ -70,3 +70,14 @@ test('deps - with relative "file" option', function (t) {
     .catch(t.threw)
     .then(t.end);
 });
+
+// See test/fixtures/pkg-yarn-renamed-deps/README.md
+test('deps - yarn with renamed dep', function (t) {
+  deps('test/fixtures/pkg-yarn-renamed-deps').then(function (res) {
+    t.equal(res.name, 'pkg-renamed-dep', 'package name matches');
+    t.type(res.dependencies, 'object', 'has dependencies');
+    t.equal(Object.keys(res.dependencies).length, 2, 'has 2 deps');
+  }).catch(function (e) {
+    t.fail(e.stack);
+  }).then(t.end);
+});
