@@ -31,18 +31,14 @@ test('logical (flags missing module)', function (t) {
 
 test('logical (find devDeps)', function (t) {
   var devDeps = Object.keys(require('../package.json').devDependencies);
-  var expect = devDeps.length;
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
     var names = [];
-    // console.log(res.dependencies['snyk-resolve-deps-fixtures'].dependencies['snyk-tree']);
     walk(res, function (dep) {
       if (dep.depType === depTypes.DEV) {
         names.push(dep.name);
       }
     });
-
-
-    t.deepEqual(names, devDeps, 'found the right number of devDeps');
+    t.deepEqual(names, devDeps, 'found the right devDeps');
   }).catch(t.threw).then(t.end);
 });
 

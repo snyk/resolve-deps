@@ -1,12 +1,12 @@
-dist: trusty
+dist: xenial
 sudo: false
 notifications:
   email: false
 language: node_js
 node_js:
+  - "10"
   - "8"
   - "6"
-  - "4"
 cache:
   directories:
     - node_modules
