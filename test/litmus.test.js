@@ -1,7 +1,7 @@
-var test = require('tap').test;
+let test = require('tap').test;
 
 test('litmus test', function (t) {
-  var lib = require('../lib');
+  let lib = require('../lib');
   t.ok(!!lib, 'module loaded');
   t.end();
 });

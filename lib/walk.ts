@@ -11,7 +11,7 @@ function walk(depsOrPkg: PackageExpanded | DepExpandedDict, filter) {
   let deps = ((depsOrPkg as PackageExpanded).dependencies ? depsOrPkg.dependencies : depsOrPkg) as DepExpandedDict;
 
   Object.keys(deps).forEach(function (name) {
-    var res = filter(deps[name], name, deps);
+    let res = filter(deps[name], name, deps);
     if (!res && deps[name] && deps[name].dep) {
       walk(deps[name].dependencies, filter);
     }

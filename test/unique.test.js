@@ -1,12 +1,12 @@
-var test = require('tap-only');
-var unique = require('../lib/unique');
-var walk = require('../lib/walk');
+let test = require('tap-only');
+let unique = require('../lib/unique');
+let walk = require('../lib/walk');
 
 test('unique', function (t) {
-  var fixture = require('./fixtures/out.json');
-  var names = [];
+  let fixture = require('./fixtures/out.json');
+  let names = [];
 
-  var res = unique(fixture);
+  let res = unique(fixture);
 
   walk(res, function (dep) {
     names.push(dep.full);

@@ -1,8 +1,8 @@
-var resolve = require('../lib');
+let resolve = require('../lib');
 
 function main() {
-  var target = process.argv[2];
-  var options = process.argv[3] || '{}';
+  let target = process.argv[2];
+  let options = process.argv[3] || '{}';
   options = JSON.parse(options);
 
   resolve(target, options).then(function (result) {

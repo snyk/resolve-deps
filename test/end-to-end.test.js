@@ -1,8 +1,8 @@
-var test = require('tap-only');
-var lib = require('../lib');
-var proxyquire = require('proxyquire');
-var sinon = require('sinon');
-var spy = sinon.spy();
+let test = require('tap-only');
+let lib = require('../lib');
+let proxyquire = require('proxyquire');
+let sinon = require('sinon');
+let spy = sinon.spy();
 
 test('cache cleared on re-run', function (t) {
   spy = sinon.stub();
@@ -10,7 +10,7 @@ test('cache cleared on re-run', function (t) {
     name: 'foo'
   }));
 
-  var lib = proxyquire('../lib', {
+  let lib = proxyquire('../lib', {
     './deps': proxyquire('../lib/deps', {
       'snyk-try-require': proxyquire('snyk-try-require', {
         'then-fs': {
@@ -22,7 +22,7 @@ test('cache cleared on re-run', function (t) {
     })
   });
 
-  var dirname = 'doesnt-exist';
+  let dirname = 'doesnt-exist';
 
   return lib(dirname).then(function () {
     t.pass('first run complete');
@@ -46,15 +46,15 @@ test('end to end (no deps)', function (t) {
 });
 
 test('end to end (sub-pluck finds correctly)', function (t) {
-  var res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
-  var from = [ 'foo@1.0.0',
+  let res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
+  let from = [ 'foo@1.0.0',
     'chokidar@1.4.1',
     'fsevents@1.0.7',
     'node-pre-gyp@0.6.19',
     'request@2.67.0',
     'hawk@3.1.2' ];
 
-  var plucked = res.pluck(from, 'hawk', '3.1.2');
+  let plucked = res.pluck(from, 'hawk', '3.1.2');
 
   t.notEqual(plucked, false, 'managed to pluck');
   t.equal(plucked.name, 'hawk', 'found hawk');
@@ -86,9 +86,9 @@ test('end to end (no deps but has node_modules)', function (t) {
 test('end to end (this package with dev)', function (t) {
   lib(__dirname + '/../', { dev: true })
   .then(function (res) {
-    var fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
-    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    var plucked = res.pluck(from, 'source-map', '~0.5.1');
+    let fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
+    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+    let plucked = res.pluck(from, 'source-map', '~0.5.1');
 
     t.notOk(res.dependencies.tap.dependencies.nyc.dependencies['istanbul-reports'].dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous, 'source-map is not extraneous');
 
@@ -108,12 +108,12 @@ test('end to end (this package with dev)', function (t) {
 test('end to end (this package __without__ dev)', function (t) {
   lib(__dirname + '/../')
   .then(function (res) {
-    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    var plucked = res.pluck(from, 'source-map', '~0.6.1');
+    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+    let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
-    var unique = res.unique();
-    var counter = {};
+    let unique = res.unique();
+    let counter = {};
     lib.walk(unique, function (dep) {
       if (counter[dep.full]) {
         counter[dep.full]++;
@@ -129,12 +129,12 @@ test('end to end (this package __without__ dev)', function (t) {
 test('end to end (this package wihtout from arrays)', function (t) {
   lib(__dirname + '/../', {noFromArrays: true})
   .then(function (res) {
-    var from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    var plucked = res.pluck(from, 'source-map', '~0.6.1');
+    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+    let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
-    var unique = res.unique();
-    var counter = {};
+    let unique = res.unique();
+    let counter = {};
     lib.walk(unique, function (dep) {
       if (dep.from) {
         t.fail('from array found on node', dep);

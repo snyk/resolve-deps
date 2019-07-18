@@ -27,11 +27,11 @@ function applyExtraFields(src, dest, extraFields) {
 function loadModules(root, depType, options) {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
-  var opt = _.clone(options || {});
-  var pkgRoot = root;
+  let opt = _.clone(options || {});
+  let pkgRoot = root;
 
   if (opt.file) {
-    var pathInfo = path.parse(opt.file);
+    let pathInfo = path.parse(opt.file);
     pkgRoot = path.resolve(pkgRoot, pathInfo.dir);
     opt.file = pathInfo.base;
   }
@@ -43,7 +43,7 @@ function loadModules(root, depType, options) {
     opt,
   ).then(function (tree) {
     // ensure there's no missing packages our known root deps
-    var missing: Array<Promise<PackageExpanded>> = [];
+    let missing: Array<Promise<PackageExpanded>> = [];
     if (tree.__dependencies) {
       Object.keys(tree.__dependencies).forEach(function (name) {
         if (!tree.dependencies[name]) {
@@ -85,13 +85,13 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
     return Promise.reject(new Error('module path must be a string'));
   }
 
-  var modules = {} as PackageExpanded;
-  var dir = path.resolve(root, options.file || 'package.json');
+  let modules = {} as PackageExpanded;
+  let dir = path.resolve(root, options.file || 'package.json');
   // 1. read package.json for written deps
-  var promise = tryRequire(dir).then(function (pkg: PackageJsonEnriched) {
+  let promise = tryRequire(dir).then(function (pkg: PackageJsonEnriched) {
     // if there's a package found, collect this information too
     if (pkg) {
-      var full = pkg.name + '@' + (pkg.version || '0.0.0');
+      let full = pkg.name + '@' + (pkg.version || '0.0.0');
       modules = {} as PackageExpanded;
       applyExtraFields(pkg, modules, options.extraFields);
       _.assign(modules, {
@@ -133,7 +133,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
     // 2. check actual installed deps
     return fs.readdir(path.resolve(root, 'node_modules')).then(function (dirs) {
-      var res: AbbreviatedVersion[] = dirs.map(function (dir) {
+      let res: AbbreviatedVersion[] = dirs.map(function (dir) {
         // completely ignore `.bin` npm helper dir
         // ~ can be a symlink to node_modules itself
         // (https://www.npmjs.com/package/link-tilde)
@@ -166,8 +166,8 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
         // TODO: convert reduces to more readable code throughout
         res.reduce(function (acc, curr) {
-          var license;
-          var licenses = curr.license as any || curr.licenses as any;
+          let license;
+          let licenses = curr.license as any || curr.licenses as any;
 
           if (Array.isArray(licenses)) {
             license = licenses.reduce(function (acc, curr) {
@@ -178,16 +178,16 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
             license = (licenses || {}).type || licenses;
           }
 
-          var depInfo = depTypes(curr.name!, pkg);
-          var depType = depInfo.type || rootDepType;
-          var depFrom = depInfo.from;
+          let depInfo = depTypes(curr.name!, pkg);
+          let depType = depInfo.type || rootDepType;
+          let depFrom = depInfo.from;
 
-          var valid = false;
+          let valid = false;
           if (depFrom) {
             valid = semver.satisfies(curr.version as string, depFrom);
           }
 
-          var full = curr.name + '@' + (curr.version || '0.0.0');
+          let full = curr.name + '@' + (curr.version || '0.0.0');
           acc[curr.name!] = {} as PackageExpanded;
           applyExtraFields(curr, acc[curr.name!], options.extraFields);
           _.assign(acc[curr.name!], {
@@ -221,11 +221,11 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         return modules;
       });
     }).then(function (modules) {
-      var deps = Object.keys(modules.dependencies);
+      let deps = Object.keys(modules.dependencies);
 
-      var promises = deps.map(function (dep) {
-        var depType = modules.dependencies[dep].depType;
-        var dir = path.dirname(modules.dependencies[dep].__filename);
+      let promises = deps.map(function (dep) {
+        let depType = modules.dependencies[dep].depType;
+        let dir = path.dirname(modules.dependencies[dep].__filename);
         return loadModulesInternal(dir, depType, pkg);
       });
 
