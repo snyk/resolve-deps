@@ -3,7 +3,7 @@ export = loadModules;
 
 import * as depTypes from './dep-types';
 import * as fs from 'then-fs';
-import * as _ from './lodash';
+import * as _ from 'lodash';
 import * as debugModule from 'debug';
 import * as path from 'path';
 import * as semver from 'semver';
@@ -27,11 +27,11 @@ function applyExtraFields(src, dest, extraFields) {
 function loadModules(root, depType, options) {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
-  var opt = _.clone(options || {});
-  var pkgRoot = root;
+  let opt = _.clone(options || {});
+  let pkgRoot = root;
 
   if (opt.file) {
-    var pathInfo = path.parse(opt.file);
+    let pathInfo = path.parse(opt.file);
     pkgRoot = path.resolve(pkgRoot, pathInfo.dir);
     opt.file = pathInfo.base;
   }
@@ -43,7 +43,7 @@ function loadModules(root, depType, options) {
     opt,
   ).then(function (tree) {
     // ensure there's no missing packages our known root deps
-    var missing: Array<Promise<PackageExpanded>> = [];
+    let missing: Array<Promise<PackageExpanded>> = [];
     if (tree.__dependencies) {
       Object.keys(tree.__dependencies).forEach(function (name) {
         if (!tree.dependencies[name]) {
@@ -85,13 +85,13 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
     return Promise.reject(new Error('module path must be a string'));
   }
 
-  var modules = {} as PackageExpanded;
-  var dir = path.resolve(root, options.file || 'package.json');
+  let modules = {} as PackageExpanded;
+  let directory = path.resolve(root, options.file || 'package.json');
   // 1. read package.json for written deps
-  var promise = tryRequire(dir).then(function (pkg: PackageJsonEnriched) {
+  let promise = tryRequire(directory).then(function (pkg: PackageJsonEnriched) {
     // if there's a package found, collect this information too
     if (pkg) {
-      var full = pkg.name + '@' + (pkg.version || '0.0.0');
+      let full = pkg.name + '@' + (pkg.version || '0.0.0');
       modules = {} as PackageExpanded;
       applyExtraFields(pkg, modules, options.extraFields);
       _.assign(modules, {
@@ -127,13 +127,13 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         modules.__from.push(full);
       }
     } else {
-      throw new Error(dir + ' is not a node project');
+      throw new Error(directory + ' is not a node project');
     }
     modules.dependencies = {};
 
     // 2. check actual installed deps
     return fs.readdir(path.resolve(root, 'node_modules')).then(function (dirs) {
-      var res: AbbreviatedVersion[] = dirs.map(function (dir) {
+      let res: AbbreviatedVersion[] = dirs.map(function (dir) {
         // completely ignore `.bin` npm helper dir
         // ~ can be a symlink to node_modules itself
         // (https://www.npmjs.com/package/link-tilde)
@@ -146,8 +146,8 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         if (dir.indexOf('@') === 0) {
           debug('scoped reset on %s', dir);
           dir = path.resolve(root, 'node_modules', dir);
-          return fs.readdir(dir).then(function (dirs) {
-            return Promise.all(dirs.map(function (scopedDir) {
+          return fs.readdir(dir).then(function (allDirs) {
+            return Promise.all(allDirs.map(function (scopedDir) {
               return tryRequire(path.resolve(dir, scopedDir, 'package.json'));
             }));
           });
@@ -158,36 +158,36 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         return tryRequire(dir) as AbbreviatedVersion;
       });
 
-      return Promise.all(res).then(function (res) {
-        res = _.flatten(res).filter(Boolean);
+      return Promise.all(res).then(function (response) {
+        response = _.flatten(response).filter(Boolean);
 
         // if res.length === 0 we used to throw MISSING_NODE_MODULES but we're
         // not doing that now, and I think it's okay.
 
         // TODO: convert reduces to more readable code throughout
-        res.reduce(function (acc, curr) {
-          var license;
-          var licenses = curr.license as any || curr.licenses as any;
+        response.reduce(function (acc, curr) {
+          let license;
+          let licenses = curr.license as any || curr.licenses as any;
 
           if (Array.isArray(licenses)) {
-            license = licenses.reduce(function (acc, curr) {
-              acc.push((curr || {}).type || curr);
-              return acc;
+            license = licenses.reduce(function (accumulator, current) {
+              accumulator.push((current || {}).type || current);
+              return accumulator;
             }, []).join('/');
           } else {
             license = (licenses || {}).type || licenses;
           }
 
-          var depInfo = depTypes(curr.name!, pkg);
-          var depType = depInfo.type || rootDepType;
-          var depFrom = depInfo.from;
+          let depInfo = depTypes(curr.name!, pkg);
+          let depType = depInfo.type || rootDepType;
+          let depFrom = depInfo.from;
 
-          var valid = false;
+          let valid = false;
           if (depFrom) {
             valid = semver.satisfies(curr.version as string, depFrom);
           }
 
-          var full = curr.name + '@' + (curr.version || '0.0.0');
+          let full = curr.name + '@' + (curr.version || '0.0.0');
           acc[curr.name!] = {} as PackageExpanded;
           applyExtraFields(curr, acc[curr.name!], options.extraFields);
           _.assign(acc[curr.name!], {
@@ -220,21 +220,21 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
         return modules;
       });
-    }).then(function (modules) {
-      var deps = Object.keys(modules.dependencies);
+    }).then(function (filteredModules) {
+      let deps = Object.keys(filteredModules.dependencies);
 
-      var promises = deps.map(function (dep) {
-        var depType = modules.dependencies[dep].depType;
-        var dir = path.dirname(modules.dependencies[dep].__filename);
+      let promises = deps.map(function (dep) {
+        let depType = filteredModules.dependencies[dep].depType;
+        let dir = path.dirname(filteredModules.dependencies[dep].__filename);
         return loadModulesInternal(dir, depType, pkg);
       });
 
       return Promise.all(promises).then(function (res) {
         res.forEach(function (mod) {
-          modules.dependencies[mod.name].dependencies = mod.dependencies;
+          filteredModules.dependencies[mod.name].dependencies = mod.dependencies;
         });
 
-        return modules;
+        return filteredModules;
       });
     }).catch(function (error) {
       // TODO decide whether it's okay that we keep throwing errors

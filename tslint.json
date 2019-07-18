@@ -9,7 +9,6 @@
         "curly": true,
         "indent": [true, "spaces", 2],
         "interface-name": false,
-        "no-use-before-declare": true,
         "object-literal-sort-keys": false,
         "ordered-imports": false,
         // "quotemark": [true, "single", "avoid-escape", "avoid-template"],
@@ -19,11 +18,11 @@
         // TODO(kyegupov): clean up TS code and enable those
         "quotemark": [false],
         "no-default-export": true,
-        "no-var-keyword": false,
+        "no-let-keyword": false,
         "prefer-const": false,
         "only-arrow-functions": false,
         "space-before-function-paren": false,
-        "no-shadowed-variable": false,
+        "no-shadowed-letiable": false,
         "object-literal-shorthand": false,
         "prefer-for-of": false
     }

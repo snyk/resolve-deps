@@ -1,9 +1,9 @@
-var test = require('tap-only');
-var deps = require('../lib/deps');
-var path = require('path');
-var npm2fixture = path.resolve(__dirname, '..',
+let test = require('tap-only');
+let deps = require('../lib/deps');
+let path = require('path');
+let npm2fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
-var npm3fixture = path.resolve(__dirname, '..',
+let npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/');
 
 test('deps - not a node project', function (t) {
@@ -32,7 +32,7 @@ legacyNpm && test('deps - with uglify-package', function (t) {
     t.type(res.dependencies, 'object', 'has dependencies');
     t.equal(Object.keys(res.dependencies).length, 3, 'has 3 file dependencies');
 
-    var ugdeep = res.dependencies['ug-deep'];
+    let ugdeep = res.dependencies['ug-deep'];
     t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
   }).catch(function (e) {
     t.fail(e.stack);

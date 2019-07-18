@@ -1,29 +1,29 @@
-var test = require('tap-only');
-var pluck = require('../lib/pluck');
-var path = require('path');
-var remoteFixtures = path.resolve(__dirname, '..',
+let test = require('tap-only');
+let pluck = require('../lib/pluck');
+let path = require('path');
+let remoteFixtures = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/');
-var npm2fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm2.json');
-var npm3fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm3.json');
-var pm2fixtures = require(remoteFixtures + '/pm2-disk.json');
-var logicalTree = require('../lib/logical');
+let npm2fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm2.json');
+let npm3fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm3.json');
+let pm2fixtures = require(remoteFixtures + '/pm2-disk.json');
+let logicalTree = require('../lib/logical');
 
 test('pluck (with npm@2 modules)', function (t) {
-  var res = npm2fixtures;
+  let res = npm2fixtures;
   res.npm = 2;
   pluckTests(t, res);
 });
 
 test('pluck (with npm@3 modules)', function (t) {
-  var res = npm3fixtures;
+  let res = npm3fixtures;
   res.npm = 3;
   pluckTests(t, res);
 });
 
 test('pluck (try github as version)', function (t) {
-  var res = require(path.resolve(__dirname, '..', 'node_modules', 'snyk-resolve-deps-fixtures', 'jsbin-file-tree.json'));
-  var plucked = null;
-  var name = 'memcached';
+  let res = require(path.resolve(__dirname, '..', 'node_modules', 'snyk-resolve-deps-fixtures', 'jsbin-file-tree.json'));
+  let plucked = null;
+  let name = 'memcached';
 
   plucked = pluck(res, ['jsbin', 'memcached'], name, '2.0.0');
   t.equal(plucked.name, 'memcached', 'memcached found with git version');
@@ -31,8 +31,8 @@ test('pluck (try github as version)', function (t) {
 });
 
 function pluckTests(t, res) {
-  var plucked = null;
-  var name = 'lodash';
+  let plucked = null;
+  let name = 'lodash';
   plucked = pluck(res, ['snyk-resolve-deps', 'lodash'], name, '*');
   t.equal(plucked.name, name, 'found lodash in direct dep');
   plucked = pluck(res, ['snyk-resolve-deps','snyk','inquirer', 'lodash'], name, '*');
@@ -47,7 +47,7 @@ function pluckTests(t, res) {
   plucked = pluck(res, ['snyk-resolve-deps'], name, 'latest');
   t.equal(plucked.name, name, 'found lodash in direct dep');
 
-  var from = [
+  let from = [
     'snyk-resolve-deps@1.1.0',
     'tap@5.2.0',
     'codecov.io@0.1.6',
@@ -112,7 +112,7 @@ function pluckTests(t, res) {
 }
 
 test('forward pluck', function (t) {
-  var from = [
+  let from = [
     'foo@0',
     'glue@3.2.0',
     'hapi@13.0.0',
@@ -121,15 +121,15 @@ test('forward pluck', function (t) {
     'moment@2.11.0'
   ];
 
-  var plucked = pluck(require(__dirname + '/fixtures/not-found.json'), from, 'moment', '2.11.0');
+  let plucked = pluck(require(__dirname + '/fixtures/not-found.json'), from, 'moment', '2.11.0');
   t.ok(plucked);
   t.end();
 });
 
 test('shrinkwrap compatible', function (t) {
-  var fixture = require('./fixtures/glue-npm-shrinkwrap.json');
+  let fixture = require('./fixtures/glue-npm-shrinkwrap.json');
 
-  var from = [
+  let from = [
     'foo@1.0.0',
     'glue@3.2.0',
     'hapi@13.0.0',
@@ -138,7 +138,7 @@ test('shrinkwrap compatible', function (t) {
     'moment@2.11.0'
   ];
 
-  var plucked;
+  let plucked;
   plucked = pluck(fixture, from, 'moment', '2.11.0');
   t.equal(plucked.version, '2.11.0', 'was able to pluck from shrinkwrap');
 
@@ -146,11 +146,11 @@ test('shrinkwrap compatible', function (t) {
 });
 
 test('shrinkwrap compatible (finds all vuln shrinkwrap)', function (t) {
-  var vulns = require(__dirname + '/fixtures/glue-npm-shrinkwrap-vulns.json').vulnerabilities;
-  var fixture = require(__dirname + '/fixtures/glue-npm-shrinkwrap.json');
+  let vulns = require(__dirname + '/fixtures/glue-npm-shrinkwrap-vulns.json').vulnerabilities;
+  let fixture = require(__dirname + '/fixtures/glue-npm-shrinkwrap.json');
 
   vulns.forEach(function (vuln) {
-    var plucked = pluck(fixture, vuln.from, 'moment', '2.11.0');
+    let plucked = pluck(fixture, vuln.from, 'moment', '2.11.0');
 
     t.equal(plucked.version, '2.11.0', vuln.id + ': was able to pluck from shrinkwrap');
     t.equal(plucked.shrinkwrap, 'hapi@13.0.0', vuln.id + ': shrinkwrap detected');
@@ -159,9 +159,9 @@ test('shrinkwrap compatible (finds all vuln shrinkwrap)', function (t) {
 });
 
 test('handles unsupported git urls', function (t) {
-  var from = [ 'pm2-demo@1.0.0', 'pm2@1.0.1' ];
+  let from = [ 'pm2-demo@1.0.0', 'pm2@1.0.1' ];
 
-  var plucked;
+  let plucked;
   plucked = pluck(pm2fixtures, from, 'ikt', 'git+http://ikt.pm2.io/ikt.git#master');
   t.equal(plucked.name, 'ikt', 'was able to pluck from unsupported git url');
 
