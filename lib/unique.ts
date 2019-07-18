@@ -5,11 +5,11 @@ import walk = require('./walk');
 import { PackageExpanded } from './types';
 
 function unique(deps: PackageExpanded) {
-  var res = copy(deps);
+  let res = copy(deps);
   res.dependencies = {};
 
   walk(deps, function (dep) {
-    var shallowCopy = copy(dep);
+    let shallowCopy = copy(dep);
     res.dependencies[dep.name + '@' + dep.version] = shallowCopy;
   });
 

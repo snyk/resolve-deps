@@ -6,8 +6,8 @@ import { DepType, HasDependencySpecs } from "./types";
 // We don't call out all of them, only the ones relevant to our behavior.
 // extraneous means not found in package.json files, prod means not dev ATM
 function depTypes(depName: string, pkg: HasDependencySpecs) {
-  var type: string | null = null;
-  var from = 'unknown';
+  let type: string | null = null;
+  let from = 'unknown';
 
   if (pkg.devDependencies && pkg.devDependencies[depName]) {
     type = depTypes.DEV;
@@ -25,7 +25,7 @@ function depTypes(depName: string, pkg: HasDependencySpecs) {
     from = pkg.dependencies[depName];
   }
 
-  var bundled = !!(pkg.bundleDependencies &&
+  let bundled = !!(pkg.bundleDependencies &&
     pkg.bundleDependencies[depName]);
 
   return {

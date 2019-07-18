@@ -1,17 +1,16 @@
-var test = require('tap-only');
-var resolveTree = require('../lib');
-var logicalTree = require('../lib/logical');
-var path = require('path');
-var walk = require('../lib/walk');
-var depTypes = require('../lib/dep-types');
-var tree = require('snyk-tree');
-var uglifyfixture = path.resolve(__dirname, '..',
+let test = require('tap-only');
+let resolveTree = require('../lib');
+let logicalTree = require('../lib/logical');
+let path = require('path');
+let walk = require('../lib/walk');
+let depTypes = require('../lib/dep-types');
+let uglifyfixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
-var npm3fixture = path.resolve(__dirname, '..',
+let npm3fixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures');
-var rootfixtures = path.resolve(__dirname, '..');
-var missingfixtures = path.resolve(__dirname, 'fixtures/pkg-missing-deps');
-var hawkpkg = require(path.resolve(__dirname, '..',
+let rootfixtures = path.resolve(__dirname, '..');
+let missingfixtures = path.resolve(__dirname, 'fixtures/pkg-missing-deps');
+let hawkpkg = require(path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/snyk-vuln-tree.json'));
 
 test('logical', function (t) {
@@ -22,7 +21,7 @@ test('logical', function (t) {
 
 test('logical (flags missing module)', function (t) {
   resolveTree(missingfixtures).then(function (res) {
-    var problem = (res.problems || []).some(function (issue) {
+    let problem = (res.problems || []).some(function (issue) {
       return issue.indexOf('missing') === 0;
     });
     t.ok(problem, 'The missing package was flagged');
@@ -30,9 +29,9 @@ test('logical (flags missing module)', function (t) {
 });
 
 test('logical (find devDeps)', function (t) {
-  var devDeps = Object.keys(require('../package.json').devDependencies);
+  let devDeps = Object.keys(require('../package.json').devDependencies);
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
-    var names = [];
+    let names = [];
     walk(res, function (dep) {
       if (dep.depType === depTypes.DEV) {
         names.push(dep.name);
@@ -44,7 +43,7 @@ test('logical (find devDeps)', function (t) {
 
 test('logical (dont include from arrays)', function (t) {
   resolveTree(rootfixtures, { noFromArrays: true }).then(function (res) {
-    var names = [];
+    let names = [];
     walk(res, function (dep) {
       if (dep.from) {
         t.fail('from array found on node ', dep);
@@ -83,7 +82,7 @@ legacyNpm && test('deps - with uglify-package', function (t) {
     t.type(res.dependencies, 'object', 'has dependencies');
     t.equal(Object.keys(res.dependencies).length, 2, 'has right dependencies');
 
-    var ugdeep = res.dependencies['ug-deep'];
+    let ugdeep = res.dependencies['ug-deep'];
     t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
   }).catch(t.threw).then(t.end);
 
@@ -93,7 +92,7 @@ test('logical (deep test, expecting extraneous)', function (t) {
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
-    var count = 0;
+    let count = 0;
     walk(res.dependencies, function (dep) {
       if (dep.extraneous) {
         count++;
@@ -112,11 +111,11 @@ test('logical (deep test, expecting extraneous)', function (t) {
 
 test('logical (find semver multiple times)', function (t) {
   resolveTree(npm3fixture).then(function (res) {
-    var names = [];
+    let names = [];
     walk(res.dependencies, function (dep) {
       names.push(dep.name);
     });
-    var count = names.filter(function (f) {
+    let count = names.filter(function (f) {
       return f === 'semver';
     }).length;
     t.equal(count, 2, 'expecting 2 semvers');
@@ -124,9 +123,9 @@ test('logical (find semver multiple times)', function (t) {
 });
 
 test('logical (deep copies)', function (t) {
-  var res = logicalTree(hawkpkg);
-  var deps = [];
-  var paths = {};
+  let res = logicalTree(hawkpkg);
+  let deps = [];
+  let paths = {};
   walk(res, function (dep) {
     if (dep.name === 'hawk') {
       deps.push(dep);

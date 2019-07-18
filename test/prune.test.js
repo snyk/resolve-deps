@@ -1,15 +1,15 @@
-var test = require('tap-only');
-var prune = require('../lib/prune');
-var walk = require('../lib/walk');
+let test = require('tap-only');
+let prune = require('../lib/prune');
+let walk = require('../lib/walk');
 
 test('prune (search for hawk)', function (t) {
-  var fixture = require('./fixtures/prune.json');
+  let fixture = require('./fixtures/prune.json');
 
   prune(fixture, function (dep) {
     return dep.name !== 'request';
   });
 
-  var count = 0;
+  let count = 0;
   walk(fixture, function (dep) {
     if (!Object.keys(dep.dependencies).length) {
       count++;

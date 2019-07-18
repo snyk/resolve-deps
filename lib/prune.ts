@@ -2,12 +2,12 @@
 export = prune;
 
 function prune(pkg, shouldPrune) {
-  var remove = shouldPrune(pkg);
+  let remove = shouldPrune(pkg);
   if (!remove) {
     pkg.dependencies = {};
   }
 
-  var deps = Object.keys(pkg.dependencies || {});
+  let deps = Object.keys(pkg.dependencies || {});
 
   if (deps.length) {
     remove = deps.filter(function (name) {

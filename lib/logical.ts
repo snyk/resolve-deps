@@ -38,15 +38,15 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
   }
 
   let problems: string[] = [];
-  var logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
+  let logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
   logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems);
 
-  var removedPaths: string[][] = [];
+  let removedPaths: string[][] = [];
 
   if (!options.dev) {
     // do a shallow pass on the deps and strip out dev deps
     Object.keys(fileTree.dependencies).forEach(function (name) {
-      var dep = fileTree.dependencies[name];
+      let dep = fileTree.dependencies[name];
       // if we're not interested in devDeps, then strip them out
       if (dep.depType === depTypes.DEV) {
         // since dev deps are only ever on the root, we know we can remove it
@@ -63,8 +63,8 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
   walk(fileTree.dependencies, function (dep) {
     logicalRoot.numFileDependencies!++;
     if (!dep.__used) {
-      var deppath = dep.__from.slice(0, -1).toString();
-      var removed = removedPaths.filter(function (path) {
+      let deppath = dep.__from.slice(0, -1).toString();
+      let removed = removedPaths.filter(function (path) {
         return deppath.indexOf(path) === 0;
       }).length;
 
@@ -72,9 +72,9 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
         return false; // this was from a dev dep, so let's lose it
       }
 
-      var leaf = copy(dep);
+      let leaf = copy(dep);
 
-      var issue = format('%s: %s@%s (from %s) > %s', ext, leaf.name,
+      let issue = format('%s: %s@%s (from %s) > %s', ext, leaf.name,
         leaf.version, leaf.dep, path.relative('.', leaf.__filename));
       leaf.problems = [issue];
       problems.push(issue);
@@ -106,11 +106,11 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
 
 function insertLeaf(tree, leaf, from) {
   // remove the root of the path and covert to names only
-  var path = (from || []).slice(1, -1).map(function (pkg) {
+  let path = (from || []).slice(1, -1).map(function (pkg) {
     return moduleToObject(pkg).name;
   });
-  var entry = tree.dependencies;
-  for (var i = 0; i < path.length; i++) {
+  let entry = tree.dependencies;
+  for (let i = 0; i < path.length; i++) {
     if (entry[path[i]]) {
       entry = entry[path[i]].dependencies;
     }
@@ -123,7 +123,7 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
   let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
-  var deps = _.extend({}, tree.__dependencies,
+  let deps = _.extend({}, tree.__dependencies,
     tree.__from && from.length === 1 ? tree.__devDependencies : {});
 
   deps = _.extend(deps, tree.__optionalDependencies);
@@ -131,8 +131,8 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
   return Object.keys(deps).reduce(function walkDepsPicker(acc, curr) {
     // only attempt to walk this dep if it's not in our path already
     if (tree.__from.indexOf(curr) === -1) {
-      var version = deps[curr];
-      var dep = pluck(root, tree.__from, curr, version);
+      let version = deps[curr];
+      let dep = pluck(root, tree.__from, curr, version);
 
       if (!dep) {
         problems.push(format('missing: %s@%s, required by %s', curr, version,
@@ -141,9 +141,9 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
       }
 
       if (from.indexOf(dep.full) === -1) {
-        var pkg = acc[dep.name] = copy(dep, from.concat(dep.full));
+        let pkg = acc[dep.name] = copy(dep, from.concat(dep.full));
         dep.__used = true;
-        var info = depTypes(dep.name, {
+        let info = depTypes(dep.name, {
           dependencies: tree.__dependencies,
           devDependencies: tree.__devDependencies,
           bundleDependencies: tree.__bundleDependencies,
@@ -170,7 +170,7 @@ function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {
     from = leaf.__from;
   }
 
-  var res = Object.keys(leaf).reduce(function copyIterator(acc, curr) {
+  let res = Object.keys(leaf).reduce(function copyIterator(acc, curr) {
     if (leaf[curr] !== undefined && curr.indexOf('__') !== 0) {
       if (curr !== 'dependencies') {
         acc[curr] = leaf[curr];
@@ -188,7 +188,7 @@ function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {
 function removeFromPaths(tree) {
   delete tree.from;
 
-  var deps = tree.dependencies;
+  let deps = tree.dependencies;
   Object.keys(deps).forEach(function (name) {
     removeFromPaths(deps[name]);
   });

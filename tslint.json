@@ -19,7 +19,6 @@
         // TODO(kyegupov): clean up TS code and enable those
         "quotemark": [false],
         "no-default-export": true,
-        "no-var-keyword": false,
         "prefer-const": false,
         "only-arrow-functions": false,
         "space-before-function-paren": false,

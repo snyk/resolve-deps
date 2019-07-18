@@ -1,9 +1,9 @@
-var test = require('tap-only');
-var walk = require('../lib/walk');
+let test = require('tap-only');
+let walk = require('../lib/walk');
 
 test('walk (search for semver)', function (t) {
-  var fixture = require('./fixtures/out.json');
-  var names = [];
+  let fixture = require('./fixtures/out.json');
+  let names = [];
 
   walk(fixture, function (dep) {
     names.push(dep.name);
