@@ -76,9 +76,6 @@ function loadModules(root, depType: DepType | null, options) {
 
 function loadModulesInternal(root, rootDepType, parent, options?): Promise<PackageExpanded> {
   options = options || {};
-  if (!rootDepType) {
-    rootDepType = DepType.EXTRANEOUS;
-  }
 
   if (typeof root !== 'string') {
     return Promise.reject(new Error('module path must be a string'));
