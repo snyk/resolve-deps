@@ -4,24 +4,24 @@ import { DepType, HasDependencySpecs } from "./types";
 
 // Dependency types.
 // We don't call out all of them, only the ones relevant to our behavior.
-// extraneous means not found in package.json files, prod means not dev ATM
-function depTypes(depName: string, pkg: HasDependencySpecs) {
-  let type: string | null = null;
+// prod means not dev ATM
+export function depTypes(depName: string, pkg: HasDependencySpecs) {
+  let type: DepType | null = null;
   let from = 'unknown';
 
   if (pkg.devDependencies && pkg.devDependencies[depName]) {
-    type = depTypes.DEV;
+    type = DepType.DEV;
     from = pkg.devDependencies[depName];
   }
 
   if (pkg.optionalDependencies && pkg.optionalDependencies[depName]) {
-    type = depTypes.OPTIONAL;
+    type = DepType.OPTIONAL;
     from = pkg.optionalDependencies[depName];
   }
 
   // production deps trump all
   if (pkg.dependencies && pkg.dependencies[depName]) {
-    type = depTypes.PROD;
+    type = DepType.PROD;
     from = pkg.dependencies[depName];
   }
 
@@ -34,11 +34,3 @@ function depTypes(depName: string, pkg: HasDependencySpecs) {
     bundled: bundled,
   };
 }
-
-depTypes.EXTRANEOUS = 'extraneous' as DepType;
-depTypes.OPTIONAL = 'optional' as DepType;
-depTypes.PROD = 'prod' as DepType;
-depTypes.DEV = 'dev' as DepType;
-
-// TODO(kyegupov): switch to plain exports
-export = depTypes;

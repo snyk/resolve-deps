@@ -5,7 +5,7 @@ import pluck = require('./pluck');
 import walk = require('./walk');
 import unique = require('./unique');
 import * as path from 'path';
-import * as depTypes from './dep-types';
+import {depTypes} from './dep-types';
 import * as colour from 'ansicolors';
 import * as moduleToObject from 'snyk-module';
 import * as _ from './lodash';
@@ -48,7 +48,7 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
     Object.keys(fileTree.dependencies).forEach(function (name) {
       let dep = fileTree.dependencies[name];
       // if we're not interested in devDeps, then strip them out
-      if (dep.depType === depTypes.DEV) {
+      if (dep.depType === DepType.DEV) {
         // since dev deps are only ever on the root, we know we can remove it
         // directly from the logicalRoot.dependencies
         removedPaths.push(dep.__from);
@@ -79,11 +79,11 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
       leaf.problems = [issue];
       problems.push(issue);
       leaf.extraneous = true;
-      leaf.depType = depTypes.EXTRANEOUS;
+      leaf.depType = DepType.EXTRANEOUS;
       leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
       walk(leaf.dependencies, function (extraDep) {
         extraDep.extraneous = true;
-        extraDep.depType = depTypes.EXTRANEOUS;
+        extraDep.depType = DepType.EXTRANEOUS;
       });
       insertLeaf(logicalRoot, leaf, dep.__from);
     }

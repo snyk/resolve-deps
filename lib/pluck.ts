@@ -38,7 +38,6 @@ function pluck(root: PackageExpanded, path: string[], name: string, range: strin
 
   debug('using forward search %s@%s in %s', from.join(' > '));
 
-  let match = false;
   let leaf = root;
   let realPath: PackageExpanded[] = [];
 

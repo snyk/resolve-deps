@@ -3,7 +3,7 @@ let resolveTree = require('../lib');
 let logicalTree = require('../lib/logical');
 let path = require('path');
 let walk = require('../lib/walk');
-let depTypes = require('../lib/dep-types');
+let types = require('../lib/types');
 let uglifyfixture = path.resolve(__dirname, '..',
     'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
 let npm3fixture = path.resolve(__dirname, '..',
@@ -33,7 +33,7 @@ test('logical (find devDeps)', function (t) {
   resolveTree(rootfixtures, { dev: true }).then(function (res) {
     let names = [];
     walk(res, function (dep) {
-      if (dep.depType === depTypes.DEV) {
+      if (dep.depType === types.DepType.DEV) {
         names.push(dep.name);
       }
     });
@@ -48,7 +48,7 @@ test('logical (dont include from arrays)', function (t) {
       if (dep.from) {
         t.fail('from array found on node ', dep);
       }
-      if (dep.depType === depTypes.DEV) {
+      if (dep.depType === types.DepType.DEV) {
         names.push(dep.name);
       }
     });

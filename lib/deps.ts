@@ -1,7 +1,6 @@
 // TODO(kyegupov): avoid default exports
 export = loadModules;
-
-import * as depTypes from './dep-types';
+import {depTypes} from './dep-types';
 import * as fs from 'then-fs';
 import * as _ from './lodash';
 import * as debugModule from 'debug';
@@ -10,7 +9,7 @@ import * as semver from 'semver';
 import * as resolve from 'snyk-resolve';
 import * as tryRequire from 'snyk-try-require';
 import { AbbreviatedVersion } from 'package-json';
-import { PackageExpanded, PackageJsonEnriched } from './types';
+import { PackageExpanded, PackageJsonEnriched, DepType } from './types';
 
 const debug = debugModule('snyk:resolve:deps');
 
@@ -24,7 +23,7 @@ function applyExtraFields(src, dest, extraFields) {
 }
 
 // FIXME only supports dependancies & dev deps not opt-deps
-function loadModules(root, depType, options) {
+function loadModules(root, depType: DepType | null, options) {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
   let opt = _.clone(options || {});
@@ -48,7 +47,7 @@ function loadModules(root, depType, options) {
       Object.keys(tree.__dependencies).forEach(function (name) {
         if (!tree.dependencies[name]) {
           missing.push(resolve(name, pkgRoot).then(function (dir) {
-            return loadModulesInternal(dir, depTypes.PROD, {
+            return loadModulesInternal(dir, DepType.PROD, {
               __from: [tree.name + '@' + tree.version, name],
             });
           }).catch(function (e) {
@@ -78,7 +77,7 @@ function loadModules(root, depType, options) {
 function loadModulesInternal(root, rootDepType, parent, options?): Promise<PackageExpanded> {
   options = options || {};
   if (!rootDepType) {
-    rootDepType = depTypes.EXTRANEOUS;
+    rootDepType = DepType.EXTRANEOUS;
   }
 
   if (typeof root !== 'string') {

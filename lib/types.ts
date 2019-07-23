@@ -1,7 +1,12 @@
 import { AbbreviatedVersion } from "package-json";
 
-export type DepType = 'extraneous' | 'optional'| 'prod' | 'dev';
+export enum DepType {
+    EXTRANEOUS = 'extraneous',
+    OPTIONAL = 'optional',
+    PROD = 'prod',
+    DEV = 'dev',
 
+}
 export interface DepSpecDict {
     [name: string]: string;
 }
