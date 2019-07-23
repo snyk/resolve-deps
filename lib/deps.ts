@@ -133,46 +133,46 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
     // 2. check actual installed deps
     return fs.readdir(path.resolve(root, 'node_modules')).then(function (dirs) {
-      let res: AbbreviatedVersion[] = dirs.map(function (dir) {
+      let res: AbbreviatedVersion[] = dirs.map(function (directory) {
         // completely ignore `.bin` npm helper dir
         // ~ can be a symlink to node_modules itself
         // (https://www.npmjs.com/package/link-tilde)
-        if (['.bin', '.DS_Store', '~'].indexOf(dir) >= 0) {
+        if (['.bin', '.DS_Store', '~'].indexOf(directory) >= 0) {
           return null;
         }
 
         // this is a scoped namespace, and we'd expect to find directories
         // inside *this* `dir`, so treat differently
-        if (dir.indexOf('@') === 0) {
-          debug('scoped reset on %s', dir);
-          dir = path.resolve(root, 'node_modules', dir);
-          return fs.readdir(dir).then(function (dirs) {
-            return Promise.all(dirs.map(function (scopedDir) {
-              return tryRequire(path.resolve(dir, scopedDir, 'package.json'));
+        if (directory.indexOf('@') === 0) {
+          debug('scoped reset on %s', directory);
+          directory = path.resolve(root, 'node_modules', directory);
+          return fs.readdir(directory).then(function (directories) {
+            return Promise.all(directories.map(function (scopedDir) {
+              return tryRequire(path.resolve(directory, scopedDir, 'package.json'));
             }));
           });
         }
 
         // otherwise try to load a package.json from this node_module dir
-        dir = path.resolve(root, 'node_modules', dir, 'package.json');
-        return tryRequire(dir) as AbbreviatedVersion;
+        directory = path.resolve(root, 'node_modules', directory, 'package.json');
+        return tryRequire(directory) as AbbreviatedVersion;
       });
 
-      return Promise.all(res).then(function (res) {
-        res = _.flatten(res).filter(Boolean);
+      return Promise.all(res).then(function (response) {
+        response = _.flatten(response).filter(Boolean);
 
         // if res.length === 0 we used to throw MISSING_NODE_MODULES but we're
         // not doing that now, and I think it's okay.
 
         // TODO: convert reduces to more readable code throughout
-        res.reduce(function (acc, curr) {
+        response.reduce(function (acc, curr) {
           let license;
           let licenses = curr.license as any || curr.licenses as any;
 
           if (Array.isArray(licenses)) {
-            license = licenses.reduce(function (acc, curr) {
-              acc.push((curr || {}).type || curr);
-              return acc;
+            license = licenses.reduce(function (accumulator, current) {
+              accumulator.push((current || {}).type || current);
+              return accumulator;
             }, []).join('/');
           } else {
             license = (licenses || {}).type || licenses;
@@ -220,21 +220,21 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
         return modules;
       });
-    }).then(function (modules) {
-      let deps = Object.keys(modules.dependencies);
+    }).then(function (mods) {
+      let deps = Object.keys(mods.dependencies);
 
       let promises = deps.map(function (dep) {
-        let depType = modules.dependencies[dep].depType;
-        let dir = path.dirname(modules.dependencies[dep].__filename);
-        return loadModulesInternal(dir, depType, pkg);
+        let depType = mods.dependencies[dep].depType;
+        let directory = path.dirname(mods.dependencies[dep].__filename);
+        return loadModulesInternal(directory, depType, pkg);
       });
 
       return Promise.all(promises).then(function (res) {
         res.forEach(function (mod) {
-          modules.dependencies[mod.name].dependencies = mod.dependencies;
+          mods.dependencies[mod.name].dependencies = mod.dependencies;
         });
 
-        return modules;
+        return mods;
       });
     }).catch(function (error) {
       // TODO decide whether it's okay that we keep throwing errors

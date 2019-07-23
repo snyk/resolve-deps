@@ -64,8 +64,8 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
     logicalRoot.numFileDependencies!++;
     if (!dep.__used) {
       let deppath = dep.__from.slice(0, -1).toString();
-      let removed = removedPaths.filter(function (path) {
-        return deppath.indexOf(path) === 0;
+      let removed = removedPaths.filter(function (removedPath) {
+        return deppath.indexOf(removedPath) === 0;
       }).length;
 
       if (removed) {
@@ -81,9 +81,9 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
       leaf.extraneous = true;
       leaf.depType = depTypes.EXTRANEOUS;
       leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
-      walk(leaf.dependencies, function (dep) {
-        dep.extraneous = true;
-        dep.depType = depTypes.EXTRANEOUS;
+      walk(leaf.dependencies, function (extraDep) {
+        extraDep.extraneous = true;
+        extraDep.depType = depTypes.EXTRANEOUS;
       });
       insertLeaf(logicalRoot, leaf, dep.__from);
     }
@@ -106,13 +106,13 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
 
 function insertLeaf(tree, leaf, from) {
   // remove the root of the path and covert to names only
-  let path = (from || []).slice(1, -1).map(function (pkg) {
+  let leafPath = (from || []).slice(1, -1).map(function (pkg) {
     return moduleToObject(pkg).name;
   });
   let entry = tree.dependencies;
-  for (let i = 0; i < path.length; i++) {
-    if (entry[path[i]]) {
-      entry = entry[path[i]].dependencies;
+  for (let i = 0; i < leafPath.length; i++) {
+    if (entry[leafPath[i]]) {
+      entry = entry[leafPath[i]].dependencies;
     }
   }
   entry[leaf.name] = leaf;
