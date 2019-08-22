@@ -1,5 +1,3 @@
-import { AbbreviatedVersion } from "package-json";
-
 export type DepType = 'extraneous' | 'optional'| 'prod' | 'dev';
 
 export interface DepSpecDict {
@@ -8,6 +6,27 @@ export interface DepSpecDict {
 
 export interface DepExpandedDict {
     [name: string]: PackageExpanded;
+}
+
+export interface AbbreviatedVersion {
+    readonly name: string;
+    readonly version: string;
+    readonly dist: {
+        readonly shasum: string;
+        readonly tarball: string;
+        readonly integrity?: string;
+    };
+    readonly deprecated?: string;
+    readonly dependencies?: {readonly [name: string]: string};
+    readonly optionalDependencies?: {readonly [name: string]: string};
+    readonly devDependencies?: {readonly [name: string]: string};
+    readonly bundleDependencies?: {readonly [name: string]: string};
+    readonly peerDependencies?: {readonly [name: string]: string};
+    readonly bin?: {readonly [key: string]: string};
+    readonly directories?: readonly string[];
+    readonly engines?: {readonly [type: string]: string};
+    readonly _hasShrinkwrap?: boolean;
+    readonly [key: string]: unknown;
 }
 
 // Intermediate type used during parsing

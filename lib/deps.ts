@@ -9,8 +9,7 @@ import * as path from 'path';
 import * as semver from 'semver';
 import * as resolve from 'snyk-resolve';
 import * as tryRequire from 'snyk-try-require';
-import { AbbreviatedVersion } from 'package-json';
-import { PackageExpanded, PackageJsonEnriched } from './types';
+import { AbbreviatedVersion, PackageExpanded, PackageJsonEnriched } from './types';
 
 const debug = debugModule('snyk:resolve:deps');
 
