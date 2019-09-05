@@ -153,8 +153,14 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         }
 
         // otherwise try to load a package.json from this node_module dir
-        directory = path.resolve(root, 'node_modules', directory, 'package.json');
-        return tryRequire(directory) as AbbreviatedVersion;
+        directory = path.resolve(root, 'node_modules', directory);
+        return fs.realpath(directory).then(function (realDirectory) {
+          if (realDirectory === root) {
+            return null;
+          } else {
+            return tryRequire(path.resolve(directory, 'package.json'));
+          }
+        });
       });
 
       return Promise.all(res).then(function (response) {
