@@ -38,6 +38,7 @@
     "@types/semver": "^5.5.0",
     "ansicolors": "^0.3.2",
     "debug": "^3.2.5",
+    "lodash": "^4.17.15",
     "lodash.assign": "^4.2.0",
     "lodash.assignin": "^4.2.0",
     "lodash.clone": "^4.5.0",
