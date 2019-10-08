@@ -3,7 +3,7 @@ export = loadModules;
 
 import * as depTypes from './dep-types';
 import * as fs from 'then-fs';
-import * as _ from './lodash';
+import * as _ from 'lodash';
 import * as debugModule from 'debug';
 import * as path from 'path';
 import * as semver from 'semver';
