@@ -8,7 +8,7 @@ import * as path from 'path';
 import * as depTypes from './dep-types';
 import * as colour from 'ansicolors';
 import * as moduleToObject from 'snyk-module';
-import * as _ from './lodash';
+import * as _ from 'lodash';
 import * as util from 'util';
 import { PackageExpanded, DepType, Options, LogicalRoot, DepExpandedDict } from './types';
 
