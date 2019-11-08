@@ -1,0 +1,21 @@
+{
+  "name": "bundle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "massive-massive-hack-see-warnings": "npm --prefix node_modules/snyk-resolve-deps-fixtures install --no-save --no-safe-dev undefsafe debug",
+    "postinstall": "npm run massive-massive-hack-see-warnings",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sinon": "7.5.0",
+    "snyk-resolve-deps-fixtures": "^1.1.6",
+    "tap": "12.7.0"
+  },
+  "dependencies": {
+    "snyk-tree": "1.0.0"
+  }
+}
