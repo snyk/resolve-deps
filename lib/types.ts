@@ -73,7 +73,7 @@ export interface PackageExpanded {
 export interface LogicalRoot extends PackageExpanded {
     numFileDependencies: number;
     numDependencies: number;
-    unique: () => PackageExpanded;
+    unique: () => Promise<PackageExpanded>;
     pluck: (path: string[], name: string, range: string) => false | PackageExpanded;
 }
 

@@ -1,11 +1,11 @@
 let test = require('tap-only');
 let walk = require('../lib/walk');
 
-test('walk (search for semver)', function (t) {
+test('walk (search for semver)', async (t) => {
   let fixture = require('./fixtures/out.json');
   let names = [];
 
-  walk(fixture, function (dep) {
+  await walk(fixture, function (dep) {
     names.push(dep.name);
   });
 

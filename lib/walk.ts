@@ -3,17 +3,18 @@ import { DepExpandedDict, PackageExpanded } from "./types";
 // TODO(kyegupov): avoid default exports
 export = walk;
 
-function walk(depsOrPkg: PackageExpanded | DepExpandedDict, filter) {
+async function walk(depsOrPkg: PackageExpanded | DepExpandedDict,
+                    filter: (deps, name?, allDeps?) => Promise<boolean>): Promise<void> {
   if (!depsOrPkg) {
-    return [];
+    return;
   }
 
   let deps = ((depsOrPkg as PackageExpanded).dependencies ? depsOrPkg.dependencies : depsOrPkg) as DepExpandedDict;
 
-  Object.keys(deps).forEach(function (name) {
-    let res = filter(deps[name], name, deps);
+  for (const name of Object.keys(deps)) {
+    let res = await filter(deps[name], name, deps);
     if (!res && deps[name] && deps[name].dep) {
-      walk(deps[name].dependencies, filter);
+      await walk(deps[name].dependencies, filter);
     }
-  });
+  }
 }

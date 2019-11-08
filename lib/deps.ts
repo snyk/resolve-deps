@@ -22,8 +22,8 @@ function applyExtraFields(src, dest, extraFields) {
   });
 }
 
-// FIXME only supports dependancies & dev deps not opt-deps
-function loadModules(root, depType, options) {
+// FIXME only supports dependencies & dev deps not opt-deps
+async function loadModules(root, depType, options): Promise<PackageExpanded> {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
   let opt = _.clone(options || {});

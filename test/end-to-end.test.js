@@ -45,8 +45,8 @@ test('end to end (no deps)', function (t) {
   .then(t.end);
 });
 
-test('end to end (sub-pluck finds correctly)', function (t) {
-  let res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
+test('end to end (sub-pluck finds correctly)', async (t) => {
+  let res = await lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
   let from = [ 'foo@1.0.0',
     'chokidar@1.4.1',
     'fsevents@1.0.7',
@@ -105,37 +105,36 @@ test('end to end (bundle with dev)', function (t) {
   .then(t.end);
 });
 
-test('end to end (this package __without__ dev)', function (t) {
-  lib(__dirname + '/fixtures/bundle')
-  .then(function (res) {
+test('end to end (this package __without__ dev)', async (t) => {
+  const res = await lib(__dirname + '/fixtures/bundle');
+  {
     let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
     let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
     let unique = res.unique();
     let counter = {};
-    lib.walk(unique, function (dep) {
+    await lib.walk(unique, function (dep) {
       if (counter[dep.full]) {
         counter[dep.full]++;
         t.fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
       }
       counter[dep.full] = 1;
     });
-  })
-  .catch(t.threw)
-  .then(t.end);
+  }
+  t.end();
 });
 
-test('end to end (bundle without from arrays)', function (t) {
-  lib(__dirname + '/fixtures/bundle', {noFromArrays: true})
-  .then(function (res) {
+test('end to end (bundle without from arrays)', async (t) => {
+  const res = await lib(__dirname + '/fixtures/bundle', {noFromArrays: true})
+  {
     let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
     let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
     let unique = res.unique();
     let counter = {};
-    lib.walk(unique, function (dep) {
+    await lib.walk(unique, function (dep) {
       if (dep.from) {
         t.fail('from array found on node', dep);
       }
@@ -145,7 +144,6 @@ test('end to end (bundle without from arrays)', function (t) {
       }
       counter[dep.full] = 1;
     });
-  })
-  .catch(t.threw)
-  .then(t.end);
+  }
+  t.end();
 });

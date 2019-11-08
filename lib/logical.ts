@@ -32,14 +32,14 @@ const ext = colour.bgBlack(colour.green('extraneous'));
  * from the root level, so we need to handle these carefully.
  */
 
-function logicalTree(fileTree: PackageExpanded, options: Options) {
+async function logicalTree(fileTree: PackageExpanded, options: Options): Promise<LogicalRoot> {
   if (!options) {
     options = {};
   }
 
   let problems: string[] = [];
   let logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
-  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems);
+  logicalRoot.dependencies = await walkDeps(fileTree, fileTree, undefined, problems);
 
   let removedPaths: string[][] = [];
 
@@ -60,7 +60,7 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
 
   logicalRoot.numFileDependencies = 0;
 
-  walk(fileTree.dependencies, function (dep) {
+  await walk(fileTree.dependencies, async (dep) => {
     logicalRoot.numFileDependencies!++;
     if (!dep.__used) {
       let deppath = dep.__from.slice(0, -1).toString();
@@ -80,21 +80,24 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
       problems.push(issue);
       leaf.extraneous = true;
       leaf.depType = depTypes.EXTRANEOUS;
-      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
-      walk(leaf.dependencies, function (extraDep) {
+      leaf.dependencies = await walkDeps(fileTree, dep, undefined, problems);
+      await walk(leaf.dependencies, async (extraDep) => {
         extraDep.extraneous = true;
         extraDep.depType = depTypes.EXTRANEOUS;
+        return false;
       });
       insertLeaf(logicalRoot, leaf, dep.__from);
     }
+    return false;
   });
 
+  const uniques = await unique(logicalRoot);
   logicalRoot.numDependencies = Object.keys(
-    unique(logicalRoot).dependencies,
+    uniques.dependencies,
   ).length;
 
   logicalRoot.pluck = pluck.bind(null, fileTree);
-  logicalRoot.unique = unique.bind(null, logicalRoot);
+  logicalRoot.unique = async () => unique(logicalRoot);
   logicalRoot.problems = problems.slice(0);
 
   if (options.noFromArrays) {
@@ -118,8 +121,10 @@ function insertLeaf(tree, leaf, from) {
   entry[leaf.name] = leaf;
 }
 
-function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: string[] | undefined,
-                  problems: string[]): DepExpandedDict {
+async function walkDeps(root: PackageExpanded,
+                        tree: PackageExpanded,
+                        suppliedFrom: string[] | undefined,
+                        problems: string[]): Promise<DepExpandedDict> {
   let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
@@ -128,7 +133,9 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
 
   deps = _.assignIn(deps, tree.__optionalDependencies);
 
-  return Object.keys(deps).reduce(function walkDepsPicker(acc, curr) {
+  const acc: DepExpandedDict = {};
+
+  for (const curr of Object.keys(deps)) {
     // only attempt to walk this dep if it's not in our path already
     if (tree.__from.indexOf(curr) === -1) {
       let version = deps[curr];
@@ -137,7 +144,7 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
       if (!dep) {
         problems.push(format('missing: %s@%s, required by %s', curr, version,
           from.join(' > ')));
-        return acc;
+        continue;
       }
 
       if (from.indexOf(dep.full) === -1) {
@@ -157,12 +164,12 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
           dep.bundled = pkg.bundled = tree.bundled;
         }
 
-        pkg.dependencies = walkDeps(root, dep, pkg.from, problems);
+        pkg.dependencies = await walkDeps(root, dep, pkg.from, problems);
       }
     }
+  }
 
-    return acc;
-  }, {});
+  return acc;
 }
 
 function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {

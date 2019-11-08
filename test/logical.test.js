@@ -30,23 +30,26 @@ test('logical (flags missing module)', function (t) {
   }).catch(t.threw).then(t.end);
 });
 
-test('logical (find devDeps)', function (t) {
+test('logical (find devDeps)', async (t) => {
   let devDeps = Object.keys(require(path.resolve(bundleFixture, 'package.json')).devDependencies);
-  resolveTree(bundleFixture, { dev: true }).then(function (res) {
+  const res = await resolveTree(bundleFixture, { dev: true });
+  {
     let names = [];
-    walk(res, function (dep) {
+    await walk(res, function (dep) {
       if (dep.depType === depTypes.DEV) {
         names.push(dep.name);
       }
     });
     t.deepEqual(names, devDeps, 'found the right devDeps');
-  }).catch(t.threw).then(t.end);
+  }
+  t.end();
 });
 
-test('logical (dont include from arrays)', function (t) {
-  resolveTree(bundleFixture, { noFromArrays: true }).then(function (res) {
+test('logical (dont include from arrays)', async (t) => {
+  const res = await resolveTree(bundleFixture, { noFromArrays: true });
+  {
     let names = [];
-    walk(res, function (dep) {
+    await walk(res, function (dep) {
       if (dep.from) {
         t.fail('from array found on node ', dep);
       }
@@ -54,23 +57,24 @@ test('logical (dont include from arrays)', function (t) {
         names.push(dep.name);
       }
     });
-
-  }).catch(t.threw).then(t.end);
+  }
+  t.end();
 });
 
-test('logical (deep test, find scoped)', function (t) {
+test('logical (deep test, find scoped)', async (t) => {
   t.plan(1);
 
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
-  resolveTree(npm3fixture).then(function (res) {
+  const res = await resolveTree(npm3fixture);
+  {
     // console.log(tree(res));
-    walk(res.dependencies, function (dep) {
+    await walk(res.dependencies, function (dep) {
       if (dep.name === '@remy/vuln-test') {
         t.pass('found scopped dependency');
       }
     });
-  }).catch(t.threw);
+  }
 });
 
 // fixture uglify-package does not exist, and newer versions of npm care
@@ -90,12 +94,13 @@ legacyNpm && test('deps - with uglify-package', function (t) {
 
 });
 
-test('logical (deep test, expecting extraneous)', function (t) {
+test('logical (deep test, expecting extraneous)',  async (t) => {
   // note: the @remy/vuln-test is actually found in the parent directory
   // when running in npm@3, so this is the real test
-  resolveTree(bundleFixture, { dev: true }).then(function (res) {
+  const res = await resolveTree(bundleFixture, { dev: true });
+  {
     let extraneous = [];
-    walk(res.dependencies, function (dep) {
+    await walk(res.dependencies, function (dep) {
       if (dep.extraneous) {
         extraneous.push(dep.name);
       }
@@ -114,13 +119,15 @@ test('logical (deep test, expecting extraneous)', function (t) {
     const count = extraneous.length;
     t.ok(count === 6 || count === 5,
       'found ' + count + ' extraneous packages: ' + extraneous.join(', '));
-  }).catch(t.threw).then(t.end);
+  }
+  t.end();
 });
 
-test('logical (find semver multiple times)', function (t) {
-  resolveTree(npm3fixture).then(function (res) {
+test('logical (find semver multiple times)', async (t) => {
+  const res = await resolveTree(npm3fixture);
+  {
     let names = [];
-    walk(res.dependencies, function (dep) {
+    await walk(res.dependencies, function (dep) {
       names.push(dep.name);
     });
     let count = names.filter(function (f) {
@@ -130,18 +137,20 @@ test('logical (find semver multiple times)', function (t) {
     // around in, so the dependency is missing. It's not a good way to run this
     // test.
     t.ok(1 === count || 2 === count, 'expecting 1 or 2 semvers, not ' + count);
-  }).catch(t.threw).then(t.end);
+  }
+  t.end();
 });
 
-test('logical (deep copies)', function (t) {
-  let res = logicalTree(hawkpkg);
+test('logical (deep copies)', async (t) => {
+  let res = await logicalTree(hawkpkg);
   let deps = [];
   let paths = {};
-  walk(res, function (dep) {
+  await walk(res, function (dep) {
     if (dep.name === 'hawk') {
       deps.push(dep);
       paths[dep.from] = 1;
     }
+    return false;
   });
 
   t.equal(deps.length, 5, 'found 5 instance');

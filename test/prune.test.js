@@ -2,7 +2,7 @@ let test = require('tap-only');
 let prune = require('../lib/prune');
 let walk = require('../lib/walk');
 
-test('prune (search for hawk)', function (t) {
+test('prune (search for hawk)', async (t) => {
   let fixture = require('./fixtures/prune.json');
 
   prune(fixture, function (dep) {
@@ -10,7 +10,7 @@ test('prune (search for hawk)', function (t) {
   });
 
   let count = 0;
-  walk(fixture, function (dep) {
+  await walk(fixture, function (dep) {
     if (!Object.keys(dep.dependencies).length) {
       count++;
     }

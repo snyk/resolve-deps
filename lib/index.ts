@@ -6,8 +6,9 @@ import pluck = require('./pluck');
 import unique = require('./unique');
 import { Options, LogicalRoot } from './types';
 
-function resolveDeps(dir: string, options: Options): Promise<LogicalRoot> {
-  return physicalTree(dir, null, options).then((res) => logicalTree(res, options));
+async function resolveDeps(dir: string, options: Options): Promise<LogicalRoot> {
+  const physical = await physicalTree(dir, null, options);
+  return await logicalTree(physical, options);
 }
 
 resolveDeps.physicalTree = physicalTree;

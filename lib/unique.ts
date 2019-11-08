@@ -4,13 +4,14 @@ export = unique;
 import walk = require('./walk');
 import { PackageExpanded } from './types';
 
-function unique(deps: PackageExpanded) {
+async function unique(deps: PackageExpanded): Promise<PackageExpanded> {
   let res = copy(deps);
   res.dependencies = {};
 
-  walk(deps, function (dep) {
+  await walk(deps, async (dep) => {
     let shallowCopy = copy(dep);
     res.dependencies[dep.name + '@' + dep.version] = shallowCopy;
+    return false;
   });
 
   return res;

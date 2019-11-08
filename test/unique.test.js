@@ -2,13 +2,13 @@ let test = require('tap-only');
 let unique = require('../lib/unique');
 let walk = require('../lib/walk');
 
-test('unique', function (t) {
+test('unique', async (t) => {
   let fixture = require('./fixtures/out.json');
   let names = [];
 
-  let res = unique(fixture);
+  let res = await unique(fixture);
 
-  walk(res, function (dep) {
+  await walk(res, function (dep) {
     names.push(dep.full);
   });
 
