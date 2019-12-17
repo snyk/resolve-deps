@@ -17,7 +17,8 @@
     "check-tests": "! grep 'test.only' test/*.test.js -n",
     "env": "node -e 'console.log(process.env, process.versions)'",
     "cover": "tap test/*.test.js --cov --coverage-report=lcov",
-    "test": "npm run check-tests && npm run lint && tap test/*.test.[jt]s --timeout=60 --node-arg=-r --node-arg=ts-node/register"
+    "test": "npm run check-tests && npm run lint && tap test/*.test.[jt]s --timeout=60 --node-arg=-r --node-arg=ts-node/register",
+    "postinstall": "npm --prefix test/fixtures/bundle install"
   },
   "author": "Remy Sharp",
   "license": "Apache-2.0",
@@ -26,7 +27,6 @@
     "jscs": "^3.0.7",
     "proxyquire": "^1.7.4",
     "sinon": "^1.17.3",
-    "snyk-resolve-deps-fixtures": "^1.1.6",
     "tap": "^12.6.0",
     "tap-only": "0.0.5",
     "ts-node": "^8.1.0",

@@ -83,8 +83,8 @@ test('end to end (no deps but has node_modules)', function (t) {
   .then(t.end);
 });
 
-test('end to end (this package with dev)', function (t) {
-  lib(__dirname + '/../', { dev: true })
+test('end to end (bundle with dev)', function (t) {
+  lib(__dirname + '/fixtures/bundle', { dev: true })
   .then(function (res) {
     let fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
     let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
@@ -97,7 +97,7 @@ test('end to end (this package with dev)', function (t) {
     t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
     t.equal(fixtures.dependencies.undefsafe.extraneous, true, 'is extraneous');
 
-    plucked = res.pluck(['snyk-resolve-deps@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
+    plucked = res.pluck(['bundle@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
     t.equal(plucked.name, 'snyk-tree');
     t.ok(plucked.__filename, 'got __filename');
   })
@@ -106,9 +106,9 @@ test('end to end (this package with dev)', function (t) {
 });
 
 test('end to end (this package __without__ dev)', function (t) {
-  lib(__dirname + '/../')
+  lib(__dirname + '/fixtures/bundle')
   .then(function (res) {
-    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+    let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
     let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
@@ -126,10 +126,10 @@ test('end to end (this package __without__ dev)', function (t) {
   .then(t.end);
 });
 
-test('end to end (this package wihtout from arrays)', function (t) {
-  lib(__dirname + '/../', {noFromArrays: true})
+test('end to end (bundle without from arrays)', function (t) {
+  lib(__dirname + '/fixtures/bundle', {noFromArrays: true})
   .then(function (res) {
-    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+    let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
     let plucked = res.pluck(from, 'source-map', '~0.6.1');
     t.ok(plucked.name, 'source-map');
 
