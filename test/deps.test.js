@@ -1,10 +1,11 @@
 let test = require('tap-only');
 let deps = require('../lib/deps');
 let path = require('path');
-let npm2fixture = path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/node_modules/uglify-package');
-let npm3fixture = path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/');
+let npm2fixture = path.resolve(__dirname,
+  'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures',
+  'node_modules/uglify-package');
+let npm3fixture = path.resolve(__dirname,
+  'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures');
 
 test('deps - not a node project', function (t) {
   deps(__dirname).then(function (res) {

@@ -1,8 +1,8 @@
 let test = require('tap-only');
 let pluck = require('../lib/pluck');
 let path = require('path');
-let remoteFixtures = path.resolve(__dirname, '..',
-    'node_modules/snyk-resolve-deps-fixtures/');
+let remoteFixtures = path.resolve(__dirname,
+  'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures');
 let npm2fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm2.json');
 let npm3fixtures = require(remoteFixtures + '/snyk-resolve-deps-npm3.json');
 let pm2fixtures = require(remoteFixtures + '/pm2-disk.json');
@@ -21,7 +21,9 @@ test('pluck (with npm@3 modules)', function (t) {
 });
 
 test('pluck (try github as version)', function (t) {
-  let res = require(path.resolve(__dirname, '..', 'node_modules', 'snyk-resolve-deps-fixtures', 'jsbin-file-tree.json'));
+  let res = require(path.resolve(__dirname,
+    'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures',
+    'jsbin-file-tree.json'));
   let plucked = null;
   let name = 'memcached';
 
