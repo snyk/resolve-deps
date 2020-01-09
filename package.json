@@ -24,7 +24,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/lodash": "^4.14.123",
-    "jscs": "^3.0.7",
     "proxyquire": "^1.7.4",
     "sinon": "^1.17.3",
     "tap": "^12.6.0",
