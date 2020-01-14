@@ -22,56 +22,54 @@ function applyExtraFields(src, dest, extraFields) {
   });
 }
 
-// FIXME only supports dependancies & dev deps not opt-deps
-function loadModules(root, depType, options) {
+// FIXME: only supports dependencies & dev deps not opt-deps
+async function loadModules(root: string, depType: string | null, options) {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
   let opt = _.clone(options || {});
   let pkgRoot = root;
 
   if (opt.file) {
-    let pathInfo = path.parse(opt.file);
+    const pathInfo = path.parse(opt.file);
     pkgRoot = path.resolve(pkgRoot, pathInfo.dir);
     opt.file = pathInfo.base;
   }
 
-  return loadModulesInternal(
+  const tree = await loadModulesInternal(
     pkgRoot,
     depType || null,
     null,
     opt,
-  ).then(function (tree) {
-    // ensure there's no missing packages our known root deps
-    let missing: Array<Promise<PackageExpanded>> = [];
-    if (tree.__dependencies) {
-      Object.keys(tree.__dependencies).forEach(function (name) {
-        if (!tree.dependencies[name]) {
-          missing.push(resolve(name, pkgRoot).then(function (dir) {
-            return loadModulesInternal(dir, depTypes.PROD, {
-              __from: [tree.name + '@' + tree.version, name],
-            });
-          }).catch(function (e) {
-            if (e.code === 'NO_PACKAGE_FOUND') {
-              return false;
-            }
-          }));
-        }
+  );
+  // ensure there's no missing packages our known root deps
+  let missing: Array<Promise<PackageExpanded>> = [];
+  if (tree.__dependencies) {
+    Object.keys(tree.__dependencies).forEach(function (name) {
+      if (!tree.dependencies[name]) {
+        missing.push(resolve(name, pkgRoot).then(function (dir) {
+          return loadModulesInternal(dir, depTypes.PROD, {
+            __from: [tree.name + '@' + tree.version, name],
+          });
+        }).catch(function (e) {
+          if (e.code === 'NO_PACKAGE_FOUND') {
+            return false;
+          }
+        }));
+      }
+    });
+  }
+
+  if (missing.length) {
+    return Promise.all(missing).then(function (packages) {
+      packages.filter(Boolean).forEach(function (pkg) {
+        pkg.dep = tree.__dependencies[pkg.name];
+        tree.dependencies[pkg.name] = pkg;
       });
-    }
+      return tree;
+    });
+  }
 
-    if (missing.length) {
-      return Promise.all(missing).then(function (packages) {
-        packages.filter(Boolean).forEach(function (pkg) {
-          pkg.dep = tree.__dependencies[pkg.name];
-          tree.dependencies[pkg.name] = pkg;
-        });
-        return tree;
-      });
-    }
-
-    return tree;
-  });
-
+  return tree;
 }
 
 function loadModulesInternal(root, rootDepType, parent, options?): Promise<PackageExpanded> {

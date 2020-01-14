@@ -1,0 +1,8 @@
+{
+  "name": "yarn-link-deps",
+  "version": "0.0.1",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "my-app": "link:./linked-dep"
+  }
+}
