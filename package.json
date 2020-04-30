@@ -12,13 +12,14 @@
     "build": "tsc",
     "build-watch": "tsc -w",
     "tslint": "tslint --project tsconfig.json --format stylish --exclude **/src/**/*.js",
-    "prepare": "npm run build",
+    "prepare": "npm run snyk-protect && npm run build",
     "lint": "npm run tslint",
     "check-tests": "! grep 'test.only' test/*.test.js -n",
     "env": "node -e 'console.log(process.env, process.versions)'",
     "cover": "tap test/*.test.js --cov --coverage-report=lcov",
     "test": "npm run check-tests && npm run lint && tap test/*.test.[jt]s --timeout=60 --node-arg=-r --node-arg=ts-node/register",
-    "postinstall": "npm --prefix test/fixtures/bundle install"
+    "postinstall": "npm --prefix test/fixtures/bundle install",
+    "snyk-protect": "snyk protect"
   },
   "author": "Remy Sharp",
   "license": "Apache-2.0",
@@ -44,10 +45,12 @@
     "snyk-resolve": "^1.0.0",
     "snyk-tree": "^1.0.0",
     "snyk-try-require": "^1.1.1",
-    "then-fs": "^2.0.0"
+    "then-fs": "^2.0.0",
+    "snyk": "^1.316.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Snyk/resolve-deps.git"
-  }
+  },
+  "snyk": true
 }
