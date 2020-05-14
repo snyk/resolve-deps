@@ -4,11 +4,11 @@ export = logicalTree;
 import pluck = require('./pluck');
 import walk = require('./walk');
 import unique = require('./unique');
+import * as _assignIn from 'lodash.assignin';
 import * as path from 'path';
 import * as depTypes from './dep-types';
 import * as colour from 'ansicolors';
 import * as moduleToObject from 'snyk-module';
-import * as _ from 'lodash';
 import * as util from 'util';
 import { PackageExpanded, DepType, Options, LogicalRoot, DepExpandedDict } from './types';
 
@@ -123,10 +123,10 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
   let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
-  let deps = _.assignIn({}, tree.__dependencies,
+  let deps = _assignIn({}, tree.__dependencies,
     tree.__from && from.length === 1 ? tree.__devDependencies : {});
 
-  deps = _.assignIn(deps, tree.__optionalDependencies);
+  deps = _assignIn(deps, tree.__optionalDependencies);
 
   return Object.keys(deps).reduce(function walkDepsPicker(acc, curr) {
     // only attempt to walk this dep if it's not in our path already

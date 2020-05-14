@@ -3,7 +3,11 @@ export = loadModules;
 
 import * as depTypes from './dep-types';
 import * as fs from 'then-fs';
-import * as _ from 'lodash';
+import * as _get from 'lodash.get';
+import * as _set from 'lodash.set';
+import * as _clone from 'lodash.clone';
+import * as _assign from 'lodash.assign';
+import * as _flatten from 'lodash.flatten';
 import * as debugModule from 'debug';
 import * as path from 'path';
 import * as semver from 'semver';
@@ -18,7 +22,7 @@ function applyExtraFields(src, dest, extraFields) {
     return;
   }
   extraFields.forEach(function applyExtraField(field) {
-    _.set(dest, field, _.get(src, field) || null);
+    _set(dest, field, _get(src, field) || null);
   });
 }
 
@@ -26,7 +30,7 @@ function applyExtraFields(src, dest, extraFields) {
 function loadModules(root, depType, options) {
   tryRequire.cache.reset(); // reset the package cache on re-run
 
-  let opt = _.clone(options || {});
+  let opt = _clone(options || {});
   let pkgRoot = root;
 
   if (opt.file) {
@@ -93,7 +97,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
       let full = pkg.name + '@' + (pkg.version || '0.0.0');
       modules = {} as PackageExpanded;
       applyExtraFields(pkg, modules, options.extraFields);
-      _.assign(modules, {
+      _assign(modules, {
         name: pkg.name,
         version: pkg.version || null,
         license: pkg.license || 'none',
@@ -158,7 +162,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
       });
 
       return Promise.all(res).then(function (response) {
-        response = _.flatten(response).filter(Boolean);
+        response = _flatten(response).filter(Boolean);
 
         // if res.length === 0 we used to throw MISSING_NODE_MODULES but we're
         // not doing that now, and I think it's okay.
@@ -189,7 +193,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
           let full = curr.name + '@' + (curr.version || '0.0.0');
           acc[curr.name!] = {} as PackageExpanded;
           applyExtraFields(curr, acc[curr.name!], options.extraFields);
-          _.assign(acc[curr.name!], {
+          _assign(acc[curr.name!], {
             name: curr.name,
             version: curr.version || null,
             full: full,
