@@ -8,7 +8,7 @@ import * as _assignIn from 'lodash.assignin';
 import * as path from 'path';
 import * as depTypes from './dep-types';
 import * as colour from 'ansicolors';
-import * as moduleToObject from 'snyk-module';
+import { parsePackageString as moduleToObject } from 'snyk-module';
 import * as util from 'util';
 import { PackageExpanded, DepType, Options, LogicalRoot, DepExpandedDict } from './types';
 
