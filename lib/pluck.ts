@@ -2,7 +2,7 @@
 export = pluck;
 
 import * as semver from 'semver';
-import * as moduleToObject from 'snyk-module';
+import { parsePackageString as moduleToObject } from 'snyk-module';
 import * as debugModule from 'debug';
 import { PackageExpanded } from './types';
 const debug = debugModule('snyk:resolve:pluck');
@@ -18,7 +18,7 @@ function pluck(root: PackageExpanded, path: string[], name: string, range: strin
   // note that we don't need the first item in the path (which is the root
   // package name).
   let from = path.slice(0);
-  let rootPath = moduleToObject(from.shift(), parseOptions).name;
+  let rootPath = moduleToObject(from.shift()!, parseOptions).name;
 
   // if the root of the virtual tree doesn't even match our path, bail out
   if (rootPath !== root.name) {
@@ -28,7 +28,7 @@ function pluck(root: PackageExpanded, path: string[], name: string, range: strin
   // do a check to see if the last item in the path is actually the package
   // we're looking for, and if it's not, push it on
   if (from.length !== 0 &&
-      moduleToObject(from.slice(-1).pop(), parseOptions).name === name) {
+      moduleToObject(from.slice(-1).pop()!, parseOptions).name === name) {
     from.pop();
   }
 
