@@ -82,3 +82,14 @@ test('deps - yarn with renamed dep', function (t) {
     t.fail(e.stack);
   }).then(t.end);
 });
+
+// See test/fixtures/yarn-link-deps/README.md
+test('deps - yarn with linked deps', function (t) {
+  deps('test/fixtures/yarn-link-deps').then(function (res) {
+    t.equal(res.name, 'yarn-link-deps', 'package name matches');
+    t.type(res.dependencies, 'object', 'has dependencies');
+    t.equal(Object.keys(res.dependencies).length, 3, 'has 3 deps');
+  }).catch(function (e) {
+    t.fail(e.stack);
+  }).then(t.end);
+});
