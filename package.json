@@ -16,22 +16,21 @@
     "lint": "npm run tslint",
     "check-tests": "! grep 'test.only' test/*.test.js -n",
     "env": "node -e 'console.log(process.env, process.versions)'",
-    "cover": "tap test/*.test.js --cov --coverage-report=lcov",
-    "test": "npm run check-tests && npm run lint && tap test/*.test.[jt]s --timeout=60 --node-arg=-r --node-arg=ts-node/register",
+    "cover": "jest test/*.test.js  --collectCoverage",
+    "test": "npm run check-tests && npm run lint && jest test/*.test.[jt]s",
     "postinstall": "npm --prefix test/fixtures/bundle install"
   },
   "author": "Remy Sharp",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^6.14.4",
+    "@types/jest": "^26.0.4",
+    "@types/node": "^10.17.27",
     "@types/semver": "^5.5.0",
-    "proxyquire": "^1.7.4",
-    "sinon": "^1.17.3",
-    "tap": "^12.7.0",
-    "tap-only": "0.0.5",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.2",
     "ts-node": "^8.1.0",
-    "tslint": "^5.13.1",
-    "typescript": "^3.3.3333"
+    "tslint": "^5.20.1",
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "ansicolors": "^0.3.2",

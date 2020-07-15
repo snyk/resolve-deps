@@ -1,151 +1,115 @@
-let test = require('tap-only');
 let lib = require('../lib');
-let proxyquire = require('proxyquire');
-let sinon = require('sinon');
-let spy = sinon.spy();
 
-test('cache cleared on re-run', function (t) {
-  spy = sinon.stub();
-  spy.returns(JSON.stringify({
-    name: 'foo'
-  }));
+describe('end-to-end.test.js', () => {
 
-  let lib = proxyquire('../lib', {
-    './deps': proxyquire('../lib/deps', {
-      'snyk-try-require': proxyquire('snyk-try-require', {
-        'then-fs': {
-          readFile: function (filename) {
-            return Promise.resolve(spy(filename));
-          }
-        },
-      })
-    })
-  });
-
-  let dirname = 'doesnt-exist';
-
-  return lib(dirname).then(function () {
-    t.pass('first run complete');
-  }).then(function () {
-    spy.returns(JSON.stringify({
-      name: 'bar'
-    }));
-    return lib(dirname).then(function (res) {
-      t.equal(res.name, 'bar', 'cache cleared');
+    test('end to end (no deps)', function (done) {
+        lib(__dirname + '/fixtures/pkg-undef-deps')
+            .then(function (res) {
+                expect(res).toBeTruthy();
+            })
+            .catch(fail)
+            .then(done);
     });
-  });
-});
 
-test('end to end (no deps)', function (t) {
-  lib(__dirname + '/fixtures/pkg-undef-deps')
-  .then(function (res) {
-    t.ok(!!res, 'we have a result for package without deps');
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
+    test('end to end (sub-pluck finds correctly)', function () {
+        let res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
+        let from = ['foo@1.0.0',
+            'chokidar@1.4.1',
+            'fsevents@1.0.7',
+            'node-pre-gyp@0.6.19',
+            'request@2.67.0',
+            'hawk@3.1.2'];
 
-test('end to end (sub-pluck finds correctly)', function (t) {
-  let res = lib.logicalTree(require(__dirname + '/fixtures/oui.json'));
-  let from = [ 'foo@1.0.0',
-    'chokidar@1.4.1',
-    'fsevents@1.0.7',
-    'node-pre-gyp@0.6.19',
-    'request@2.67.0',
-    'hawk@3.1.2' ];
+        let plucked = res.pluck(from, 'hawk', '3.1.2');
 
-  let plucked = res.pluck(from, 'hawk', '3.1.2');
-
-  t.notEqual(plucked, false, 'managed to pluck');
-  t.equal(plucked.name, 'hawk', 'found hawk');
-  t.deepEqual(plucked.bundled, from.slice(0, 4), 'bundled path is correct');
-  t.end();
-});
-
-
-test('end to end (no name on root pkg)', function (t) {
-  lib(__dirname + '/fixtures/pkg-missing-name')
-  .then(function (res) {
-    t.ok(!!res, 'we have a result for package without deps');
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
-
-test('end to end (no deps but has node_modules)', function (t) {
-  lib(__dirname + '/fixtures/pkg-undef-deps-with-modules', { dev: true })
-  .then(function (res) {
-    t.equal(res.dependencies.debug.extraneous, undefined, 'debug is valid');
-    t.equal(res.dependencies.undefsafe.extraneous, true, 'undefsafe is extraneous');
-    t.ok(!!res, 'we have a result for package without deps');
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
-
-test('end to end (bundle with dev)', function (t) {
-  lib(__dirname + '/fixtures/bundle', { dev: true })
-  .then(function (res) {
-    let fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
-    let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    let plucked = res.pluck(from, 'source-map', '~0.5.1');
-
-    t.notOk(res.dependencies.tap.dependencies.nyc.dependencies['istanbul-reports'].dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous, 'source-map is not extraneous');
-
-    t.ok(fixtures, 'has the fixtures dep');
-    t.equal(fixtures.dependencies['@remy/npm-tree'].name, '@remy/npm-tree', 'has npm-tree');
-    t.equal(fixtures.dependencies['@remy/vuln-test'].name, '@remy/vuln-test', 'has vuln-test');
-    t.equal(fixtures.dependencies.undefsafe.extraneous, true, 'is extraneous');
-
-    plucked = res.pluck(['bundle@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
-    t.equal(plucked.name, 'snyk-tree');
-    t.ok(plucked.__filename, 'got __filename');
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
-
-test('end to end (this package __without__ dev)', function (t) {
-  lib(__dirname + '/fixtures/bundle')
-  .then(function (res) {
-    let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    let plucked = res.pluck(from, 'source-map', '~0.6.1');
-    t.ok(plucked.name, 'source-map');
-
-    let unique = res.unique();
-    let counter = {};
-    lib.walk(unique, function (dep) {
-      if (counter[dep.full]) {
-        counter[dep.full]++;
-        t.fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
-      }
-      counter[dep.full] = 1;
+        expect(plucked === false).toBeFalsy();
+        expect(plucked.name).toEqual('hawk');
+        expect(plucked.bundled).toEqual(from.slice(0, 4));
     });
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
 
-test('end to end (bundle without from arrays)', function (t) {
-  lib(__dirname + '/fixtures/bundle', {noFromArrays: true})
-  .then(function (res) {
-    let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
-    let plucked = res.pluck(from, 'source-map', '~0.6.1');
-    t.ok(plucked.name, 'source-map');
 
-    let unique = res.unique();
-    let counter = {};
-    lib.walk(unique, function (dep) {
-      if (dep.from) {
-        t.fail('from array found on node', dep);
-      }
-      if (counter[dep.full]) {
-        counter[dep.full]++;
-        t.fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
-      }
-      counter[dep.full] = 1;
+    test('end to end (no name on root pkg)', function (done) {
+        lib(__dirname + '/fixtures/pkg-missing-name')
+            .then(function (res) {
+                expect(res).toBeTruthy();
+            })
+            .catch(fail)
+            .then(done);
     });
-  })
-  .catch(t.threw)
-  .then(t.end);
-});
+
+    test('end to end (no deps but has node_modules)', function (done) {
+        lib(__dirname + '/fixtures/pkg-undef-deps-with-modules', {dev: true})
+            .then(function (res) {
+                expect(res.dependencies.debug.extraneous).toBeUndefined();
+                expect(res.dependencies.undefsafe.extraneous).toEqual(true);
+                expect(res).toBeTruthy();
+            })
+            .catch(fail)
+            .then(done);
+    });
+
+    test('end to end (bundle with dev)', function (done) {
+        lib(__dirname + '/fixtures/bundle', {dev: true})
+            .then(function (res) {
+                let fixtures = res.dependencies['snyk-resolve-deps-fixtures'];
+                let from = ['snyk-resolve-deps', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+                let plucked = res.pluck(from, 'source-map', '~0.5.1');
+
+                expect(res.dependencies.tap.dependencies.nyc.dependencies['istanbul-reports'].dependencies.handlebars.dependencies['uglify-js'].dependencies['source-map'].extraneous).toBeFalsy();
+                expect(fixtures).toBeTruthy();
+                expect(fixtures.dependencies['@remy/npm-tree'].name).toEqual('@remy/npm-tree');
+                expect(fixtures.dependencies['@remy/vuln-test'].name).toEqual('@remy/vuln-test');
+                expect(fixtures.dependencies.undefsafe.extraneous).toEqual(true);
+
+                plucked = res.pluck(['bundle@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
+                expect(plucked.name).toEqual('snyk-tree');
+                expect(plucked.__filename).toBeTruthy();
+            })
+            .catch(fail)
+            .then(done);
+    });
+
+    test('end to end (this package __without__ dev)', function (done) {
+        lib(__dirname + '/fixtures/bundle')
+            .then(function (res) {
+                let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+                let plucked = res.pluck(from, 'source-map', '~0.6.1');
+                expect(plucked.name).toBeTruthy();
+                let unique = res.unique();
+                let counter = {};
+                lib.walk(unique, function (dep) {
+                    if (counter[dep.full]) {
+                        counter[dep.full]++;
+                        fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+                    }
+                    counter[dep.full] = 1;
+                });
+            })
+            .catch(fail)
+            .then(done);
+    });
+
+    test('end to end (bundle without from arrays)', function (done) {
+        lib(__dirname + '/fixtures/bundle', {noFromArrays: true})
+            .then(function (res) {
+                let from = ['bundle', 'tap', 'nyc', 'istanbul-reports', 'handlebars', 'uglify-js', 'source-map'];
+                let plucked = res.pluck(from, 'source-map', '~0.6.1');
+                expect(plucked.name).toBeTruthy();
+
+                let unique = res.unique();
+                let counter = {};
+                lib.walk(unique, function (dep) {
+                    if (dep.from) {
+                        fail('from array found on node', dep);
+                    }
+                    if (counter[dep.full]) {
+                        counter[dep.full]++;
+                        fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+                    }
+                    counter[dep.full] = 1;
+                });
+            })
+            .catch(fail)
+            .then(done);
+    });
+})

@@ -1,95 +1,91 @@
-let test = require('tap-only');
 let deps = require('../lib/deps');
 let path = require('path');
 let npm2fixture = path.resolve(__dirname,
-  'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures',
-  'node_modules/uglify-package');
+    'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures',
+    'node_modules/uglify-package');
 let npm3fixture = path.resolve(__dirname,
-  'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures');
+    'fixtures/bundle/node_modules/snyk-resolve-deps-fixtures');
+describe('deps.test.js', () => {
 
-test('deps - not a node project', function (t) {
-  deps(__dirname).then(function (res) {
-    t.fail('non-node project should not succeed', res);
-  }).catch(function (e) {
-    t.type(e, 'Error', 'error received');
-    t.notEqual(e.message.indexOf(' is not a node project'), -1, 'error is correct');
-  }).then(t.end);
-});
+    test('deps - not a node project', function (done) {
+        deps(__dirname).then(function (res) {
+            fail();
+        }).catch(function (e) {
+            expect(e.message.includes(' is not a node project')).toBeTruthy();
+        }).then(done);
+    });
 
-test('deps - npm@3', function (t) {
-  deps(npm3fixture).then(function (res) {
-    t.ok(!!res, 'package loaded');
-  }).catch(t.fail).then(t.end);
-});
+    test('deps - npm@3', function (done) {
+        deps(npm3fixture).then(function (res) {
+            expect(res).toBeTruthy();
+        }).catch(fail).then(done);
+    });
 
 // fixture uglify-package does not exist, and newer versions of npm care
-const legacyNpm = Number(
-  require('child_process').execSync('npm -v').toString().split('.', 1)[0]
-) < 5;
+    const legacyNpm = Number(
+        require('child_process').execSync('npm -v').toString().split('.', 1)[0]
+    ) < 5;
 
-legacyNpm && test('deps - with uglify-package', function (t) {
-  deps(npm2fixture).then(function (res) {
-    t.equal(res.name, 'uglify-package', 'package name matches');
-    t.type(res.dependencies, 'object', 'has dependencies');
-    t.equal(Object.keys(res.dependencies).length, 3, 'has 3 file dependencies');
+    if (legacyNpm) {
+        test('deps - with uglify-package', function (done) {
+            deps(npm2fixture).then(function (res) {
+                expect(res.name).toEqual('uglify-package');
+                expect(Object.keys(res.dependencies).length).toEqual(3);
+                let ugdeep = res.dependencies['ug-deep'];
+                expect(ugdeep.name).toEqual('ug-deep');
+            }).catch(function (e) {
+                fail(e.stack);
+            }).then(done);
+        });
 
-    let ugdeep = res.dependencies['ug-deep'];
-    t.equal(ugdeep.name, 'ug-deep', 'ug-deep exists');
-  }).catch(function (e) {
-    t.fail(e.stack);
-  }).then(t.end);
-});
+        test('deps - with extraFields', function (done) {
+            deps(npm2fixture, null, {extraFields: ['main', 'super-bogus-field']}).then(function (res) {
+                expect(res.main).toEqual('index.js');
+                expect(res['super-bogus-field']).toEqual(null);
+            }).catch(function (e) {
+                fail(e.stack)
+            }).then(done);
+        });
+    }
 
-legacyNpm && test('deps - with extraFields', function (t) {
-  deps(npm2fixture, null, { extraFields: [ 'main', 'super-bogus-field' ]}).then(function (res) {
-    t.equal(res.main, 'index.js', 'includes extraFields');
-    t.equal(res['super-bogus-field'], null, 'produces null for empty extraFields fields');
-  }).catch(function (e) {
-    t.fail(e.stack);
-  }).then(t.end);
-});
+    test('deps - throws without path', function (done) {
+        deps().then(function () {
+            fail('without a path deps should not succeed');
+        }).catch(function (e) {
+            expect(e.message).toEqual('module path must be a string');
+        }).then(done);
+    });
 
-test('deps - throws without path', function (t) {
-  deps().then(function () {
-    t.fail('without a path deps should not succeed');
-  }).catch(function (e) {
-    t.type(e, 'Error', 'error received');
-    t.equal(e.message, 'module path must be a string', 'error is correct');
-  }).then(t.end);
-});
-
-test('deps - with relative "file" option', function (t) {
-  deps(__dirname, null, {
-    dev: true,
-    file: 'fixtures/pkg-undef-deps-with-modules/package.json',
-  })
-    .then(function (res) {
-      t.equal(res.dependencies.debug.depType, 'dev', 'debug is valid');
-      t.equal(res.dependencies.undefsafe.depType, 'extraneous',
-          'undefsafe is extraneous');
-    })
-    .catch(t.threw)
-    .then(t.end);
-});
+    test('deps - with relative "file" option', function (done) {
+        deps(__dirname, null, {
+            dev: true,
+            file: 'fixtures/pkg-undef-deps-with-modules/package.json',
+        })
+            .then(function (res) {
+                expect(res.dependencies.debug.depType).toEqual('dev');
+                expect(res.dependencies.undefsafe.depType).toEqual('extraneous');
+            })
+            .catch(e => fail(e))
+            .then(done);
+    });
 
 // See test/fixtures/pkg-yarn-renamed-deps/README.md
-test('deps - yarn with renamed dep', function (t) {
-  deps('test/fixtures/pkg-yarn-renamed-deps').then(function (res) {
-    t.equal(res.name, 'pkg-renamed-dep', 'package name matches');
-    t.type(res.dependencies, 'object', 'has dependencies');
-    t.equal(Object.keys(res.dependencies).length, 2, 'has 2 deps');
-  }).catch(function (e) {
-    t.fail(e.stack);
-  }).then(t.end);
-});
+    test('deps - yarn with renamed dep', function (done) {
+        deps('test/fixtures/pkg-yarn-renamed-deps').then(function (res) {
+            expect(res.name).toEqual('pkg-renamed-dep');
+            expect(Object.keys(res.dependencies).length).toEqual(2);
+        }).catch(function (e) {
+            fail(e.stack)
+        }).then(done);
+    });
 
 // See test/fixtures/yarn-link-deps/README.md
-test('deps - yarn with linked deps', function (t) {
-  deps('test/fixtures/yarn-link-deps').then(function (res) {
-    t.equal(res.name, 'yarn-link-deps', 'package name matches');
-    t.type(res.dependencies, 'object', 'has dependencies');
-    t.equal(Object.keys(res.dependencies).length, 3, 'has 3 deps');
-  }).catch(function (e) {
-    t.fail(e.stack);
-  }).then(t.end);
+    test('deps - yarn with linked deps', function (done) {
+        deps('test/fixtures/yarn-link-deps').then(function (res) {
+            expect(res.name).toEqual('yarn-link-deps');
+            expect(Object.keys(res.dependencies).length).toEqual(3);
+        }).catch(function (e) {
+            fail(e.stack)
+        }).then(done);
+    });
 });

@@ -1,8 +1,7 @@
-let test = require('tap-only');
 let unique = require('../lib/unique');
 let walk = require('../lib/walk');
 
-test('unique', function (t) {
+test('unique', function () {
   let fixture = require('./fixtures/out.json');
   let names = [];
 
@@ -12,10 +11,9 @@ test('unique', function (t) {
     names.push(dep.full);
   });
 
-  t.equal(count(names, 'semver'), 1, 'expect semver once (previously twice)');
-  t.equal(count(names, 'uglify-js'), 1, 'expect uglify-js once (previously twice)');
+  expect(count(names, 'semver')).toEqual(1);
+  expect(count(names, 'uglify-js')).toEqual(1);
 
-  t.end();
 });
 
 function count(array, name) {
