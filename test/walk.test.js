@@ -1,7 +1,6 @@
-let test = require('tap-only');
 let walk = require('../lib/walk');
 
-test('walk (search for semver)', function (t) {
+test('walk (search for semver)', function () {
   let fixture = require('./fixtures/out.json');
   let names = [];
 
@@ -9,10 +8,8 @@ test('walk (search for semver)', function (t) {
     names.push(dep.name);
   });
 
-  t.equal(count(names, 'semver'), 2, 'expect semver twice');
-  t.equal(count(names, 'uglify-js'), 2, 'expect uglify-js twice');
-
-  t.end();
+  expect(count(names, 'semver')).toEqual(2);
+  expect(count(names, 'uglify-js')).toEqual(2);
 });
 
 function count(array, name) {

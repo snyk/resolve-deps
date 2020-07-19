@@ -1,8 +1,7 @@
-let test = require('tap-only');
 let prune = require('../lib/prune');
 let walk = require('../lib/walk');
 
-test('prune (search for hawk)', function (t) {
+test('prune (search for hawk)', function () {
   let fixture = require('./fixtures/prune.json');
 
   prune(fixture, function (dep) {
@@ -16,6 +15,5 @@ test('prune (search for hawk)', function (t) {
     }
   });
 
-  t.equal(count, 5, 'tree has been pruned');
-  t.end();
+  expect(count).toEqual(5);
 });
