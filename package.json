@@ -45,7 +45,7 @@
     "snyk-module": "^3.1.0",
     "snyk-resolve": "^1.0.0",
     "snyk-tree": "^1.0.0",
-    "snyk-try-require": "^1.1.1",
+    "snyk-try-require": "^2.0.2",
     "then-fs": "^2.0.0"
   },
   "repository": {
