@@ -110,8 +110,11 @@ describe('logical.test.js', () => {
             // today, we detect debug, ms, undefsafe, debug, ms, ansicolors
             // ansicolors makes no sense. npm 6.13.0 is hoisting it to the top level,
             // but I don't understand why; it is not deduping it, it is only referenced once
+            //
+            // For npm@7, count is either 3 or 8 (depending on node version) since npm@6 and npm@7
+            // definition of extraneous packages is different.
             const count = extraneous.length;
-            expect(count === 6 || count === 5).toBeTruthy();
+            expect(count === 3 || count === 6 || count === 5 || count === 8 ).toBeTruthy();
         }).catch(fail).then(done);
     });
 
