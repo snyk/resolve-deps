@@ -59,7 +59,9 @@ describe('end-to-end.test.js', () => {
                 expect(fixtures).toBeTruthy();
                 expect(fixtures.dependencies['@remy/npm-tree'].name).toEqual('@remy/npm-tree');
                 expect(fixtures.dependencies['@remy/vuln-test'].name).toEqual('@remy/vuln-test');
-                expect(fixtures.dependencies.undefsafe.extraneous).toEqual(true);
+                // Differences between npm@6 and npm@7 definitions of extraneous- undefsafe is not extraneous 
+                // in npm@7, therefore it's undefined 
+                expect(!fixtures.dependencies.undefsafe || fixtures.dependencies.undefsafe.extraneous).toEqual(true);
 
                 plucked = res.pluck(['bundle@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
                 expect(plucked.name).toEqual('snyk-tree');
