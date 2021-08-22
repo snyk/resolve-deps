@@ -126,7 +126,7 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
   let deps = _assignIn({}, tree.__dependencies,
     tree.__from && from.length === 1 ? tree.__devDependencies : {});
 
-  deps = _assignIn(deps, tree.__optionalDependencies);
+  deps = _assignIn(deps, tree.__optionalDependencies, tree.__peerDependencies);
 
   return Object.keys(deps).reduce(function walkDepsPicker(acc, curr) {
     // only attempt to walk this dep if it's not in our path already
@@ -148,6 +148,7 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
           devDependencies: tree.__devDependencies,
           bundleDependencies: tree.__bundleDependencies,
           optionalDependencies: tree.__optionalDependencies,
+          peerDependencies: tree.__peerDependencies,
         });
 
         pkg.depType = info.type as DepType;

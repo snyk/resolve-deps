@@ -106,6 +106,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
         __devDependencies: pkg.devDependencies,
         __dependencies: pkg.dependencies,
         __optionalDependencies: pkg.optionalDependencies,
+        __peerDependencies: pkg.peerDependencies,
         __bundleDependencies: pkg.bundleDependencies,
         __filename: pkg.__filename,
       });

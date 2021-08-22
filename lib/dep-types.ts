@@ -7,26 +7,30 @@ import { DepType, HasDependencySpecs } from "./types";
 // extraneous means not found in package.json files, prod means not dev ATM
 function depTypes(depName: string, pkg: HasDependencySpecs) {
   let type: string | null = null;
-  let from = 'unknown';
+  let from = "unknown";
 
-  if (pkg.devDependencies && pkg.devDependencies[depName]) {
+  if (pkg.devDependencies?.[depName]) {
     type = depTypes.DEV;
     from = pkg.devDependencies[depName];
   }
 
-  if (pkg.optionalDependencies && pkg.optionalDependencies[depName]) {
+  if (pkg.peerDependencies?.[depName]) {
+    type = depTypes.PEER;
+    from = pkg.peerDependencies[depName];
+  }
+
+  if (pkg.optionalDependencies?.[depName]) {
     type = depTypes.OPTIONAL;
     from = pkg.optionalDependencies[depName];
   }
 
   // production deps trump all
-  if (pkg.dependencies && pkg.dependencies[depName]) {
+  if (pkg.dependencies?.[depName]) {
     type = depTypes.PROD;
     from = pkg.dependencies[depName];
   }
 
-  let bundled = !!(pkg.bundleDependencies &&
-    pkg.bundleDependencies[depName]);
+  let bundled = !!(pkg.bundleDependencies && pkg.bundleDependencies[depName]);
 
   return {
     type: type as string,
@@ -35,10 +39,11 @@ function depTypes(depName: string, pkg: HasDependencySpecs) {
   };
 }
 
-depTypes.EXTRANEOUS = 'extraneous' as DepType;
-depTypes.OPTIONAL = 'optional' as DepType;
-depTypes.PROD = 'prod' as DepType;
-depTypes.DEV = 'dev' as DepType;
+depTypes.EXTRANEOUS = "extraneous" as DepType;
+depTypes.OPTIONAL = "optional" as DepType;
+depTypes.PEER = "peer" as DepType;
+depTypes.PROD = "prod" as DepType;
+depTypes.DEV = "dev" as DepType;
 
 // TODO(kyegupov): switch to plain exports
 export = depTypes;
