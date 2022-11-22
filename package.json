@@ -23,6 +23,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^26.0.4",
+    "@types/lodash": "^4.14.189",
     "@types/node": "^10.17.27",
     "@types/semver": "^5.5.0",
     "jest": "^26.1.0",
@@ -34,12 +35,7 @@
   "dependencies": {
     "ansicolors": "^0.3.2",
     "debug": "^4.1.1",
-    "lodash.assign": "^4.2.0",
-    "lodash.assignin": "^4.2.0",
-    "lodash.clone": "^4.5.0",
-    "lodash.flatten": "^4.4.0",
-    "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
+    "lodash": "^4.17.21",
     "lru-cache": "^4.0.0",
     "semver": "^5.5.1",
     "snyk-module": "^3.1.0",
