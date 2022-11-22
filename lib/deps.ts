@@ -46,7 +46,7 @@ async function loadModules(root: string, depType: string | null, options) {
     opt,
   );
   // ensure there's no missing packages our known root deps
-  let missing: Array<Promise<PackageExpanded>> = [];
+  let missing: Promise<PackageExpanded>[] = [];
   if (tree.__dependencies) {
     Object.keys(tree.__dependencies).forEach(function (name) {
       if (!tree.dependencies[name]) {
