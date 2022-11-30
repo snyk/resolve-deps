@@ -113,8 +113,31 @@ describe('logical.test.js', () => {
             //
             // For npm@7, count is either 3 or 8 (depending on node version) since npm@6 and npm@7
             // definition of extraneous packages is different.
-            const count = extraneous.length;
-            expect(count === 3 || count === 6 || count === 5 || count === 8 ).toBeTruthy();
+
+            // Update 30-11-2022:
+            // Previously the test was checking counts, which differ between NPM versions.
+            // This was changed to test for particular packages being found as extraneous
+            // and making sure that some of used packages are not marked as extraneous.
+            // This should better express what we expect to find.
+            //
+            // This may still break in NPM 8.
+            // I've noticed, that uglify-package was unpublished from NPM in April 2022.
+            // This seems to be ignored in NPM 6. However, in NPM 8 installing partially fails
+            // and the entire uglify-package dependency subtree is marked as extraneous,
+            // while debug, ms and undefsafe don't seem to be marked as extraneous anymore.
+            // Not sure what the purpose of extraneous is, but it seems to be breaking between NPM versions.
+
+            // undefsafe + debug are manually installed
+            expect(extraneous).toContain("undefsafe");
+            expect(extraneous).toContain("debug");
+
+            // ms comes in via debug, and because it's unknown to us, it's also extraneous.
+            expect(extraneous).toContain("ms");
+
+            // make sure not every package is extraneous
+            expect(extraneous).not.toContain("snyk-resolve-deps-fixtures");
+            expect(extraneous).not.toContain("@remy/snyk-shrink-test");
+            expect(extraneous).not.toContain("semver");
         }).catch(fail).then(done);
     });
 
