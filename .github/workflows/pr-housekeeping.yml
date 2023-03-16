@@ -1,0 +1,11 @@
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight
+  workflow_dispatch:
+
+jobs:
+  close-stale:
+    uses: snyk/engprod-actions/.github/workflows/close-stale.yml@v1
+    with:
+      days-before-stale: 60
+      days-before-close: 2
