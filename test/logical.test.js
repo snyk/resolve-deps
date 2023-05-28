@@ -18,7 +18,7 @@ describe('logical.test.js', () => {
 
     test('logical', function (done) {
         resolveTree(npm3fixture).then(() => {
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
     test('logical (flags missing module)', function (done) {
@@ -27,7 +27,7 @@ describe('logical.test.js', () => {
                 return issue.indexOf('missing') === 0;
             });
             expect(problem).toBeTruthy();
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
     test('logical (find devDeps)', function (done) {
@@ -40,7 +40,7 @@ describe('logical.test.js', () => {
                 }
             });
             expect(names).toEqual(devDeps);
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
     test('logical (dont include from arrays)', function (done) {
@@ -48,14 +48,14 @@ describe('logical.test.js', () => {
             let names = [];
             walk(res, function (dep) {
                 if (dep.from) {
-                    fail('from array found on node ' + dep);
+                    throw new Error('from array found on node ' + dep);
                 }
                 if (dep.depType === depTypes.DEV) {
                     names.push(dep.name);
                 }
             });
 
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
 
@@ -73,7 +73,7 @@ describe('logical.test.js', () => {
                 walk(res.dependencies, function (dep) {
                     expect(dep.name).toEqual('@remy/npm-tree');
                 });
-            }).catch(fail);
+            }).catch(throw new Error());
         });
 
 
@@ -84,7 +84,7 @@ describe('logical.test.js', () => {
 
                 let ugdeep = res.dependencies['ug-deep'];
                 expect(ugdeep.name).toEqual('ug-deep');
-            }).catch(fail).then(done);
+            }).catch(throw new Error()).then(done);
 
         });
     }
@@ -115,7 +115,7 @@ describe('logical.test.js', () => {
             // definition of extraneous packages is different.
             const count = extraneous.length;
             expect(count === 3 || count === 6 || count === 5 || count === 8 ).toBeTruthy();
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
     test('logical (find semver multiple times)', function (done) {
@@ -131,7 +131,7 @@ describe('logical.test.js', () => {
             // around in, so the dependency is missing. It's not a good way to run this
             // test.
             expect(1 === count || 2 === count).toBeTruthy();
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
     test('logical (deep copies)', function () {

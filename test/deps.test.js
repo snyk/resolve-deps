@@ -9,7 +9,7 @@ describe('deps.test.js', () => {
 
     test('deps - not a node project', function (done) {
         deps(__dirname).then(function (res) {
-            fail();
+            throw new Error();
         }).catch(function (e) {
             expect(e.message.includes(' is not a node project')).toBeTruthy();
         }).then(done);
@@ -18,7 +18,7 @@ describe('deps.test.js', () => {
     test('deps - npm@3', function (done) {
         deps(npm3fixture).then(function (res) {
             expect(res).toBeTruthy();
-        }).catch(fail).then(done);
+        }).catch(throw new Error()).then(done);
     });
 
 // fixture uglify-package does not exist, and newer versions of npm care
@@ -34,7 +34,7 @@ describe('deps.test.js', () => {
                 let ugdeep = res.dependencies['ug-deep'];
                 expect(ugdeep.name).toEqual('ug-deep');
             }).catch(function (e) {
-                fail(e.stack);
+                throw new Error(e.stack);
             }).then(done);
         });
 
@@ -43,14 +43,14 @@ describe('deps.test.js', () => {
                 expect(res.main).toEqual('index.js');
                 expect(res['super-bogus-field']).toEqual(null);
             }).catch(function (e) {
-                fail(e.stack)
+                throw new Error(e.stack)
             }).then(done);
         });
     }
 
     test('deps - throws without path', function (done) {
         deps().then(function () {
-            fail('without a path deps should not succeed');
+            throw new Error('without a path deps should not succeed');
         }).catch(function (e) {
             expect(e.message).toEqual('module path must be a string');
         }).then(done);
@@ -65,7 +65,7 @@ describe('deps.test.js', () => {
                 expect(res.dependencies.debug.depType).toEqual('dev');
                 expect(res.dependencies.undefsafe.depType).toEqual('extraneous');
             })
-            .catch(e => fail(e))
+            .catch(e => throw new Error(e))
             .then(done);
     });
 
@@ -75,7 +75,7 @@ describe('deps.test.js', () => {
             expect(res.name).toEqual('pkg-renamed-dep');
             expect(Object.keys(res.dependencies).length).toEqual(2);
         }).catch(function (e) {
-            fail(e.stack)
+            throw new Error(e.stack)
         }).then(done);
     });
 
@@ -85,7 +85,7 @@ describe('deps.test.js', () => {
             expect(res.name).toEqual('yarn-link-deps');
             expect(Object.keys(res.dependencies).length).toEqual(3);
         }).catch(function (e) {
-            fail(e.stack)
+            throw new Error(e.stack)
         }).then(done);
     });
 });

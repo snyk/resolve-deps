@@ -7,7 +7,7 @@ describe('end-to-end.test.js', () => {
             .then(function (res) {
                 expect(res).toBeTruthy();
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 
@@ -33,7 +33,7 @@ describe('end-to-end.test.js', () => {
             .then(function (res) {
                 expect(res).toBeTruthy();
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 
@@ -44,7 +44,7 @@ describe('end-to-end.test.js', () => {
                 expect(res.dependencies.undefsafe.extraneous).toEqual(true);
                 expect(res).toBeTruthy();
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 
@@ -59,15 +59,15 @@ describe('end-to-end.test.js', () => {
                 expect(fixtures).toBeTruthy();
                 expect(fixtures.dependencies['@remy/npm-tree'].name).toEqual('@remy/npm-tree');
                 expect(fixtures.dependencies['@remy/vuln-test'].name).toEqual('@remy/vuln-test');
-                // Differences between npm@6 and npm@7 definitions of extraneous- undefsafe is not extraneous 
-                // in npm@7, therefore it's undefined 
+                // Differences between npm@6 and npm@7 definitions of extraneous- undefsafe is not extraneous
+                // in npm@7, therefore it's undefined
                 expect(!fixtures.dependencies.undefsafe || fixtures.dependencies.undefsafe.extraneous).toEqual(true);
 
                 plucked = res.pluck(['bundle@1', 'snyk-resolve-deps-fixtures@1', 'snyk-tree'], 'snyk-tree', '*');
                 expect(plucked.name).toEqual('snyk-tree');
                 expect(plucked.__filename).toBeTruthy();
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 
@@ -82,12 +82,12 @@ describe('end-to-end.test.js', () => {
                 lib.walk(unique, function (dep) {
                     if (counter[dep.full]) {
                         counter[dep.full]++;
-                        fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+                        throw new Error('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
                     }
                     counter[dep.full] = 1;
                 });
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 
@@ -102,16 +102,16 @@ describe('end-to-end.test.js', () => {
                 let counter = {};
                 lib.walk(unique, function (dep) {
                     if (dep.from) {
-                        fail('from array found on node', dep);
+                        throw new Error('from array found on node', dep);
                     }
                     if (counter[dep.full]) {
                         counter[dep.full]++;
-                        fail('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
+                        throw new Error('found ' + dep.full + ' ' + counter[dep.full] + ' times in unique list');
                     }
                     counter[dep.full] = 1;
                 });
             })
-            .catch(fail)
+            .catch(throw new Error())
             .then(done);
     });
 })
