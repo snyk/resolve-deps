@@ -1,0 +1,36 @@
+version: 2.1
+
+only_master_branch: &only_master_branch
+  filters:
+    branches:
+      only:
+        - master
+
+jobs:
+  test:
+    resource_class: small
+    working_directory: ~/resolve-deps
+    parameters:
+      node_version:
+        type: string
+    docker:
+      - image: cimg/node:<< parameters.node_version >>
+    steps:
+      - checkout
+      - run:
+          name: Npm install
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm run test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              node_version:
+                - "16.19"
+          name: Test
