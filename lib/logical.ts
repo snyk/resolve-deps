@@ -4,7 +4,7 @@ export = logicalTree;
 import pluck = require('./pluck');
 import walk = require('./walk');
 import unique = require('./unique');
-import * as _assignIn from 'lodash.assignin';
+import * as _assignIn from 'lodash/assignin';
 import * as path from 'path';
 import * as depTypes from './dep-types';
 import * as colour from 'ansicolors';
