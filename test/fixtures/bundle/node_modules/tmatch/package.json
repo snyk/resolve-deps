@@ -1,0 +1,28 @@
+{
+  "name": "tmatch",
+  "version": "4.0.0",
+  "description": "This module exists to facilitate the `t.match()` method in [`tap`](http://npm.im/tap).",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap --100 test/*.js -J",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "postpublish": "git push origin --all; git push origin --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaacs/tmatch.git"
+  },
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaacs/tmatch/issues"
+  },
+  "homepage": "https://github.com/isaacs/tmatch#readme",
+  "devDependencies": {
+    "tap": "^11.1.5"
+  },
+  "files": [
+    "index.js"
+  ]
+}

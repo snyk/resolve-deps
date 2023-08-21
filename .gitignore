@@ -1,6 +1,7 @@
 /.nyc_output/
 node_modules/
 !test/fixtures/yarn-link-deps/node_modules
+!test/fixtures/bundle/node_modules
 /coverage
 package-lock.json
 /dist/
