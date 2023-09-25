@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: resolve-deps
+  annotations:
+    github.com/project-slug: snyk/resolve-deps
+    github.com/team-slug: snyk/os-managed
+spec:
+  type: external-library
+  lifecycle: "-"
+  owner: os-managed
