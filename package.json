@@ -41,7 +41,7 @@
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "lru-cache": "^4.0.0",
-    "semver": "^5.5.1",
+    "semver": "^7.5.2",
     "snyk-module": "^3.1.0",
     "snyk-resolve": "^1.0.0",
     "snyk-tree": "^1.0.0",
