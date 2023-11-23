@@ -3,11 +3,11 @@ export = loadModules;
 
 import * as depTypes from './dep-types';
 import * as fs from 'then-fs';
-import * as _get from 'lodash.get';
-import * as _set from 'lodash.set';
-import * as _clone from 'lodash.clone';
-import * as _assign from 'lodash.assign';
-import * as _flatten from 'lodash.flatten';
+import { get as _get } from 'lodash';
+import { set as _set } from 'lodash';
+import { clone as _clone } from 'lodash';
+import { assign as _assign } from 'lodash';
+import { flatten as _flatten } from 'lodash';
 import * as debugModule from 'debug';
 import * as path from 'path';
 import * as semver from 'semver';
@@ -46,7 +46,7 @@ async function loadModules(root: string, depType: string | null, options) {
     opt,
   );
   // ensure there's no missing packages our known root deps
-  let missing: Array<Promise<PackageExpanded>> = [];
+  let missing: Promise<PackageExpanded>[] = [];
   if (tree.__dependencies) {
     Object.keys(tree.__dependencies).forEach(function (name) {
       if (!tree.dependencies[name]) {
