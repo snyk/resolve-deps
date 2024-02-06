@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
+        "declaration": true,
         "pretty": true,
         "target": "es2015",
         "lib": [
