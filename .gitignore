@@ -6,3 +6,4 @@ package-lock.json
 /dist/
 .idea/
 npm-debug.log*
+**/.DS_Store
