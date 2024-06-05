@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  prodsec: snyk/prodsec-orb@1.0
+  prodsec: snyk/prodsec-orb@1
 
 defaults: &defaults
   parameters:
@@ -45,6 +45,23 @@ commands:
           command: npm --version
 
 jobs:
+  security-scans:
+    resource_class: small
+    <<: *defaults
+    docker:
+      - image: cimg/node:<< parameters.node_version >>
+    steps:
+      - show_node_version
+      - checkout
+      - attach_workspace:
+          at: ~/resolve-deps
+      - install_deps
+      - prodsec/security_scans:
+          mode: auto
+          open-source-additional-arguments: --exclude=test
+          release-branch: master
+          iac-scan: disabled
+
   lint:
     <<: *defaults
     docker:
@@ -94,6 +111,16 @@ workflows:
           context:
             - snyk-bot-slack
           channel: os-team-managed-alerts
+          filters:
+            branches:
+              ignore:
+                - master
+      - security-scans:
+          name: Security Scans
+          node_version: "16.20.2"
+          context:
+            - open_source-managed
+            - nodejs-install
       - lint:
           name: Lint
           context: nodejs-install
