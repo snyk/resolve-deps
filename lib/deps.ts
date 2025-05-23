@@ -12,7 +12,7 @@ import * as debugModule from 'debug';
 import * as path from 'path';
 import * as semver from 'semver';
 import * as resolve from 'snyk-resolve';
-import * as tryRequire from 'snyk-try-require';
+import { tryRequirePackageJson, cache as tryRequireCache } from './try-require';
 import { AbbreviatedVersion, PackageExpanded, PackageJsonEnriched } from './types';
 
 const debug = debugModule('snyk:resolve:deps');
@@ -28,7 +28,7 @@ function applyExtraFields(src, dest, extraFields) {
 
 // FIXME: only supports dependencies & dev deps not opt-deps
 async function loadModules(root: string, depType: string | null, options) {
-  tryRequire.cache.reset(); // reset the package cache on re-run
+  tryRequireCache.reset(); // reset the package cache on re-run
 
   let opt = _clone(options || {});
   let pkgRoot = root;
@@ -89,7 +89,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
   let modules = {} as PackageExpanded;
   let dir = path.resolve(root, options.file || 'package.json');
   // 1. read package.json for written deps
-  let promise = tryRequire(dir).then(function (pkg: PackageJsonEnriched) {
+  let promise = tryRequirePackageJson(dir).then(function (pkg) {
     // if there's a package found, collect this information too
     if (pkg) {
       let full = pkg.name + '@' + (pkg.version || '0.0.0');
@@ -149,7 +149,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
           directory = path.resolve(root, 'node_modules', directory);
           return fs.readdir(directory).then(function (directories) {
             return Promise.all(directories.map(function (scopedDir) {
-              return tryRequire(path.resolve(directory, scopedDir, 'package.json'));
+              return tryRequirePackageJson(path.resolve(directory, scopedDir, 'package.json'));
             }));
           });
         }
@@ -160,7 +160,7 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
           if (realDirectory === root) {
             return null;
           } else {
-            return tryRequire(path.resolve(directory, 'package.json'));
+            return tryRequirePackageJson(path.resolve(directory, 'package.json'));
           }
         });
       });
