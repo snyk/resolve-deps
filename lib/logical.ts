@@ -39,7 +39,10 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
 
   let problems: string[] = [];
   let logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
-  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems);
+  // Use a cache to prevent exponential path explosion when the same package
+  // is reachable through many different paths (common in large dependency trees)
+  const depsCache = new Map<string, DepExpandedDict>();
+  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems, depsCache);
 
   let removedPaths: string[][] = [];
 
@@ -80,7 +83,7 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
       problems.push(issue);
       leaf.extraneous = true;
       leaf.depType = depTypes.EXTRANEOUS;
-      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
+      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems, depsCache);
       walk(leaf.dependencies, function (extraDep) {
         extraDep.extraneous = true;
         extraDep.depType = depTypes.EXTRANEOUS;
@@ -118,8 +121,13 @@ function insertLeaf(tree, leaf, from) {
   entry[leaf.name] = leaf;
 }
 
-function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: string[] | undefined,
-                  problems: string[]): DepExpandedDict {
+function walkDeps(
+  root: PackageExpanded,
+  tree: PackageExpanded,
+  suppliedFrom: string[] | undefined,
+  problems: string[],
+  depsCache: Map<string, DepExpandedDict> = new Map(),
+): DepExpandedDict {
   let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
@@ -130,7 +138,12 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
 
   return Object.keys(deps).reduce(function walkDepsPicker(acc, curr) {
     // only attempt to walk this dep if it's not in our path already
-    if (tree.__from.indexOf(curr) === -1) {
+    // FIX: Use proper name extraction to compare against path entries
+    const inCurrentPath = from.some(function(pathEntry) {
+      return moduleToObject(pathEntry).name === curr;
+    });
+
+    if (!inCurrentPath) {
       let version = deps[curr];
       let dep = pluck(root, tree.__from, curr, version);
 
@@ -157,12 +170,54 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
           dep.bundled = pkg.bundled = tree.bundled;
         }
 
-        pkg.dependencies = walkDeps(root, dep, pkg.from, problems);
+        // Check if we've already computed dependencies for this exact package
+        // This prevents exponential path explosion in large dependency trees
+        // where the same package is reachable through many different paths
+        if (depsCache.has(dep.full)) {
+          // Clone the cached dependencies and update 'from' arrays to reflect
+          // the current path, preserving the original behavior
+          pkg.dependencies = cloneDepsWithNewPath(depsCache.get(dep.full)!, pkg.from || []);
+        } else {
+          pkg.dependencies = walkDeps(root, dep, pkg.from, problems, depsCache);
+          depsCache.set(dep.full, pkg.dependencies);
+        }
       }
     }
 
     return acc;
   }, {});
+}
+
+/**
+ * Deep clones a dependencies object and updates all 'from' arrays
+ * to use the new base path. This is used when reusing cached dependencies
+ * to ensure each occurrence has correct path information.
+ */
+function cloneDepsWithNewPath(deps: DepExpandedDict, newBasePath: string[]): DepExpandedDict {
+  const result: DepExpandedDict = {};
+
+  for (const name of Object.keys(deps)) {
+    const dep = deps[name];
+    // Create a shallow clone of the dependency
+    const clonedDep = Object.assign({}, dep) as PackageExpanded;
+
+    // Update the 'from' array: replace the base path portion with the new path
+    // The 'from' array structure is: [...parentPath, thisPackageFull]
+    // We keep the last element (the package's own identifier) and prepend the new base
+    if (dep.from && dep.from.length > 0) {
+      const thisPackageFull = dep.from[dep.from.length - 1];
+      clonedDep.from = newBasePath.concat(thisPackageFull);
+    }
+
+    // Recursively clone nested dependencies
+    if (dep.dependencies && Object.keys(dep.dependencies).length > 0) {
+      clonedDep.dependencies = cloneDepsWithNewPath(dep.dependencies, clonedDep.from || []);
+    }
+
+    result[name] = clonedDep;
+  }
+
+  return result;
 }
 
 function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {

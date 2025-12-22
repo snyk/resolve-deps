@@ -114,4 +114,21 @@ describe('end-to-end.test.js', () => {
             .catch(fail)
             .then(done);
     });
+
+    test('end to end with millions of paths', function (done) {
+        /**
+         * This tests a complex project with many million paths.
+         * As long as it finishes within a reasonable amount of time, we're good.
+         **/
+        lib(__dirname + '/fixtures/exponential-paths', {file: 'package.json'})
+            .then(function (res) {
+                expect(res.name).toEqual('exponential-paths');
+                let ckeditorDeps = Object.keys(res.dependencies).filter(function (name) {
+                    return name.startsWith('@ckeditor');
+                });
+                expect(ckeditorDeps).toHaveLength(26);
+            })
+            .catch(fail)
+            .then(done);
+    })
 })

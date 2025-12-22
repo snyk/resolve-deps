@@ -13,7 +13,7 @@
     "build": "tsc",
     "build-watch": "tsc -w",
     "tslint": "tslint --project tsconfig.json --format stylish --exclude **/src/**/*.js",
-    "prepare": "npm run build && npm --prefix test/fixtures/bundle install --no-audit",
+    "prepare": "npm run build && npm --prefix test/fixtures/bundle install --no-audit && npm --prefix test/fixtures/exponential-paths install --no-audit",
     "lint": "npm run tslint",
     "check-tests": "! grep 'test.only' test/*.test.js -n",
     "env": "node -e 'console.log(process.env, process.versions)'",
