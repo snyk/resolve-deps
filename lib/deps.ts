@@ -13,7 +13,8 @@ import * as path from 'path';
 import * as semver from 'semver';
 import * as resolve from 'snyk-resolve';
 import { tryRequirePackageJson, cache as tryRequireCache } from './try-require';
-import { AbbreviatedVersion, PackageExpanded, PackageJsonEnriched } from './types';
+import { AbbreviatedVersion, PackageExpanded } from './types';
+import { withPackageLabels } from './dep-labels';
 
 const debug = debugModule('snyk:resolve:deps');
 
@@ -127,6 +128,11 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
       if (modules.__from.length === 0) {
         modules.__from.push(full);
       }
+
+      const rootLabels = withPackageLabels(modules, options);
+      if (rootLabels) {
+        modules.labels = rootLabels;
+      }
     } else {
       throw new Error(dir + ' is not a node project');
     }
@@ -220,6 +226,11 @@ function loadModulesInternal(root, rootDepType, parent, options?): Promise<Packa
 
           if (pkg.shrinkwrap) {
             acc[curr.name!].shrinkwrap = pkg.shrinkwrap;
+          }
+
+          const depLabels = withPackageLabels(acc[curr.name!], options);
+          if (depLabels) {
+            acc[curr.name!].labels = depLabels;
           }
 
           return acc;

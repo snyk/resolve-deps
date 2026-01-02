@@ -43,6 +43,12 @@ export interface HasDependencySpecs {
     readonly bundleDependencies?: {readonly [name: string]: string};
 }
 
+export type NpmScope = 'prod' | 'dev' | 'unknown';
+
+export interface PackageLabels {
+    'npm:scope': NpmScope;
+}
+
 // Similar to package-json.AbbreviatedVersion, but with deps expanded
 export interface PackageExpanded {
     name: string;
@@ -68,6 +74,7 @@ export interface PackageExpanded {
     __used?: boolean;
     problems?: string[];
     extraneous?: boolean;
+    labels?: PackageLabels;
 }
 
 export interface LogicalRoot extends PackageExpanded {
@@ -82,4 +89,5 @@ export interface Options {
     extraFields?: string[]; // extract extra fields from dependencies' package.json files. example: `['files']`
     noFromArrays?: boolean; // don't include `from` arrays with list of deps from `root` on every node
     file?: string; //  location of the package file
+    showNpmScope?: boolean;
 }
