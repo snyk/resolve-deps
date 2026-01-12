@@ -11,6 +11,7 @@ import * as colour from 'ansicolors';
 import { parsePackageString as moduleToObject } from 'snyk-module';
 import * as util from 'util';
 import { PackageExpanded, DepType, Options, LogicalRoot, DepExpandedDict } from './types';
+import { withPackageLabels } from './dep-labels';
 
 const format = util.format;
 const ext = colour.bgBlack(colour.green('extraneous'));
@@ -39,7 +40,7 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
 
   let problems: string[] = [];
   let logicalRoot = copy(fileTree, fileTree.__from) as LogicalRoot;
-  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems);
+  logicalRoot.dependencies = walkDeps(fileTree, fileTree, undefined, problems, options);
 
   let removedPaths: string[][] = [];
 
@@ -80,10 +81,23 @@ function logicalTree(fileTree: PackageExpanded, options: Options) {
       problems.push(issue);
       leaf.extraneous = true;
       leaf.depType = depTypes.EXTRANEOUS;
-      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems);
+
+      const leafLabels = withPackageLabels(leaf, options);
+
+      if (leafLabels) {
+        leaf.labels = leafLabels;
+      }
+
+      leaf.dependencies = walkDeps(fileTree, dep, undefined, problems, options);
       walk(leaf.dependencies, function (extraDep) {
         extraDep.extraneous = true;
         extraDep.depType = depTypes.EXTRANEOUS;
+
+        const extraDepLabels = withPackageLabels(extraDep, options);
+
+        if (extraDepLabels) {
+          extraDep.labels = extraDepLabels;
+        }
       });
       insertLeaf(logicalRoot, leaf, dep.__from);
     }
@@ -119,7 +133,7 @@ function insertLeaf(tree, leaf, from) {
 }
 
 function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: string[] | undefined,
-                  problems: string[]): DepExpandedDict {
+                  problems: string[], options: Options): DepExpandedDict {
   let from = suppliedFrom || tree.__from;
 
   // only include the devDeps on the root level package
@@ -153,11 +167,17 @@ function walkDeps(root: PackageExpanded, tree: PackageExpanded, suppliedFrom: st
         pkg.depType = info.type as DepType;
         pkg.dep = info.from;
 
+        const pkgLabels = withPackageLabels(pkg, options);
+
+        if (pkgLabels) {
+          pkg.labels = pkgLabels;
+        }
+
         if (tree.bundled) { // carry the bundled flag down from the parent
           dep.bundled = pkg.bundled = tree.bundled;
         }
 
-        pkg.dependencies = walkDeps(root, dep, pkg.from, problems);
+        pkg.dependencies = walkDeps(root, dep, pkg.from, problems, options);
       }
     }
 
@@ -181,6 +201,11 @@ function copy(leaf: PackageExpanded, from?: string[]): PackageExpanded {
 
   res.from = from.slice(0);
   res.__filename = leaf.__filename;
+
+  // Preserve labels if they exist
+  if (leaf.labels) {
+    res.labels = leaf.labels;
+  }
 
   return res;
 }

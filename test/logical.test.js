@@ -150,4 +150,119 @@ describe('logical.test.js', () => {
         expect(deps.length).toEqual(5);
         expect(Object.keys(paths).length).toEqual(5);
     });
+
+    test('GIVEN showNpmScope is false WHEN building logical tree THEN packages should not have labels', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: false, dev: true}).then(function (res) {
+            let hasLabels = false;
+            walk(res.dependencies, function (dep) {
+                if (dep.labels) {
+                    hasLabels = true;
+                }
+            });
+            expect(hasLabels).toBeFalsy();
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is undefined WHEN building logical tree THEN packages should not have labels', function (done) {
+        resolveTree(bundleFixture, {dev: true}).then(function (res) {
+            let hasLabels = false;
+            walk(res.dependencies, function (dep) {
+                if (dep.labels) {
+                    hasLabels = true;
+                }
+            });
+            expect(hasLabels).toBeFalsy();
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree with dev dependencies THEN dev dependencies should have npm:scope label set to dev', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true, dev: true}).then(function (res) {
+            let devDepsWithLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (dep.depType === depTypes.DEV) {
+                    expect(dep.labels).toBeDefined();
+                    expect(dep.labels['npm:scope']).toEqual('dev');
+                    devDepsWithLabels.push(dep.name);
+                }
+            });
+            expect(devDepsWithLabels.length).toBeGreaterThan(0);
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree with prod dependencies THEN prod dependencies should have npm:scope label set to prod', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true}).then(function (res) {
+            let prodDepsWithLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (dep.depType === depTypes.PROD) {
+                    expect(dep.labels).toBeDefined();
+                    expect(dep.labels['npm:scope']).toEqual('prod');
+                    prodDepsWithLabels.push(dep.name);
+                }
+            });
+            expect(prodDepsWithLabels.length).toBeGreaterThan(0);
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree with optional dependencies THEN optional dependencies should have npm:scope label set to unknown', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true}).then(function (res) {
+            let optionalDepsWithLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (dep.depType === depTypes.OPTIONAL) {
+                    expect(dep.labels).toBeDefined();
+                    expect(dep.labels['npm:scope']).toEqual('unknown');
+                    optionalDepsWithLabels.push(dep.name);
+                }
+            });
+            // Optional deps may or may not exist, so we just verify the structure if they do
+            if (optionalDepsWithLabels.length > 0) {
+                expect(optionalDepsWithLabels.length).toBeGreaterThan(0);
+            }
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree with extraneous dependencies THEN extraneous dependencies should have npm:scope label set to unknown', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true, dev: true}).then(function (res) {
+            let extraneousDepsWithLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (dep.extraneous && dep.depType === depTypes.EXTRANEOUS) {
+                    expect(dep.labels).toBeDefined();
+                    expect(dep.labels['npm:scope']).toEqual('unknown');
+                    extraneousDepsWithLabels.push(dep.name);
+                }
+            });
+            // Extraneous deps may or may not exist depending on npm version
+            if (extraneousDepsWithLabels.length > 0) {
+                expect(extraneousDepsWithLabels.length).toBeGreaterThan(0);
+            }
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree THEN all dependencies should have npm:scope labels', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true, dev: true}).then(function (res) {
+            let depsWithoutLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (!dep.labels || !dep.labels['npm:scope']) {
+                    depsWithoutLabels.push(dep.name);
+                }
+            });
+            expect(depsWithoutLabels.length).toEqual(0);
+        }).catch(fail).then(done);
+    });
+
+    test('GIVEN showNpmScope is true WHEN building logical tree THEN nested dependencies should also have npm:scope labels', function (done) {
+        resolveTree(bundleFixture, {showNpmScope: true, dev: true}).then(function (res) {
+            let nestedDepsWithoutLabels = [];
+            walk(res.dependencies, function (dep) {
+                if (dep.dependencies) {
+                    Object.keys(dep.dependencies).forEach(function (nestedDepName) {
+                        let nestedDep = dep.dependencies[nestedDepName];
+                        if (!nestedDep.labels || !nestedDep.labels['npm:scope']) {
+                            nestedDepsWithoutLabels.push(nestedDep.name);
+                        }
+                    });
+                }
+            });
+            expect(nestedDepsWithoutLabels.length).toEqual(0);
+        }).catch(fail).then(done);
+    });
 })
