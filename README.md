@@ -1,5 +1,6 @@
 # snyk-resolve-deps
 
+
 This package will create a virtual tree representation of a node package's dependencies, supporting *both* npm@2 and npm@3 directory structures.
 
 Note that the output differs from the `npm ls` output in that deduped packages are resolved to their owners.
