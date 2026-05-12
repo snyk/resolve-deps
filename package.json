@@ -34,7 +34,7 @@
   "dependencies": {
     "ansicolors": "^0.3.2",
     "debug": "^4.3.4",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "lru-cache": "^4.1.5",
     "semver": "^5.7.2",
     "snyk-module": "^3.2.0",
