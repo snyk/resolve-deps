@@ -96,14 +96,15 @@ jobs:
       - image: cimg/node:<< parameters.node_version >>
     resource_class: small
     steps:
+      - checkout
       - install_deps
-      - run: sudo npm i -g semantic-release@17 @semantic-release/exec pkg
       - run:
-          name: Publish to GitHub
-          command: semantic-release
+          name: Release
+          command: |
+            export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+            npx semantic-release@25.0.5
 
 workflows:
-  version: 2
   test_and_release:
     jobs:
       - prodsec/secrets-scan:
@@ -161,8 +162,10 @@ workflows:
                 - master
       - release:
           name: Release
-          context: nodejs-app-release
-          node_version: "16.20.2"
+          context:
+            - nodejs-install
+            - github-release
+          node_version: "24.18.0"
           filters:
             branches:
               only:
