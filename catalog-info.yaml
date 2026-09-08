@@ -4,8 +4,8 @@ metadata:
   name: resolve-deps
   annotations:
     github.com/project-slug: snyk/resolve-deps
-    github.com/team-slug: snyk/os-managed
+    github.com/team-slug: snyk/engines_sca-scanners
 spec:
   type: external-library
   lifecycle: "-"
-  owner: os-managed
+  owner: sca-scanners
