@@ -119,7 +119,7 @@ workflows:
                 - master
       - security-scans:
           name: Security Scans
-          node_version: "22"
+          node_version: "24"
           context:
             - engines_sca-scanners
             - nodejs-install
@@ -127,7 +127,7 @@ workflows:
       - lint:
           name: Lint
           context: nodejs-install
-          node_version: "22"
+          node_version: "24"
           filters:
             branches:
               ignore:
@@ -167,7 +167,7 @@ workflows:
           context:
             - nodejs-install
             - github-release
-          node_version: "22"
+          node_version: "24"  # npm 11+ (Node 24) is needed for OIDC trusted publishing
           filters:
             branches:
               only:
