@@ -23,7 +23,7 @@
   "author": "Remy Sharp",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=12"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"
@@ -33,7 +33,7 @@
     "url": "https://github.com/snyk/resolve-deps/issues"
   },
   "devDependencies": {
-    "@types/node": "^10.17.27",
+    "@types/node": "^22",
     "@types/semver": "^5.5.0",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.2",
