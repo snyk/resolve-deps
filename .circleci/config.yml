@@ -20,7 +20,7 @@ commands:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
       - run:
           name: Install dependencies
-          command: npm install
+          command: npm ci
   install_node_npm:
     description: Install correct Node version
     parameters:
